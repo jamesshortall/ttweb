@@ -107,13 +107,7 @@ const paths: Record<IconName, React.ReactNode> = {
   check: <path d="m5 13 4 4L19 7" />,
 };
 
-export function Icon({
-  name,
-  className,
-}: {
-  name: IconName;
-  className?: string;
-}) {
+export function Icon({ name, className }: { name: IconName; className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"

@@ -63,7 +63,7 @@ export function CalendlyButton({
   }, [url]);
 
   const classes = cn(
-    "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sunset-600 px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-sunset-600/20 transition-colors hover:bg-sunset-700 disabled:opacity-70",
+    "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sunset-700 px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-sunset-700/20 transition-colors hover:bg-sunset-800 disabled:opacity-70",
     className,
   );
 

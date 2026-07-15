@@ -21,18 +21,12 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const inverse = tone === "inverse";
   return (
-    <div
-      className={cn(
-        "max-w-3xl",
-        align === "center" && "mx-auto text-center",
-        className,
-      )}
-    >
+    <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow ? (
         <p
           className={cn(
             "mb-3 text-sm font-bold tracking-widest uppercase",
-            inverse ? "text-lagoon-200" : "text-sunset-600",
+            inverse ? "text-lagoon-200" : "text-sunset-700",
           )}
         >
           {eyebrow}
@@ -47,7 +41,12 @@ export function SectionHeading({
         {title}
       </Heading>
       {description ? (
-        <p className={cn("mt-4 text-lg leading-relaxed", inverse ? "text-lagoon-100" : "text-ink/80")}>
+        <p
+          className={cn(
+            "mt-4 text-lg leading-relaxed",
+            inverse ? "text-lagoon-100" : "text-ink/80",
+          )}
+        >
           {description}
         </p>
       ) : null}

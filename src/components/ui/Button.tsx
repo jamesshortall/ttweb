@@ -6,7 +6,7 @@ type Size = "md" | "lg";
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-sunset-600 text-white hover:bg-sunset-700 active:bg-sunset-800 shadow-md shadow-sunset-600/20",
+    "bg-sunset-700 text-white hover:bg-sunset-800 active:bg-sunset-900 shadow-md shadow-sunset-700/20",
   secondary:
     "bg-lagoon-800 text-white hover:bg-lagoon-900 active:bg-lagoon-950 shadow-md shadow-lagoon-900/20",
   outline:

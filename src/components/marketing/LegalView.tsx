@@ -37,7 +37,10 @@ export function LegalView({ document }: { document: LegalDocument }) {
               {section.bullets ? (
                 <ul className="mt-4 space-y-2.5">
                   {section.bullets.map((bullet) => (
-                    <li key={bullet.slice(0, 48)} className="flex gap-3 leading-relaxed text-ink/85">
+                    <li
+                      key={bullet.slice(0, 48)}
+                      className="flex gap-3 leading-relaxed text-ink/85"
+                    >
                       <span aria-hidden="true" className="mt-1 shrink-0 text-lagoon-600">
                         •
                       </span>

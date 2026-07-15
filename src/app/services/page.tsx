@@ -96,9 +96,9 @@ export default async function ServicesPage() {
               </div>
               <p className="mt-4 max-w-3xl leading-relaxed text-lagoon-100">
                 Every strategy works better with clean data. CardMaster tracks your loyalty
-                balances, credit card benefits, statement credits, annual fees, and expiration
-                dates — free, for your whole household. It&apos;s the same tool Jim uses to manage
-                his own points.
+                balances, credit card benefits, statement credits, annual fees, and expiration dates
+                — free, for your whole household. It&apos;s the same tool Jim uses to manage his own
+                points.
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
                 <ButtonLink href={siteConfig.cardmasterUrl} external>
@@ -117,10 +117,10 @@ export default async function ServicesPage() {
             </h2>
             <p className="mt-3 max-w-3xl leading-relaxed text-ink/80">
               Everything Travel Technician offers is education and guidance: understanding your
-              accounts, your options, and the trade-offs. It is not financial, legal, or tax
-              advice; no travel is booked on your behalf; and no outcome — approvals, availability,
-              or point values — can be guaranteed. Pricing for paid services is discussed during
-              your free consultation.
+              accounts, your options, and the trade-offs. It is not financial, legal, or tax advice;
+              no travel is booked on your behalf; and no outcome — approvals, availability, or point
+              values — can be guaranteed. Pricing for paid services is discussed during your free
+              consultation.
             </p>
           </div>
         </Container>
@@ -128,7 +128,11 @@ export default async function ServicesPage() {
 
       <section aria-labelledby="services-faq" className="bg-sand-50 py-16 sm:py-20">
         <Container className="max-w-3xl">
-          <SectionHeading eyebrow="FAQ" title="Questions people ask before booking" align="center" />
+          <SectionHeading
+            eyebrow="FAQ"
+            title="Questions people ask before booking"
+            align="center"
+          />
           <h2 id="services-faq" className="sr-only">
             Services FAQ
           </h2>

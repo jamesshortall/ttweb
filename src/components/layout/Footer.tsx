@@ -1,21 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
-import {
-  footerCompanyLinks,
-  footerLearnLinks,
-  footerLegalLinks,
-} from "@/content/navigation";
+import { footerCompanyLinks, footerLearnLinks, footerLegalLinks } from "@/content/navigation";
 import { independenceStatement } from "@/content/legal";
 import { CookiePreferencesLink } from "@/components/consent/CookiePreferencesLink";
 
-function FooterColumn({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
       <h2 className="text-sm font-bold tracking-widest text-lagoon-200 uppercase">{title}</h2>
@@ -51,7 +41,14 @@ export function Footer() {
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-lagoon-900 text-lagoon-100 transition-colors hover:bg-lagoon-800 hover:text-white"
               >
                 <span className="sr-only">Travel Technician on Instagram (external link)</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" className="h-5 w-5">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
                   <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
                   <circle cx="12" cy="12" r="4" />
                   <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
@@ -118,7 +115,9 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-lagoon-800 pt-8">
-          <p className="max-w-4xl text-sm leading-relaxed text-lagoon-200/90">{independenceStatement}</p>
+          <p className="max-w-4xl text-sm leading-relaxed text-lagoon-200/90">
+            {independenceStatement}
+          </p>
           <p className="mt-4 text-sm text-lagoon-300/80">
             © {new Date().getFullYear()} Travel Technician. All rights reserved.
           </p>

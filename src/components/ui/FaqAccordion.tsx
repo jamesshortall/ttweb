@@ -13,7 +13,7 @@ export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
             <span>{faq.question}</span>
             <span
               aria-hidden="true"
-              className="text-xl leading-none text-sunset-600 transition-transform duration-200 group-open:rotate-45"
+              className="text-xl leading-none text-sunset-700 transition-transform duration-200 group-open:rotate-45"
             >
               +
             </span>

@@ -51,10 +51,7 @@ export default async function TipsPage() {
 
       <section aria-labelledby="tips-heading" className="py-16 sm:py-20">
         <Container>
-          <SectionHeading
-            eyebrow="The library"
-            title="Strategies you can put to work this week"
-          />
+          <SectionHeading eyebrow="The library" title="Strategies you can put to work this week" />
           <h2 id="tips-heading" className="sr-only">
             All tips and strategies
           </h2>
@@ -73,7 +70,10 @@ export default async function TipsPage() {
               cards isn&apos;t right for everyone or every season of life. Everything here is
               education, not financial advice — approvals are up to issuers, and the right pace is
               the one that fits your finances. New to all of this? Start with{" "}
-              <Link href="/points-and-miles-101" className="font-semibold text-lagoon-700 underline">
+              <Link
+                href="/points-and-miles-101"
+                className="font-semibold text-lagoon-700 underline"
+              >
                 Points &amp; Miles 101
               </Link>
               .

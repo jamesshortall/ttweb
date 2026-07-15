@@ -11,10 +11,13 @@ export function CardMasterHighlight() {
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
-            <p className="mb-3 text-sm font-bold tracking-widest text-sunset-600 uppercase">
+            <p className="mb-3 text-sm font-bold tracking-widest text-sunset-700 uppercase">
               Free app · CardMaster
             </p>
-            <h2 id="cardmaster-highlight" className="font-display text-3xl font-bold text-lagoon-950 sm:text-4xl">
+            <h2
+              id="cardmaster-highlight"
+              className="font-display text-3xl font-bold text-lagoon-950 sm:text-4xl"
+            >
               Every point, card, and benefit — in one dashboard
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink/80">
@@ -48,7 +51,7 @@ export function CardMasterHighlight() {
                 Learn more about CardMaster
               </Link>
             </div>
-            <p className="mt-4 text-sm text-ink/60">
+            <p className="mt-4 text-sm text-ink/70">
               Free to use · New accounts require approval · A separate app from this website
             </p>
           </div>

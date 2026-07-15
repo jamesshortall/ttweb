@@ -81,11 +81,16 @@ export default async function CardMasterPage() {
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
-              <div key={feature.title} className="rounded-2xl border border-lagoon-100 bg-white p-7 shadow-sm">
+              <div
+                key={feature.title}
+                className="rounded-2xl border border-lagoon-100 bg-white p-7 shadow-sm"
+              >
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-lagoon-800 text-white">
                   <Icon name={feature.icon} />
                 </span>
-                <h3 className="font-display mt-5 text-lg font-bold text-lagoon-950">{feature.title}</h3>
+                <h3 className="font-display mt-5 text-lg font-bold text-lagoon-950">
+                  {feature.title}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/75">{feature.description}</p>
               </div>
             ))}
@@ -127,17 +132,23 @@ export default async function CardMasterPage() {
       {/* How it works */}
       <section aria-labelledby="cm-how" className="bg-sand-50 py-16 sm:py-20">
         <Container>
-          <SectionHeading eyebrow="How it works" title="Up and running in three steps" align="center" />
+          <SectionHeading
+            eyebrow="How it works"
+            title="Up and running in three steps"
+            align="center"
+          />
           <h2 id="cm-how" className="sr-only">
             How CardMaster works
           </h2>
           <ol className="mt-12 grid gap-6 md:grid-cols-3">
             {cardMasterHowItWorks.map((step, index) => (
               <li key={step.title} className="rounded-2xl bg-white p-7 shadow-sm">
-                <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-sunset-600 text-lg font-bold text-white">
+                <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-sunset-700 text-lg font-bold text-white">
                   {index + 1}
                 </span>
-                <h3 className="font-display mt-4 text-lg font-bold text-lagoon-950">{step.title}</h3>
+                <h3 className="font-display mt-4 text-lg font-bold text-lagoon-950">
+                  {step.title}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/75">{step.description}</p>
               </li>
             ))}
@@ -160,7 +171,9 @@ export default async function CardMasterPage() {
             <ButtonLink href={siteConfig.cardmasterUrl} external size="lg">
               Start Using CardMaster
             </ButtonLink>
-            <p className="mt-3 text-sm text-ink/60">Free to use — no credit card required to sign up.</p>
+            <p className="mt-3 text-sm text-ink/70">
+              Free to use — no credit card required to sign up.
+            </p>
           </div>
         </Container>
       </section>

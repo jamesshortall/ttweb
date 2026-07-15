@@ -15,7 +15,10 @@ export function ConsultationCTA({
   body?: string;
 }) {
   return (
-    <section aria-labelledby="consult-heading" className="relative isolate overflow-hidden bg-lagoon-950 py-20">
+    <section
+      aria-labelledby="consult-heading"
+      className="relative isolate overflow-hidden bg-lagoon-950 py-20"
+    >
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_right,rgba(249,93,23,0.3),transparent_50%),radial-gradient(ellipse_at_top_left,rgba(63,175,191,0.25),transparent_55%)]"

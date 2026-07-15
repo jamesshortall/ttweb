@@ -6,7 +6,13 @@ import { defineConfig, devices } from "@playwright/test";
  * `npm run build && npm run start` is used (rather than the dev server) so the
  * tests exercise production behaviour: security headers, static rendering, and
  * image optimisation.
+ *
+ * PLAYWRIGHT_CHROMIUM_EXECUTABLE (optional): path to a system Chromium for
+ * sandboxed/CI environments where `npx playwright install` isn't possible.
  */
+const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE;
+const launchOptions = executablePath ? { executablePath } : undefined;
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -20,11 +26,11 @@ export default defineConfig({
   projects: [
     {
       name: "desktop-chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], launchOptions },
     },
     {
       name: "mobile-chromium",
-      use: { ...devices["Pixel 7"] },
+      use: { ...devices["Pixel 7"], launchOptions },
     },
   ],
   webServer: {

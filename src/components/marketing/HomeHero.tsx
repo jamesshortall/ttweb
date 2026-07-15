@@ -32,7 +32,8 @@ export function HomeHero({ headline, subheadline, imageCollection }: HomeHeroPro
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_340px]">
           <div>
             <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-lagoon-100 backdrop-blur">
-              <span aria-hidden="true">✦</span> Points &amp; miles strategy, taught in plain language
+              <span aria-hidden="true">✦</span> Points &amp; miles strategy, taught in plain
+              language
             </p>
             <h1 className="font-display text-4xl font-bold tracking-tight text-balance text-white sm:text-5xl lg:text-6xl">
               {headline}
@@ -66,7 +67,10 @@ export function HomeHero({ headline, subheadline, imageCollection }: HomeHeroPro
           </div>
 
           <div className="relative mx-auto hidden w-full max-w-[340px] lg:block">
-            <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-sunset-500/60 to-lagoon-400/60 blur-lg" aria-hidden="true" />
+            <div
+              className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-sunset-500/60 to-lagoon-400/60 blur-lg"
+              aria-hidden="true"
+            />
             <figure className="relative overflow-hidden rounded-3xl border-4 border-white/20 shadow-2xl">
               <Image
                 src="/images/jim/jim-portrait.svg"

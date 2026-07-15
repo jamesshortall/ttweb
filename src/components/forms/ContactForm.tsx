@@ -4,11 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import {
-  contactFormSchema,
-  inquiryCategories,
-  type ContactFormInput,
-} from "@/lib/contact-schema";
+import { contactFormSchema, inquiryCategories, type ContactFormInput } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -79,9 +75,7 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
       reset({ category: validCategory, preferredContact: "email", website: "" });
     } catch {
       setStatus("error");
-      setServerMessage(
-        "We couldn't reach the server. Please check your connection and try again.",
-      );
+      setServerMessage("We couldn't reach the server. Please check your connection and try again.");
     }
   };
 
@@ -195,7 +189,7 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
 
       <fieldset>
         <legend className="mb-2 font-semibold text-lagoon-950">
-          Preferred contact method <span className="font-normal text-ink/60">(optional)</span>
+          Preferred contact method <span className="font-normal text-ink/70">(optional)</span>
         </legend>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
           {[
@@ -238,8 +232,8 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
             {...register("consent")}
           />
           <span className="text-sm leading-relaxed text-ink/80">
-            I agree that Travel Technician may use the details I&apos;ve provided to respond to
-            this inquiry, as described in the{" "}
+            I agree that Travel Technician may use the details I&apos;ve provided to respond to this
+            inquiry, as described in the{" "}
             <Link href="/privacy-policy" className="font-medium text-lagoon-700 underline">
               Privacy Policy
             </Link>

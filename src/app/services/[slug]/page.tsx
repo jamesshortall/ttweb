@@ -60,7 +60,10 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px]">
             <div className="max-w-3xl">
               {service.description.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)} className="mt-5 text-lg leading-relaxed text-ink/85 first:mt-0">
+                <p
+                  key={paragraph.slice(0, 40)}
+                  className="mt-5 text-lg leading-relaxed text-ink/85 first:mt-0"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -85,7 +88,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <ul className="mt-5 space-y-3">
                 {service.bestFor.map((item) => (
                   <li key={item} className="flex gap-3 leading-relaxed text-ink/85">
-                    <span aria-hidden="true" className="mt-1 text-sunset-600">
+                    <span aria-hidden="true" className="mt-1 text-sunset-700">
                       ◆
                     </span>
                     {item}
@@ -94,7 +97,9 @@ export default async function ServiceDetailPage({ params }: Props) {
               </ul>
 
               <div className="mt-12 rounded-3xl border border-sand-200 bg-sand-50 p-7">
-                <h2 className="font-display text-lg font-bold text-lagoon-950">Honest boundaries</h2>
+                <h2 className="font-display text-lg font-bold text-lagoon-950">
+                  Honest boundaries
+                </h2>
                 <ul className="mt-4 space-y-2.5">
                   {service.boundaries.map((item) => (
                     <li key={item} className="flex gap-3 text-sm leading-relaxed text-ink/80">
@@ -121,7 +126,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <div className="mt-5 flex flex-col gap-3">
                   <Link
                     href="/contact?topic=free-consultation"
-                    className="inline-flex min-h-12 items-center justify-center rounded-full bg-sunset-600 px-6 font-semibold text-white transition-colors hover:bg-sunset-700"
+                    className="inline-flex min-h-12 items-center justify-center rounded-full bg-sunset-700 px-6 font-semibold text-white transition-colors hover:bg-sunset-800"
                   >
                     Schedule a Free Consultation
                   </Link>

@@ -42,7 +42,7 @@ const howHelps = [
     icon: "book" as const,
     title: "Learn the system",
     description:
-      "Plain-language education that takes you from \"what's a transfer partner?\" to confidently booking your own award travel.",
+      'Plain-language education that takes you from "what\'s a transfer partner?" to confidently booking your own award travel.',
     href: "/points-and-miles-101",
     linkLabel: "Start with Points & Miles 101",
   },
@@ -144,7 +144,9 @@ export default async function HomePage() {
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-lagoon-800 text-white">
                   <Icon name={item.icon} />
                 </span>
-                <h3 className="font-display mt-5 text-xl font-bold text-lagoon-950">{item.title}</h3>
+                <h3 className="font-display mt-5 text-xl font-bold text-lagoon-950">
+                  {item.title}
+                </h3>
                 <p className="mt-2 leading-relaxed text-ink/75">{item.description}</p>
                 <Link
                   href={item.href}
@@ -258,8 +260,10 @@ export default async function HomePage() {
                     />
                   </div>
                   <div className="p-7">
-                    <h3 className="font-display text-xl font-bold text-lagoon-950">{story.title}</h3>
-                    <p className="mt-1 text-sm font-medium text-ink/60">{story.route}</p>
+                    <h3 className="font-display text-xl font-bold text-lagoon-950">
+                      {story.title}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-ink/70">{story.route}</p>
                     <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
                       <div>
                         <dt className="inline font-semibold text-lagoon-800">
@@ -278,7 +282,8 @@ export default async function HomePage() {
                       <div>
                         <dt className="inline font-semibold text-lagoon-800">Est. value: </dt>
                         <dd className="inline">
-                          {formatCentsPerPoint(cpp)}/{story.pointsUnit === "miles" ? "mile" : "point"}
+                          {formatCentsPerPoint(cpp)}/
+                          {story.pointsUnit === "miles" ? "mile" : "point"}
                         </dd>
                       </div>
                     </dl>
@@ -343,7 +348,9 @@ export default async function HomePage() {
                 {whyJim.map((item) => (
                   <div key={item.title}>
                     <dt className="font-display font-bold text-lagoon-950">{item.title}</dt>
-                    <dd className="mt-1.5 text-sm leading-relaxed text-ink/75">{item.description}</dd>
+                    <dd className="mt-1.5 text-sm leading-relaxed text-ink/75">
+                      {item.description}
+                    </dd>
                   </div>
                 ))}
               </dl>

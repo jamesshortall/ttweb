@@ -31,7 +31,7 @@ export const privacyPolicy: LegalDocument = {
     "How Travel Technician collects, uses, and protects information on www.traveltechnician.info.",
   lastUpdated: LAST_UPDATED,
   intro:
-    "This Privacy Policy describes how Travel Technician (\"we,\" \"us\") handles information collected through www.traveltechnician.info. It is a placeholder draft prepared for review by legal counsel before launch.",
+    'This Privacy Policy describes how Travel Technician ("we," "us") handles information collected through www.traveltechnician.info. It is a placeholder draft prepared for review by legal counsel before launch.',
   sections: [
     {
       heading: "Information we collect",
@@ -49,7 +49,7 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "Cookies and consent",
       paragraphs: [
-        "Essential functionality on this site does not depend on tracking cookies. A consent banner lets you accept or reject nonessential analytics; your choice is stored in your browser and can be changed at any time via the \"Cookie Preferences\" link in the footer.",
+        'Essential functionality on this site does not depend on tracking cookies. A consent banner lets you accept or reject nonessential analytics; your choice is stored in your browser and can be changed at any time via the "Cookie Preferences" link in the footer.',
       ],
     },
     {
@@ -119,7 +119,7 @@ export const termsOfUse: LegalDocument = {
     {
       heading: "Disclaimer of warranties and limitation of liability",
       paragraphs: [
-        "The site is provided \"as is\" without warranties of any kind. To the maximum extent permitted by law, Travel Technician is not liable for losses arising from use of the site or reliance on its content. [Jurisdiction and dispute-resolution provisions pending legal review.]",
+        'The site is provided "as is" without warranties of any kind. To the maximum extent permitted by law, Travel Technician is not liable for losses arising from use of the site or reliance on its content. [Jurisdiction and dispute-resolution provisions pending legal review.]',
       ],
     },
   ],

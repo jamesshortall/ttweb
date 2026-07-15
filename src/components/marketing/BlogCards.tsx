@@ -45,7 +45,7 @@ export function BlogCards({ items }: { items: BlogCardItem[] }) {
             >
               <div className="flex items-center justify-between gap-3">
                 <ExternalTag label="Travel Technician blog" />
-                {date ? <span className="text-xs text-ink/60">{date}</span> : null}
+                {date ? <span className="text-xs text-ink/70">{date}</span> : null}
               </div>
               <h3 className="font-display mt-4 text-lg font-bold text-lagoon-950 group-hover:text-lagoon-700">
                 {item.title}
@@ -70,9 +70,7 @@ export function BlogCards({ items }: { items: BlogCardItem[] }) {
 export function BlogFallbackCard() {
   return (
     <div className="rounded-3xl border border-lagoon-100 bg-white p-8 text-center shadow-sm sm:p-12">
-      <p className="font-display text-2xl font-bold text-lagoon-950">
-        Fresh tips are on the blog
-      </p>
+      <p className="font-display text-2xl font-bold text-lagoon-950">Fresh tips are on the blog</p>
       <p className="mx-auto mt-3 max-w-xl leading-relaxed text-ink/80">
         The Travel Technician blog is a separate site where Jim publishes ongoing points news,
         strategy write-ups, and redemption stories. Recent-article cards will appear here

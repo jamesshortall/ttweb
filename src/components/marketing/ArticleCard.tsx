@@ -18,8 +18,10 @@ export function ArticleCard({ article, index }: { article: Article; index?: numb
             {index + 1}
           </span>
         ) : null}
-        <span className="rounded-full bg-lagoon-50 px-3 py-1 text-lagoon-800">{article.category}</span>
-        <span className="text-ink/60">{article.readingMinutes} min read</span>
+        <span className="rounded-full bg-lagoon-50 px-3 py-1 text-lagoon-800">
+          {article.category}
+        </span>
+        <span className="text-ink/70">{article.readingMinutes} min read</span>
       </div>
       <h3 className="font-display mt-4 text-xl font-bold text-lagoon-950 group-hover:text-lagoon-700">
         {article.title}

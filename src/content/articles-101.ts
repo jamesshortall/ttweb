@@ -18,7 +18,7 @@ export const fallbackArticles101: Article[] = [
         heading: "Loyalty currencies, in plain language",
         paragraphs: [
           "Points and miles are reward currencies issued by airlines, hotel chains, and banks. You earn them by flying, staying, and — most powerfully — by spending on rewards credit cards. You spend them on travel: flights, hotel nights, and sometimes upgrades or other perks.",
-          "The word \"miles\" is historical. Airline programs originally rewarded distance flown, so the currency was called miles. Today most programs reward dollars spent, but the name stuck. Functionally, airline miles and hotel or bank points work the same way: they are balances in an account that can be exchanged for travel.",
+          'The word "miles" is historical. Airline programs originally rewarded distance flown, so the currency was called miles. Today most programs reward dollars spent, but the name stuck. Functionally, airline miles and hotel or bank points work the same way: they are balances in an account that can be exchanged for travel.',
         ],
       },
       {

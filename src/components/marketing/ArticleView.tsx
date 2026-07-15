@@ -22,13 +22,7 @@ const collectionMeta: Record<
 };
 
 /** Shared article renderer for 101 guides and tips (same content system). */
-export function ArticleView({
-  article,
-  related,
-}: {
-  article: Article;
-  related: Article[];
-}) {
+export function ArticleView({ article, related }: { article: Article; related: Article[] }) {
   const meta = collectionMeta[article.collection];
   const path = `${meta.path}/${article.slug}`;
 
@@ -62,8 +56,11 @@ export function ArticleView({
               {section.bullets ? (
                 <ul className="mt-4 space-y-3">
                   {section.bullets.map((bullet) => (
-                    <li key={bullet.slice(0, 48)} className="flex gap-3 leading-relaxed text-ink/85">
-                      <span aria-hidden="true" className="mt-1 shrink-0 text-sunset-600">
+                    <li
+                      key={bullet.slice(0, 48)}
+                      className="flex gap-3 leading-relaxed text-ink/85"
+                    >
+                      <span aria-hidden="true" className="mt-1 shrink-0 text-sunset-700">
                         ◆
                       </span>
                       {bullet}
@@ -91,7 +88,7 @@ export function ArticleView({
             </ul>
           </aside>
 
-          <p className="mt-8 text-sm leading-relaxed text-ink/60">
+          <p className="mt-8 text-sm leading-relaxed text-ink/70">
             Educational content only — not financial advice. Programs and offers change; verify
             current terms with the provider. See the{" "}
             <Link href="/disclaimer" className="underline hover:text-lagoon-900">

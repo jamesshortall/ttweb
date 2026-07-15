@@ -58,7 +58,11 @@ export async function getHomepageSettings(): Promise<HomepageSettings> {
     (value) => !!value?.heroHeadline,
   );
   // Guarantee newsletter settings even for partially filled CMS documents.
-  return { ...fallbackHomepageSettings, ...settings, newsletter: { ...fallbackHomepageSettings.newsletter, ...settings.newsletter } };
+  return {
+    ...fallbackHomepageSettings,
+    ...settings,
+    newsletter: { ...fallbackHomepageSettings.newsletter, ...settings.newsletter },
+  };
 }
 
 export async function getServices(): Promise<Service[]> {
@@ -88,10 +92,7 @@ export async function getFaqs(group: "general" | "cardmaster"): Promise<Faq[]> {
 
 export async function getArticles(collection: "points-101" | "tips"): Promise<Article[]> {
   const fallback = collection === "points-101" ? fallbackArticles101 : fallbackTips;
-  return fromCms(
-    () => sanityClient()!.fetch<Article[]>(q.articlesQuery, { collection }),
-    fallback,
-  );
+  return fromCms(() => sanityClient()!.fetch<Article[]>(q.articlesQuery, { collection }), fallback);
 }
 
 export async function getArticle(

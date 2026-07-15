@@ -45,7 +45,10 @@ export default async function AboutPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="max-w-3xl">
               {aboutStory.intro.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)} className="mt-5 text-lg leading-relaxed text-ink/85 first:mt-0">
+                <p
+                  key={paragraph.slice(0, 40)}
+                  className="mt-5 text-lg leading-relaxed text-ink/85 first:mt-0"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -73,7 +76,7 @@ export default async function AboutPage() {
                   height={850}
                   className="w-full rounded-3xl shadow-lg"
                 />
-                <figcaption className="mt-2 text-center text-sm text-ink/60">
+                <figcaption className="mt-2 text-center text-sm text-ink/70">
                   Jim Shortall — replace with final portrait before launch
                 </figcaption>
               </figure>
@@ -140,7 +143,10 @@ export default async function AboutPage() {
             </h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {aboutStory.philosophy.items.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-lagoon-100 bg-white p-6 shadow-sm">
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-lagoon-100 bg-white p-6 shadow-sm"
+                >
                   <h3 className="font-display font-bold text-lagoon-950">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/75">{item.description}</p>
                 </div>

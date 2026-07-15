@@ -149,21 +149,156 @@ function logo({ variant }) {
 
 // ── Destination / travel scenes ──────────────────────────────────────────────
 const scenes = [
-  ["travel/hero-lagoon.svg", { sky: ["#7dd3e0", "#eefafb"], sea: ["#2392a5", "#0f2b36"], hill: "#1b492a", sun: "#ffd166", label: "Tropical lagoon at midday" }],
-  ["travel/hero-sunset.svg", { sky: ["#fb7d3c", "#ffd166"], sea: ["#c2300d", "#430f07"], hill: "#5b4e43", sun: "#fff5ed", label: "Island sunset over the water" }],
-  ["travel/hero-palms.svg", { sky: ["#3fafbf", "#d5f2f4"], sea: ["#268d44", "#0a2814"], hill: "#216f38", sun: "#ffd166", label: "Palm-lined beach cove" }],
-  ["travel/hero-overwater.svg", { sky: ["#79ced8", "#eefafb"], sea: ["#20768b", "#204450"], hill: "#22505e", sun: "#fff5ed", label: "Overwater bungalows at dawn" }],
-  ["destinations/dest-maldives.svg", { sky: ["#7dd3e0", "#eefafb"], sea: ["#2392a5", "#204450"], hill: "#1f5931", sun: "#ffd166", label: "Maldives-style atoll" }],
-  ["destinations/dest-santorini.svg", { sky: ["#3fafbf", "#d5f2f4"], sea: ["#20768b", "#0f2b36"], hill: "#b0c8cd", sun: "#fff5ed", label: "Cliffside village by the sea" }],
-  ["destinations/dest-singapore.svg", { sky: ["#fb7d3c", "#ffe8d5"], sea: ["#204450", "#0f2b36"], hill: "#22505e", sun: "#ffd166", label: "City skyline at dusk" }],
-  ["destinations/dest-alps.svg", { sky: ["#b0e4e9", "#eefafb"], sea: ["#79ced8", "#2392a5"], hill: "#5b4e43", sun: "#fff5ed", label: "Alpine lake and peaks" }],
-  ["destinations/dest-doha.svg", { sky: ["#ffd166", "#fff5ed"], sea: ["#c0b294", "#88745e"], hill: "#a38d6f", sun: "#fb7d3c", label: "Desert skyline at golden hour" }],
-  ["destinations/dest-caribbean.svg", { sky: ["#7dd3e0", "#d5f2f4"], sea: ["#35ac57", "#20768b"], hill: "#1b492a", sun: "#ffd166", label: "Caribbean bay with sailboats" }],
-  ["success-stories/qsuites-boston-singapore.svg", { sky: ["#204450", "#20768b"], sea: ["#0f2b36", "#0f2b36"], hill: "#22505e", sun: "#ffd166", label: "Night flight — business class cabin" }],
-  ["success-stories/austrian-boston-vienna.svg", { sky: ["#79ced8", "#eefafb"], sea: ["#2392a5", "#204450"], hill: "#5b4e43", sun: "#fff5ed", label: "Vienna skyline from above" }],
-  ["jim/jim-travel-1.svg", { sky: ["#7dd3e0", "#eefafb"], sea: ["#2392a5", "#0f2b36"], hill: "#216f38", sun: "#ffd166", label: "Jim's travel photo — beach walk" }],
-  ["jim/jim-travel-2.svg", { sky: ["#fb7d3c", "#ffd166"], sea: ["#9a2812", "#430f07"], hill: "#5b4e43", sun: "#fff5ed", label: "Jim's travel photo — sunset lookout" }],
-  ["jim/jim-travel-3.svg", { sky: ["#b0e4e9", "#eefafb"], sea: ["#79ced8", "#20768b"], hill: "#88745e", sun: "#ffd166", label: "Jim's travel photo — mountain vista" }],
+  [
+    "travel/hero-lagoon.svg",
+    {
+      sky: ["#7dd3e0", "#eefafb"],
+      sea: ["#2392a5", "#0f2b36"],
+      hill: "#1b492a",
+      sun: "#ffd166",
+      label: "Tropical lagoon at midday",
+    },
+  ],
+  [
+    "travel/hero-sunset.svg",
+    {
+      sky: ["#fb7d3c", "#ffd166"],
+      sea: ["#c2300d", "#430f07"],
+      hill: "#5b4e43",
+      sun: "#fff5ed",
+      label: "Island sunset over the water",
+    },
+  ],
+  [
+    "travel/hero-palms.svg",
+    {
+      sky: ["#3fafbf", "#d5f2f4"],
+      sea: ["#268d44", "#0a2814"],
+      hill: "#216f38",
+      sun: "#ffd166",
+      label: "Palm-lined beach cove",
+    },
+  ],
+  [
+    "travel/hero-overwater.svg",
+    {
+      sky: ["#79ced8", "#eefafb"],
+      sea: ["#20768b", "#204450"],
+      hill: "#22505e",
+      sun: "#fff5ed",
+      label: "Overwater bungalows at dawn",
+    },
+  ],
+  [
+    "destinations/dest-maldives.svg",
+    {
+      sky: ["#7dd3e0", "#eefafb"],
+      sea: ["#2392a5", "#204450"],
+      hill: "#1f5931",
+      sun: "#ffd166",
+      label: "Maldives-style atoll",
+    },
+  ],
+  [
+    "destinations/dest-santorini.svg",
+    {
+      sky: ["#3fafbf", "#d5f2f4"],
+      sea: ["#20768b", "#0f2b36"],
+      hill: "#b0c8cd",
+      sun: "#fff5ed",
+      label: "Cliffside village by the sea",
+    },
+  ],
+  [
+    "destinations/dest-singapore.svg",
+    {
+      sky: ["#fb7d3c", "#ffe8d5"],
+      sea: ["#204450", "#0f2b36"],
+      hill: "#22505e",
+      sun: "#ffd166",
+      label: "City skyline at dusk",
+    },
+  ],
+  [
+    "destinations/dest-alps.svg",
+    {
+      sky: ["#b0e4e9", "#eefafb"],
+      sea: ["#79ced8", "#2392a5"],
+      hill: "#5b4e43",
+      sun: "#fff5ed",
+      label: "Alpine lake and peaks",
+    },
+  ],
+  [
+    "destinations/dest-doha.svg",
+    {
+      sky: ["#ffd166", "#fff5ed"],
+      sea: ["#c0b294", "#88745e"],
+      hill: "#a38d6f",
+      sun: "#fb7d3c",
+      label: "Desert skyline at golden hour",
+    },
+  ],
+  [
+    "destinations/dest-caribbean.svg",
+    {
+      sky: ["#7dd3e0", "#d5f2f4"],
+      sea: ["#35ac57", "#20768b"],
+      hill: "#1b492a",
+      sun: "#ffd166",
+      label: "Caribbean bay with sailboats",
+    },
+  ],
+  [
+    "success-stories/qsuites-boston-singapore.svg",
+    {
+      sky: ["#204450", "#20768b"],
+      sea: ["#0f2b36", "#0f2b36"],
+      hill: "#22505e",
+      sun: "#ffd166",
+      label: "Night flight — business class cabin",
+    },
+  ],
+  [
+    "success-stories/austrian-boston-vienna.svg",
+    {
+      sky: ["#79ced8", "#eefafb"],
+      sea: ["#2392a5", "#204450"],
+      hill: "#5b4e43",
+      sun: "#fff5ed",
+      label: "Vienna skyline from above",
+    },
+  ],
+  [
+    "jim/jim-travel-1.svg",
+    {
+      sky: ["#7dd3e0", "#eefafb"],
+      sea: ["#2392a5", "#0f2b36"],
+      hill: "#216f38",
+      sun: "#ffd166",
+      label: "Jim's travel photo — beach walk",
+    },
+  ],
+  [
+    "jim/jim-travel-2.svg",
+    {
+      sky: ["#fb7d3c", "#ffd166"],
+      sea: ["#9a2812", "#430f07"],
+      hill: "#5b4e43",
+      sun: "#fff5ed",
+      label: "Jim's travel photo — sunset lookout",
+    },
+  ],
+  [
+    "jim/jim-travel-3.svg",
+    {
+      sky: ["#b0e4e9", "#eefafb"],
+      sea: ["#79ced8", "#20768b"],
+      hill: "#88745e",
+      sun: "#ffd166",
+      label: "Jim's travel photo — mountain vista",
+    },
+  ],
 ];
 
 let n = 0;
@@ -173,7 +308,13 @@ for (const [path, cfg] of scenes) {
 
 write(
   "images/jim/jim-portrait.svg",
-  portrait({ id: "p1", w: 800, h: 1000, label: "Professional photo of Jim Shortall", initials: "JS" }),
+  portrait({
+    id: "p1",
+    w: 800,
+    h: 1000,
+    label: "Professional photo of Jim Shortall",
+    initials: "JS",
+  }),
 );
 
 write(

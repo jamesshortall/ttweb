@@ -37,8 +37,15 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-lagoon-100 bg-white/95 backdrop-blur">
-      <nav aria-label="Main" className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex shrink-0 items-center gap-2" aria-label="Travel Technician home">
+      <nav
+        aria-label="Main"
+        className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8"
+      >
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2"
+          aria-label="Travel Technician home"
+        >
           <Image
             src="/images/brand/logo-horizontal.svg"
             alt=""
@@ -71,7 +78,7 @@ export function Header() {
 
         <Link
           href="/contact?topic=free-consultation"
-          className="ml-auto hidden shrink-0 rounded-full bg-sunset-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-sunset-600/20 transition-colors hover:bg-sunset-700 sm:inline-flex xl:ml-2"
+          className="ml-auto hidden shrink-0 rounded-full bg-sunset-700 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-sunset-700/20 transition-colors hover:bg-sunset-800 sm:inline-flex xl:ml-2"
         >
           Schedule a Free Consultation
         </Link>
@@ -129,12 +136,14 @@ export function Header() {
             <Link
               href="/contact?topic=free-consultation"
               onClick={closeMenu}
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sunset-600 px-6 font-semibold text-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sunset-700 px-6 font-semibold text-white"
             >
               Schedule a Free Consultation
             </Link>
             <a
-              href={process.env.NEXT_PUBLIC_CARDMASTER_URL ?? "https://cardmaster.traveltechnician.info"}
+              href={
+                process.env.NEXT_PUBLIC_CARDMASTER_URL ?? "https://cardmaster.traveltechnician.info"
+              }
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-lagoon-800 px-6 font-semibold text-lagoon-900"
             >

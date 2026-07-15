@@ -58,7 +58,11 @@ export function webSiteJsonLd(): JsonLd {
   };
 }
 
-export function webPageJsonLd(options: { title: string; description: string; path: string }): JsonLd {
+export function webPageJsonLd(options: {
+  title: string;
+  description: string;
+  path: string;
+}): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -135,7 +139,11 @@ export function softwareApplicationJsonLd(): JsonLd {
   };
 }
 
-export function serviceJsonLd(options: { name: string; description: string; path: string }): JsonLd {
+export function serviceJsonLd(options: {
+  name: string;
+  description: string;
+  path: string;
+}): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
