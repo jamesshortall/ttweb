@@ -18,7 +18,7 @@ describe("contactFormSchema", () => {
   });
 
   it("defaults preferredContact to email", () => {
-    const { preferredContact: _omitted, ...rest } = validSubmission;
+    const rest = { ...validSubmission, preferredContact: undefined };
     const result = contactFormSchema.parse(rest);
     expect(result.preferredContact).toBe("email");
   });

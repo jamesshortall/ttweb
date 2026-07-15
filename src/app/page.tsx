@@ -19,6 +19,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { HomeHero } from "@/components/marketing/HomeHero";
+import { RotatingImage } from "@/components/media/RotatingImage";
 import { StatsSection } from "@/components/marketing/StatsSection";
 import { CardMasterHighlight } from "@/components/marketing/CardMasterHighlight";
 import { NewsletterSection } from "@/components/marketing/NewsletterSection";
@@ -89,14 +90,16 @@ const whyJim = [
 
 export default async function HomePage() {
   const env = serverEnv();
-  const [settings, stats, services, stories, articles101, heroImages] = await Promise.all([
-    getHomepageSettings(),
-    getStats(),
-    getServices(),
-    getSuccessStories(),
-    getArticles("points-101"),
-    getImageCollection("homeHero"),
-  ]);
+  const [settings, stats, services, stories, articles101, heroImages, destinationImages] =
+    await Promise.all([
+      getHomepageSettings(),
+      getStats(),
+      getServices(),
+      getSuccessStories(),
+      getArticles("points-101"),
+      getImageCollection("homeHero"),
+      getImageCollection("destinations"),
+    ]);
 
   const blogItems = env.BLOG_RSS_URL
     ? toBlogCards(await fetchBlogFeed(env.BLOG_RSS_URL, 3))
@@ -295,6 +298,36 @@ export default async function HomePage() {
           <div className="mt-10 text-center">
             <ButtonLink href="/success-stories" variant="secondary">
               Read the full success stories
+            </ButtonLink>
+          </div>
+        </Container>
+      </section>
+
+      {/* Destination gallery band */}
+      <section
+        aria-labelledby="destinations-heading"
+        className="relative isolate overflow-hidden bg-lagoon-950"
+      >
+        <RotatingImage
+          images={destinationImages.images}
+          intervalMs={destinationImages.intervalMs}
+          className="-z-20"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 -z-10 bg-lagoon-950/70" />
+        <Container className="py-24 text-center sm:py-28">
+          <h2
+            id="destinations-heading"
+            className="font-display mx-auto max-w-2xl text-3xl font-bold text-balance text-white sm:text-4xl"
+          >
+            Where will your points take you?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-lagoon-100">
+            Thirty countries and counting — most of them reached with points and miles.
+          </p>
+          <div className="mt-8">
+            <ButtonLink href="/success-stories" variant="inverse" size="lg">
+              See the redemptions that got Jim there
             </ButtonLink>
           </div>
         </Container>
