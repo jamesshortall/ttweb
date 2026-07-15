@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="Maldives-style atoll (placeholder artwork)">
+  <defs>
+    <linearGradient id="s4-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7dd3e0"/>
+      <stop offset="1" stop-color="#eefafb"/>
+    </linearGradient>
+    <linearGradient id="s4-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2392a5"/>
+      <stop offset="1" stop-color="#204450"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="620" fill="url(#s4-sky)"/>
+  <circle cx="1152" cy="341" r="110" fill="#ffd166" opacity="0.9"/>
+  <circle cx="1152" cy="341" r="160" fill="#ffd166" opacity="0.25"/>
+  <rect y="620" width="1600" height="380" fill="url(#s4-sea)"/>
+  <path d="M0 620 C 320 570, 512 460, 800 620 Z" fill="#1f5931" opacity="0.85"/>
+  <path d="M880.0000000000001 620 C 1120 520, 1360 550, 1600 600 L 1600 620 Z" fill="#1f5931" opacity="0.6"/>
+  <path d="M0 660 q 200 26 400 0 t 400 0 t 400 0 t 400 0" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.35"/>
+  <path d="M0 730 q 200 26 400 0 t 400 0 t 400 0 t 400 0" stroke="#ffffff" stroke-width="5" fill="none" opacity="0.22"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="28" y="926" rx="10" width="420" height="46" fill="#0f2b36" opacity="0.72"/>
+    <text x="48" y="956" font-size="21" fill="#ffffff">PLACEHOLDER · Maldives-style atoll</text>
+  </g>
+</svg>

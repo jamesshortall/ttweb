@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Travel Technician design tokens.
+ *
+ * Palette: "lagoon" (deep tropical teal — primary), "sunset" (coral — accent),
+ * "sand" (warm neutral surfaces), plus an ink colour for text. Light mode only
+ * by design — there is intentionally no dark-mode variant.
+ */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-lagoon-50: #eefafb;
+  --color-lagoon-100: #d5f2f4;
+  --color-lagoon-200: #b0e4e9;
+  --color-lagoon-300: #79ced8;
+  --color-lagoon-400: #3fafbf;
+  --color-lagoon-500: #2392a5;
+  --color-lagoon-600: #20768b;
+  --color-lagoon-700: #206072;
+  --color-lagoon-800: #22505e;
+  --color-lagoon-900: #204450;
+  --color-lagoon-950: #0f2b36;
+
+  --color-sunset-50: #fff5ed;
+  --color-sunset-100: #ffe8d5;
+  --color-sunset-200: #fecdaa;
+  --color-sunset-300: #fdab74;
+  --color-sunset-400: #fb7d3c;
+  --color-sunset-500: #f95d17;
+  --color-sunset-600: #ea430d;
+  --color-sunset-700: #c2300d;
+  --color-sunset-800: #9a2812;
+  --color-sunset-900: #7c2412;
+  --color-sunset-950: #430f07;
+
+  --color-sand-50: #fbfaf7;
+  --color-sand-100: #f4f1e9;
+  --color-sand-200: #e7e1d2;
+  --color-sand-300: #d5ccb4;
+  --color-sand-400: #c0b294;
+  --color-sand-500: #b09e7d;
+  --color-sand-600: #a38d6f;
+  --color-sand-700: #88745e;
+  --color-sand-800: #705f50;
+  --color-sand-900: #5b4e43;
+  --color-sand-950: #302822;
+
+  --color-palm-50: #f2fbf4;
+  --color-palm-100: #e0f7e5;
+  --color-palm-200: #c2eecd;
+  --color-palm-300: #92dfa7;
+  --color-palm-400: #5bc779;
+  --color-palm-500: #35ac57;
+  --color-palm-600: #268d44;
+  --color-palm-700: #216f38;
+  --color-palm-800: #1f5931;
+  --color-palm-900: #1b492a;
+  --color-palm-950: #0a2814;
+
+  --color-ink: #12333c;
+
+  --animate-slow-zoom: slow-zoom 70s ease-in-out infinite alternate;
+  --animate-fade-in: fade-in 1.2s ease-out both;
+
+  @keyframes slow-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-sunset-200 text-sunset-950;
+  }
+
+  /* Consistent, clearly visible focus indicator everywhere. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-sunset-600;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Skip-to-content link: visually hidden until focused. */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-lagoon-950 focus:px-5 focus:py-3 focus:font-semibold focus:text-white;
+  }
+}

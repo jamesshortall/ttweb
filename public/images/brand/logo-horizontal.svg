@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="120" viewBox="0 0 640 120" role="img" aria-label="Travel Technician horizontal logo (placeholder)">
+  
+  <g transform="translate(12 28) scale(1)">
+    <circle cx="32" cy="32" r="30" fill="none" stroke="#0f2b36" stroke-width="4"/>
+    <path d="M32 8 L38 28 L58 32 L38 36 L32 56 L26 36 L6 32 L26 28 Z" fill="#f95d17"/>
+    <circle cx="32" cy="32" r="5" fill="#0f2b36"/>
+  </g>
+  <text x="96" y="74" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="40" fill="#0f2b36">TRAVEL TECHNICIAN</text>
+</svg>
