@@ -61,6 +61,33 @@ export const fallbackSuccessStories: SuccessStory[] = [
     },
     highlight: "Estimated 11¢ per mile in value",
   },
+  {
+    slug: "qatar-qsuites-boston-dubai",
+    title: "Qatar Airways QSuites to Dubai",
+    route: "Boston (BOS) → Doha (DOH) → Dubai (DXB)",
+    airline: "Qatar Airways",
+    cabin: "QSuites business class",
+    pointsUsed: 75_000,
+    pointsUnit: "points",
+    taxesFeesUsd: 268,
+    cashValueUsd: 5_666,
+    summary:
+      "The same award-winning QSuites product — a private business class suite with a closing door — flown Boston to Dubai via Doha, booked with 75,000 points and $268 in taxes and fees.",
+    whyValuable: [
+      "QSuites is widely regarded as one of the best business class products in the sky: a private suite with a sliding door, a lie-flat bed, and dine-on-demand service across two long flights via Doha.",
+      "The comparable cash fare for this itinerary was around $5,666. After subtracting the $268 in taxes and fees, the points covered roughly $5,400 of value — an estimated 7¢ per point, comfortably above the typical baseline valuation of a transferable point.",
+      "Because the points came from a transferable currency, they could have moved to several programs — choosing the right transfer partner is what unlocked this price.",
+    ],
+    context: [
+      "QSuites award space is limited and unpredictable — it usually takes flexible dates and booking when space appears, not when it's convenient.",
+      "The cash price used for comparison is the fare on the same flights around the time of booking; premium-cabin fares swing widely, so the cents-per-point figure is an estimate, not a fixed exchange rate.",
+    ],
+    image: {
+      src: "/images/success-stories/qsuites-boston-singapore.svg",
+      alt: "Placeholder artwork representing a night flight in a business class cabin",
+    },
+    highlight: "Estimated 7¢ per point in value",
+  },
 ];
 
 /** Shared honesty disclaimer shown wherever redemption examples appear. */
