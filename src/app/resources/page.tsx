@@ -42,7 +42,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
     "group block h-full rounded-2xl border border-lagoon-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg";
 
   return isExternal(resource) ? (
-    <a href={resource.href} rel="noopener noreferrer" className={classes}>
+    <a href={resource.href} target="_blank" rel="noopener noreferrer" className={classes}>
       {inner}
     </a>
   ) : (

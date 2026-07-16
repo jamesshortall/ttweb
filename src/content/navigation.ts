@@ -43,6 +43,7 @@ export const primaryNav: NavItem[] = [
 
 /** Flat list of every top-level destination, used by the mobile drawer. */
 export const mobileNav: NavItem[] = [
+  { label: "Home", href: "/" },
   { label: "Points & Miles 101", href: "/points-and-miles-101" },
   { label: "Tips & Strategies", href: "/tips-and-strategies" },
   { label: "Services", href: "/services" },

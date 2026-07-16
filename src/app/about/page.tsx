@@ -116,14 +116,14 @@ export default async function AboutPage() {
                 <div className="mt-4 flex flex-col gap-2.5">
                   <a
                     href={siteConfig.instagramUrl}
-                    rel="noopener noreferrer"
+                    target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center justify-between gap-2 rounded-xl bg-lagoon-800 px-4 py-3 font-semibold text-white transition-colors hover:bg-lagoon-900"
                   >
                     Instagram <ExternalTag label="External" />
                   </a>
                   <a
                     href={siteConfig.facebookUrl}
-                    rel="noopener noreferrer"
+                    target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center justify-between gap-2 rounded-xl bg-lagoon-800 px-4 py-3 font-semibold text-white transition-colors hover:bg-lagoon-900"
                   >
                     Facebook <ExternalTag label="External" />

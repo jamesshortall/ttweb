@@ -114,6 +114,19 @@ export function Header() {
 
         {/* Desktop nav */}
         <ul className="ml-auto hidden items-center gap-1 lg:flex">
+          <li>
+            <Link
+              href="/"
+              aria-current={isActive("/") ? "page" : undefined}
+              className={cn(
+                "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                linkTone,
+                isActive("/") && (solid ? "text-teal-700" : "text-white"),
+              )}
+            >
+              Home
+            </Link>
+          </li>
           <li ref={learnRef} className="relative">
             <button
               type="button"
@@ -266,6 +279,7 @@ export function Header() {
             <a
               href={process.env.NEXT_PUBLIC_CARDMASTER_URL ?? "https://cardmaster.traveltechnician.info"}
               onClick={closeMenus}
+              target="_blank"
               rel="noopener noreferrer"
               className="mt-3 flex min-h-12 items-center justify-center rounded-full border border-navy-300 px-6 font-semibold text-navy-900"
             >

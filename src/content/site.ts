@@ -5,9 +5,7 @@ export const fallbackHomepageSettings: HomepageSettings = {
   heroHeadline: "Turn your points into unforgettable travel.",
   heroSubheadline:
     "Learn how to earn, organize, and redeem points and miles with a strategy designed around your goals. Travel Technician helps beginners turn everyday spending into more comfortable and memorable travel.",
-  // PLACEHOLDER — the finalized dollar figure has not been provided.
-  // Set it in Sanity (or here) before launch; see docs/LAUNCH-CHECKLIST.md.
-  estimatedTravelValue: null,
+  estimatedTravelValue: "$125,000",
   newsletter: {
     mode: "coming-soon",
     heading: "The Travel Technician newsletter is coming soon",
@@ -46,10 +44,9 @@ export const fallbackStats: SiteStat[] = [
   },
   {
     id: "estimated-value",
-    // PLACEHOLDER — replace "$[VALUE]" with the finalized estimate before launch.
-    value: "$[VALUE]",
+    value: "$125,000",
     label: "In estimated travel value",
     description: "Estimated value received from points, based on comparable cash prices.",
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
 ];

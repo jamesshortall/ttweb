@@ -17,7 +17,7 @@ test.describe("Homepage", () => {
     );
   });
 
-  test("shows the statistics band including the placeholder-tagged value stat", async ({
+  test("shows the statistics band including the finalized estimated-value stat", async ({
     page,
   }) => {
     await page.goto("/");
@@ -26,7 +26,7 @@ test.describe("Homepage", () => {
     const stats = page.getByRole("region", { name: /by the numbers/i });
     await expect(stats.getByText("5M+", { exact: true })).toBeVisible();
     await expect(stats.getByText("30+", { exact: true })).toBeVisible();
-    await expect(stats.getByText("Final figure pending")).toBeVisible();
+    await expect(stats.getByText("$125,000")).toBeVisible();
   });
 
   test("newsletter section announces coming soon without a signup input", async ({ page }) => {
@@ -154,10 +154,11 @@ test.describe("Footer", () => {
     await expect(footer.getByRole("link", { name: "Accessibility Statement" })).toBeVisible();
     await expect(footer.getByRole("button", { name: "Cookie Preferences" })).toBeVisible();
     await expect(footer.getByText(/not affiliated with.*any airline/)).toBeVisible();
-    await expect(footer.getByRole("link", { name: /Instagram/ })).toHaveAttribute(
-      "href",
-      "https://instagram.com/the_travel_technician",
-    );
+    const instagram = footer.getByRole("link", { name: /Instagram/ });
+    await expect(instagram).toHaveAttribute("href", "https://instagram.com/the_travel_technician");
+    // External links open in a new tab with safe rel.
+    await expect(instagram).toHaveAttribute("target", "_blank");
+    await expect(instagram).toHaveAttribute("rel", /noopener/);
   });
 });
 

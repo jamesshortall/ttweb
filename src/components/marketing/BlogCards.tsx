@@ -40,7 +40,7 @@ export function BlogCards({ items }: { items: BlogCardItem[] }) {
           <li key={item.url}>
             <a
               href={item.url}
-              rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer"
               className="group flex h-full flex-col rounded-2xl border border-lagoon-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg"
             >
               <div className="flex items-center justify-between gap-3">
@@ -78,7 +78,7 @@ export function BlogFallbackCard() {
       </p>
       <a
         href={siteConfig.blogUrl}
-        rel="noopener noreferrer"
+        target="_blank" rel="noopener noreferrer"
         className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-lagoon-800 px-7 font-semibold text-white transition-colors hover:bg-lagoon-900"
       >
         Visit the Travel Technician Blog

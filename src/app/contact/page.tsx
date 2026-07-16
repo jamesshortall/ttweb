@@ -87,7 +87,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   <li className="flex items-center justify-between gap-2">
                     <a
                       href={siteConfig.instagramUrl}
-                      rel="noopener noreferrer"
+                      target="_blank" rel="noopener noreferrer"
                       className="font-semibold text-lagoon-700 underline hover:text-lagoon-900"
                     >
                       Instagram — @the_travel_technician
@@ -97,7 +97,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   <li className="flex items-center justify-between gap-2">
                     <a
                       href={siteConfig.facebookUrl}
-                      rel="noopener noreferrer"
+                      target="_blank" rel="noopener noreferrer"
                       className="font-semibold text-lagoon-700 underline hover:text-lagoon-900"
                     >
                       Facebook — TravelTechnician

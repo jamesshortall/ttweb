@@ -34,17 +34,18 @@ describe("cms fallbacks (Sanity unconfigured)", () => {
     expect(austrian).toMatchObject({ pointsUsed: 70_000, taxesFeesUsd: 58, cashValueUsd: 7_900 });
   });
 
-  it("returns homepage settings with a null estimated value (placeholder pending)", async () => {
+  it("returns homepage settings with the configured estimated value", async () => {
     const settings = await getHomepageSettings();
     expect(settings.heroHeadline).toBe("Turn your points into unforgettable travel.");
-    expect(settings.estimatedTravelValue).toBeNull();
+    expect(settings.estimatedTravelValue).toBe("$125,000");
     expect(settings.newsletter.mode).toBe("coming-soon");
   });
 
-  it("marks the estimated-value statistic as a placeholder", async () => {
+  it("exposes the finalized estimated-value statistic (no longer a placeholder)", async () => {
     const stats = await getStats();
     const value = stats.find((s) => s.id === "estimated-value");
-    expect(value?.isPlaceholder).toBe(true);
+    expect(value?.value).toBe("$125,000");
+    expect(value?.isPlaceholder).toBe(false);
   });
 
   it("returns articles for both hubs with unique slugs", async () => {

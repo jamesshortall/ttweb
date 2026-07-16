@@ -42,7 +42,7 @@ export function Footer() {
             <div className="mt-6 flex gap-3">
               <a
                 href={siteConfig.instagramUrl}
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-navy-100 transition-colors hover:border-gold-400/50 hover:text-white"
               >
                 <span className="sr-only">Travel Technician on Instagram (external link)</span>
@@ -54,7 +54,7 @@ export function Footer() {
               </a>
               <a
                 href={siteConfig.facebookUrl}
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-navy-100 transition-colors hover:border-gold-400/50 hover:text-white"
               >
                 <span className="sr-only">Travel Technician on Facebook (external link)</span>
@@ -69,7 +69,7 @@ export function Footer() {
             {footerLearnLinks.map((item) =>
               item.external ? (
                 <li key={item.label}>
-                  <a href={item.href} rel="noopener noreferrer" className={footerLink}>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className={footerLink}>
                     {item.label}
                   </a>
                 </li>
@@ -92,7 +92,7 @@ export function Footer() {
               </li>
             ))}
             <li>
-              <a href={siteConfig.cardmasterUrl} rel="noopener noreferrer" className={footerLink}>
+              <a href={siteConfig.cardmasterUrl} target="_blank" rel="noopener noreferrer" className={footerLink}>
                 Launch CardMaster
               </a>
             </li>

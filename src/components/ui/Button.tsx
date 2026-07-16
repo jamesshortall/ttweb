@@ -43,7 +43,7 @@ export function ButtonLink({
   const classes = cn(baseClasses, variantClasses[variant], sizeClasses[size], className);
   if (external) {
     return (
-      <a href={href} className={classes} rel="noopener noreferrer">
+      <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
         {children}
       </a>
     );
