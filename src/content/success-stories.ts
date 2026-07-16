@@ -8,6 +8,37 @@ import type { SuccessStory } from "@/lib/cms/types";
  */
 export const fallbackSuccessStories: SuccessStory[] = [
   {
+    slug: "lifemiles-business-monrovia-boston",
+    title: "Business Class from West Africa to Boston — Honestly Valued",
+    route: "Monrovia (ROB) → Brussels (BRU) → Zurich (ZRH) → Boston (BOS)",
+    airline: "Brussels Airlines & SWISS",
+    cabin: "Business class",
+    pointsUsed: 70_400,
+    pointsUnit: "miles",
+    taxesFeesUsd: 279,
+    // Anchored to the honest ~$4,000 comparable fare, NOT the $16,810 sticker
+    // price of the exact flights (see the write-up) — this keeps the value
+    // figure defensible instead of inflated.
+    cashValueUsd: 4_000,
+    summary:
+      "Lie-flat business class the whole way from Monrovia to Boston via Brussels and Zurich — 70,400 Avianca LifeMiles and $279 in taxes — plus an honest note on what those miles were really worth.",
+    whyValuable: [
+      "A multi-segment, lie-flat business class itinerary from West Africa to the U.S. on Brussels Airlines and SWISS, booked through Avianca LifeMiles — a Star Alliance program known for reasonable business class pricing and no fuel surcharges on these airlines.",
+      "Here's the honest part: the exact flights I booked were listed around $16,810 in cash — a price I would never pay, and neither would most people. A comparable business class routing (not the identical flights) ran about $4,000, which is the fair way to value the miles.",
+      "Measured against that $4,000 comparable fare, net of $279 in taxes, the 70,400 miles returned an estimated 5.3¢ per mile — a strong result that doesn't lean on an inflated sticker price to look good.",
+    ],
+    context: [
+      "The $16,810 figure is the real cash price of the specific flights flown; fares on niche long-haul routings can be extreme and are not what a savvy traveler would actually pay — which is exactly why the value here is anchored to the ~$4,000 comparable fare and still labeled an estimate.",
+      "Business class award space on these partners is limited and unpredictable, and LifeMiles pricing, partners, and availability can change without notice.",
+      "Multi-partner itineraries like this can be harder to find and ticket — flexibility on dates and connections is often what makes them possible.",
+    ],
+    image: {
+      src: "/images/success-stories/austrian-boston-vienna.svg",
+      alt: "Placeholder artwork representing a business class cabin",
+    },
+    highlight: "Honest value: ~5¢ per mile",
+  },
+  {
     slug: "qatar-qsuites-boston-singapore",
     title: "Qatar Airways QSuites to Singapore",
     route: "Boston (BOS) → Doha (DOH) → Singapore (SIN)",
@@ -87,6 +118,33 @@ export const fallbackSuccessStories: SuccessStory[] = [
       alt: "Placeholder artwork representing a night flight in a business class cabin",
     },
     highlight: "Estimated 7¢ per point in value",
+  },
+  {
+    slug: "jetblue-boston-costa-rica",
+    title: "JetBlue to Costa Rica for 14,600 Points",
+    route: "Boston (BOS) → Liberia, Costa Rica (LIR)",
+    airline: "JetBlue",
+    cabin: "Economy",
+    pointsUsed: 14_600,
+    pointsUnit: "points",
+    taxesFeesUsd: 5.6,
+    cashValueUsd: 436,
+    summary:
+      "Not every great redemption is an exotic suite. An escape to Costa Rica for 14,600 JetBlue points and $5.60 in taxes — the kind of everyday value a beginner can actually repeat.",
+    whyValuable: [
+      "A trip to Liberia, Costa Rica for 14,600 TrueBlue points and just $5.60 in taxes, against a cash fare around $436 — an estimated 2.9¢ per point.",
+      "That's roughly double JetBlue's typical baseline value, on a normal leisure route rather than a hard-to-find premium cabin — proof that points can beat cash on the trips beginners are most likely to take.",
+      "For JetBlue Mosaic members the effective value is even higher: Mosaic perks like waived change and cancel fees and points-back benefits stretch the same booking further.",
+    ],
+    context: [
+      "TrueBlue is a revenue-based program, so the points price generally tracks the cash fare — outsized value shows up when cash fares run high or award pricing lags, not on every date.",
+      "The $436 comparison is the cash fare around the time of booking; fares to Costa Rica move with the seasons, so the cents-per-point figure is an estimate.",
+    ],
+    image: {
+      src: "/images/travel/palm-alley.jpg",
+      alt: "A sunlit avenue of palm trees",
+    },
+    highlight: "Estimated 2.9¢ per point in value",
   },
 ];
 

@@ -32,6 +32,12 @@ describe("cms fallbacks (Sanity unconfigured)", () => {
     expect(qsuites).toMatchObject({ pointsUsed: 75_000, taxesFeesUsd: 279, cashValueUsd: 7_000 });
     const austrian = stories.find((s) => s.slug === "austrian-business-boston-vienna");
     expect(austrian).toMatchObject({ pointsUsed: 70_000, taxesFeesUsd: 58, cashValueUsd: 7_900 });
+    // LifeMiles story is valued against the honest ~$4,000 comparable fare, not
+    // the $16,810 sticker price of the exact flights.
+    const lifemiles = stories.find((s) => s.slug === "lifemiles-business-monrovia-boston");
+    expect(lifemiles).toMatchObject({ pointsUsed: 70_400, pointsUnit: "miles", cashValueUsd: 4_000 });
+    const jetblue = stories.find((s) => s.slug === "jetblue-boston-costa-rica");
+    expect(jetblue).toMatchObject({ pointsUsed: 14_600, cashValueUsd: 436 });
   });
 
   it("returns homepage settings with the configured estimated value", async () => {
