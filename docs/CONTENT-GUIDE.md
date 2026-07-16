@@ -5,7 +5,10 @@ How to change anything on the site without touching application code.
 **The one concept to understand:** every piece of content has two possible homes —
 
 1. **Sanity Studio** (the CMS) — once configured, this is the editing home. Log in, edit,
-   click **Publish**, and the site updates within an hour (or immediately on redeploy).
+   click **Publish**, and the change appears on the live site. With the publish webhook set
+   up (see [DEPLOYMENT.md → publish webhook](DEPLOYMENT.md#instant-updates-publish-webhook))
+   that takes a few seconds; without it, the site still refreshes itself hourly. Either way
+   there is **no rebuild and no code** — this is how you add or swap photos on your own.
 2. **Fallback files** in `src/content/` — plain, readable TypeScript files the site uses
    whenever Sanity is not configured or a collection is empty. Editing these requires a
    redeploy.

@@ -42,6 +42,7 @@ const serverEnvSchema = z
     NEXT_PUBLIC_SANITY_PROJECT_ID: optionalString,
     NEXT_PUBLIC_SANITY_DATASET: optionalString,
     SANITY_API_TOKEN: optionalString,
+    SANITY_REVALIDATE_SECRET: optionalString,
     NEXT_PUBLIC_SUPABASE_URL: optionalUrl,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: optionalString,
     SUPABASE_SERVICE_ROLE_KEY: optionalString,

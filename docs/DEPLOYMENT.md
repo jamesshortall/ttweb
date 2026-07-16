@@ -79,6 +79,26 @@ Add the production site origin to the Sanity project's CORS origins (no credenti
 for public published content). The website only needs `NEXT_PUBLIC_SANITY_PROJECT_ID` /
 `NEXT_PUBLIC_SANITY_DATASET`; `SANITY_API_TOKEN` is only for draft previews.
 
+### Instant updates (publish webhook)
+
+Content (including photos managed in the Studio) refreshes automatically every hour via ISR.
+To make published edits appear within **seconds — with no rebuild** — wire Sanity's publish
+webhook to the site's revalidation endpoint:
+
+1. Generate a secret: `openssl rand -hex 32`. Set it as `SANITY_REVALIDATE_SECRET` in the
+   site's hosting env (server-only — do **not** prefix it `NEXT_PUBLIC_`) and redeploy.
+2. In Sanity: **Manage project → API → Webhooks → Create webhook**.
+   - **URL:** `https://www.traveltechnician.info/api/revalidate`
+   - **Trigger on:** Create, Update, Delete · **Dataset:** production
+   - **HTTP method:** `POST`
+   - **HTTP Headers:** add `Authorization` = `Bearer <the secret from step 1>`
+     (or instead append `?secret=<the secret>` to the URL).
+3. Publish any change and confirm the live page updates within a few seconds.
+
+The endpoint is safe to ship before it's configured: with no `SANITY_REVALIDATE_SECRET` it
+returns `501` and does nothing; a wrong/missing secret returns `401`. On success it
+revalidates the whole route tree so a changed photo updates everywhere it appears.
+
 ## Supabase (optional)
 
 1. Create a project at supabase.com → run `supabase/migrations/0001_contact_submissions.sql`
