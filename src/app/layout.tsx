@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import { siteConfig } from "@/lib/site-config";
 import { serverEnv } from "@/lib/env";
 import { Header } from "@/components/layout/Header";
@@ -13,11 +13,13 @@ import "./globals.css";
 // Validate environment configuration at startup (server-side, fails loudly).
 serverEnv();
 
-const sora = Sora({
+// Serif display face — editorial, premium, variable with an optical-size axis.
+const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-sora",
-  weight: ["600", "700", "800"],
+  variable: "--font-fraunces",
+  axes: ["opsz"],
+  style: ["normal", "italic"],
 });
 
 const inter = Inter({
@@ -61,8 +63,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body>
+        {/* Marks the document as JS-capable before reveal elements paint, so
+            scroll-reveal content is only hidden when JS can reveal it. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
+        />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

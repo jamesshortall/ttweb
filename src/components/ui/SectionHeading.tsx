@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/Reveal";
 
 interface SectionHeadingProps {
   eyebrow?: string;
@@ -10,6 +11,10 @@ interface SectionHeadingProps {
   className?: string;
 }
 
+/**
+ * Editorial section heading: a gold-ruled eyebrow, a large serif title, and an
+ * optional lead paragraph. Revealed on scroll.
+ */
 export function SectionHeading({
   eyebrow,
   title,
@@ -21,35 +26,32 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const inverse = tone === "inverse";
   return (
-    <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
+    <Reveal className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow ? (
         <p
           className={cn(
-            "mb-3 text-sm font-bold tracking-widest uppercase",
-            inverse ? "text-lagoon-200" : "text-sunset-700",
+            "eyebrow mb-4 flex items-center gap-3",
+            align === "center" && "justify-center",
+            inverse ? "text-gold-300" : "text-gold-600",
           )}
         >
+          <span className="rule-gold" aria-hidden="true" />
           {eyebrow}
         </p>
       ) : null}
       <Heading
         className={cn(
-          "font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-          inverse ? "text-white" : "text-lagoon-950",
+          "text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-[2.75rem] md:leading-[1.1]",
+          inverse ? "text-white" : "text-navy-900",
         )}
       >
         {title}
       </Heading>
       {description ? (
-        <p
-          className={cn(
-            "mt-4 text-lg leading-relaxed",
-            inverse ? "text-lagoon-100" : "text-ink/80",
-          )}
-        >
+        <p className={cn("mt-5 text-lg leading-relaxed", inverse ? "text-navy-100/90" : "text-ink/70")}>
           {description}
         </p>
       ) : null}
-    </div>
+    </Reveal>
   );
 }

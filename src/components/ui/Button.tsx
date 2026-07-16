@@ -5,23 +5,23 @@ type Variant = "primary" | "secondary" | "outline" | "ghost" | "inverse";
 type Size = "md" | "lg";
 
 const variantClasses: Record<Variant, string> = {
+  // Gold — the premium accent, used for the main conversion actions.
   primary:
-    "bg-sunset-700 text-white hover:bg-sunset-800 active:bg-sunset-900 shadow-md shadow-sunset-700/20",
-  secondary:
-    "bg-lagoon-800 text-white hover:bg-lagoon-900 active:bg-lagoon-950 shadow-md shadow-lagoon-900/20",
-  outline:
-    "border-2 border-lagoon-800 text-lagoon-900 hover:bg-lagoon-50 active:bg-lagoon-100 bg-white/70",
-  ghost: "text-lagoon-800 hover:bg-lagoon-50 active:bg-lagoon-100",
-  inverse: "bg-white text-lagoon-950 hover:bg-lagoon-50 active:bg-lagoon-100 shadow-md",
+    "bg-gold-500 text-navy-950 hover:bg-gold-400 shadow-lg shadow-gold-500/25 hover:shadow-gold-500/40",
+  // Navy — the brand primary.
+  secondary: "bg-navy-900 text-white hover:bg-navy-800 shadow-lg shadow-navy-900/20",
+  outline: "border border-navy-300 text-navy-900 hover:border-navy-900 hover:bg-navy-50",
+  ghost: "text-navy-800 hover:bg-navy-50",
+  inverse: "bg-white text-navy-900 hover:bg-porcelain-100 shadow-lg shadow-navy-950/20",
 };
 
 const sizeClasses: Record<Size, string> = {
   md: "px-5 py-2.5 text-sm min-h-11",
-  lg: "px-7 py-3.5 text-base min-h-12",
+  lg: "px-7 py-3.5 text-base min-h-13",
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-150 select-none";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 select-none";
 
 interface ButtonLinkProps {
   href: string;
@@ -32,7 +32,6 @@ interface ButtonLinkProps {
   children: React.ReactNode;
 }
 
-/** Call-to-action link styled as a button. External links get rel protection. */
 export function ButtonLink({
   href,
   variant = "primary",

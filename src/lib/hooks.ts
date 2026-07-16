@@ -15,6 +15,18 @@ export function useHydrated(): boolean {
   );
 }
 
+/** True once the page has scrolled past `threshold` pixels (false on the server). */
+export function useScrolled(threshold = 8): boolean {
+  return useSyncExternalStore(
+    (callback) => {
+      window.addEventListener("scroll", callback, { passive: true });
+      return () => window.removeEventListener("scroll", callback);
+    },
+    () => window.scrollY > threshold,
+    () => false,
+  );
+}
+
 function subscribeToMediaQuery(query: string, callback: () => void): () => void {
   const mql = window.matchMedia(query);
   mql.addEventListener("change", callback);

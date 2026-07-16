@@ -4,21 +4,53 @@ export interface NavItem {
   label: string;
   href: string;
   external?: boolean;
+  description?: string;
 }
 
 /**
- * Primary navigation. "Start Here" is the beginner-friendly label for the
- * Points & Miles 101 hub. The blog is an external site and is marked as such.
+ * Primary navigation. Educational pages are grouped under a "Learn" menu so the
+ * first-level bar stays short and well-organized.
  */
+export const learnMenu: NavItem[] = [
+  {
+    label: "Points & Miles 101",
+    href: "/points-and-miles-101",
+    description: "Start here — the beginner curriculum, in plain language.",
+  },
+  {
+    label: "Tips & Strategies",
+    href: "/tips-and-strategies",
+    description: "Practical playbooks for earning and redeeming.",
+  },
+  {
+    label: "Success Stories",
+    href: "/success-stories",
+    description: "Real redemptions, with the honest math.",
+  },
+  {
+    label: "Resources",
+    href: "/resources",
+    description: "The full beginner-friendly library.",
+  },
+];
+
 export const primaryNav: NavItem[] = [
-  { label: "Start Here", href: "/points-and-miles-101" },
+  { label: "Services", href: "/services" },
+  { label: "CardMaster", href: "/cardmaster" },
+  { label: "About Jim", href: "/about" },
+  { label: "Blog", href: "/blog", external: false },
+];
+
+/** Flat list of every top-level destination, used by the mobile drawer. */
+export const mobileNav: NavItem[] = [
+  { label: "Points & Miles 101", href: "/points-and-miles-101" },
   { label: "Tips & Strategies", href: "/tips-and-strategies" },
   { label: "Services", href: "/services" },
   { label: "CardMaster", href: "/cardmaster" },
   { label: "Success Stories", href: "/success-stories" },
   { label: "Resources", href: "/resources" },
-  { label: "Blog", href: "/blog" },
   { label: "About Jim", href: "/about" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

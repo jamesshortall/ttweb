@@ -18,16 +18,18 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { Reveal } from "@/components/motion/Reveal";
 import { HomeHero } from "@/components/marketing/HomeHero";
-import { RotatingImage } from "@/components/media/RotatingImage";
 import { StatsSection } from "@/components/marketing/StatsSection";
 import { CardMasterHighlight } from "@/components/marketing/CardMasterHighlight";
+import { PhotoMarquee } from "@/components/marketing/PhotoMarquee";
 import { NewsletterSection } from "@/components/marketing/NewsletterSection";
 import { ConsultationCTA } from "@/components/marketing/ConsultationCTA";
 import { ArticleCard } from "@/components/marketing/ArticleCard";
 import { BlogCards, BlogFallbackCard, toBlogCards } from "@/components/marketing/BlogCards";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { webPageJsonLd } from "@/lib/structured-data";
+import type { IconName } from "@/lib/cms/types";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — Turn your points into unforgettable travel`,
@@ -38,30 +40,40 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-const howHelps = [
+const helpPillars: Array<{
+  icon: IconName;
+  title: string;
+  description: string;
+  href: string;
+  linkLabel: string;
+  image: { src: string; alt: string };
+}> = [
   {
-    icon: "book" as const,
+    icon: "book",
     title: "Learn the system",
     description:
-      'Plain-language education that takes you from "what\'s a transfer partner?" to confidently booking your own award travel.',
+      "Plain-language education that takes you from \"what's a transfer partner?\" to confidently booking your own award travel.",
     href: "/points-and-miles-101",
-    linkLabel: "Start with Points & Miles 101",
+    linkLabel: "Start with the basics",
+    image: { src: "/images/travel/palm-alley.jpg", alt: "A sunlit avenue of palm trees" },
   },
   {
-    icon: "compass" as const,
+    icon: "compass",
     title: "Get a personal strategy",
     description:
-      "One-on-one consultations, card strategy sessions, and portfolio audits built around your goals — not generic advice.",
+      "One-on-one consultations, card strategy sessions, and portfolio audits built around your goals — never generic advice.",
     href: "/services",
     linkLabel: "Explore the services",
+    image: { src: "/images/destinations/st-lucia-bay.jpg", alt: "A sweeping bay and green hills in St. Lucia" },
   },
   {
-    icon: "wrench" as const,
+    icon: "sparkles",
     title: "Track it all with CardMaster",
     description:
       "The free app that keeps every balance, benefit, annual fee, and expiration date organized for your whole household.",
     href: "/cardmaster",
     linkLabel: "Meet CardMaster",
+    image: { src: "/images/destinations/resort-pool.jpg", alt: "An oceanfront resort pool lined with palms" },
   },
 ];
 
@@ -121,70 +133,124 @@ export default async function HomePage() {
       <HomeHero
         headline={settings.heroHeadline}
         subheadline={settings.heroSubheadline}
-        imageCollection={heroImages}
+        images={heroImages.images}
       />
 
       <StatsSection stats={stats} />
 
+      {/* Editorial intro */}
+      <section aria-labelledby="intro-heading" className="bg-porcelain-50 py-24">
+        <Container>
+          <div className="grid items-center gap-14 lg:grid-cols-2">
+            <div>
+              <SectionHeading
+                eyebrow="Welcome"
+                title="The points-and-miles world, made calm and clear"
+                description="It looks complicated from the outside — a dozen currencies, cryptic rules, everyone online speaking in acronyms. Travel Technician untangles it: honest education, a personal strategy when you want one, and free tools to keep it all organized."
+              />
+              <div className="mt-8 flex flex-wrap gap-4">
+                <ButtonLink href="/points-and-miles-101" variant="secondary">
+                  Start Here
+                </ButtonLink>
+                <ButtonLink href="/about" variant="outline">
+                  Meet Jim
+                </ButtonLink>
+              </div>
+            </div>
+            <Reveal delay={120} className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-lg">
+                    <Image src="/images/travel/pitons.jpg" alt="The Pitons in St. Lucia" fill sizes="(min-width:1024px) 22rem, 40vw" className="object-cover" />
+                  </div>
+                  <div className="relative aspect-square overflow-hidden rounded-2xl shadow-lg">
+                    <Image src="/images/travel/turtle.jpg" alt="A green sea turtle over a reef" fill sizes="(min-width:1024px) 22rem, 40vw" className="object-cover" />
+                  </div>
+                </div>
+                <div className="space-y-4 pt-10">
+                  <div className="relative aspect-square overflow-hidden rounded-2xl shadow-lg">
+                    <Image src="/images/destinations/tulum.jpg" alt="Tulum ruins above the sea" fill sizes="(min-width:1024px) 22rem, 40vw" className="object-cover" />
+                  </div>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-lg">
+                    <Image src="/images/travel/footprints-sunset.jpg" alt="Footprints in the sand at sunset" fill sizes="(min-width:1024px) 22rem, 40vw" className="object-cover" />
+                  </div>
+                </div>
+              </div>
+              <div aria-hidden="true" className="absolute -bottom-6 -left-6 -z-10 h-40 w-40 rounded-full bg-gold-200/50 blur-3xl" />
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
       {/* How Travel Technician helps */}
-      <section aria-labelledby="how-helps" className="py-20">
+      <section aria-labelledby="how-helps" className="bg-white py-24">
         <Container>
           <SectionHeading
-            eyebrow="How Travel Technician helps"
+            eyebrow="How it works"
             title="Three ways to travel better on points"
-            description="Whether you're brand new or buried in loyalty accounts, there's a clear starting point."
+            description="Whether you're brand new or buried in loyalty accounts, there's a clear place to begin."
             align="center"
           />
           <h2 id="how-helps" className="sr-only">
             How Travel Technician helps
           </h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {howHelps.map((item) => (
-              <div
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {helpPillars.map((item, index) => (
+              <Reveal
                 key={item.title}
-                className="flex flex-col rounded-2xl border border-lagoon-100 bg-white p-7 shadow-sm"
+                delay={index * 110}
+                className="group flex flex-col overflow-hidden rounded-3xl border border-navy-100 bg-porcelain-50 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-navy-950/10"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-lagoon-800 text-white">
-                  <Icon name={item.icon} />
-                </span>
-                <h3 className="font-display mt-5 text-xl font-bold text-lagoon-950">
-                  {item.title}
-                </h3>
-                <p className="mt-2 leading-relaxed text-ink/75">{item.description}</p>
-                <Link
-                  href={item.href}
-                  className="mt-auto pt-4 font-semibold text-sunset-700 hover:underline"
-                >
-                  {item.linkLabel} →
-                </Link>
-              </div>
+                <div className="relative h-44 overflow-hidden">
+                  <Image src={item.image.src} alt={item.image.alt} fill sizes="(min-width:768px) 22rem, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/40 to-transparent" />
+                  <span className="absolute -bottom-6 left-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/60 bg-white text-teal-700 shadow-lg">
+                    <Icon name={item.icon} className="h-7 w-7" />
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col p-7 pt-10">
+                  <h3 className="text-xl font-semibold text-navy-900">{item.title}</h3>
+                  <p className="mt-2 leading-relaxed text-ink/70">{item.description}</p>
+                  <Link href={item.href} className="mt-auto flex items-center gap-1.5 pt-5 font-semibold text-gold-700 hover:text-gold-800">
+                    {item.linkLabel}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </Link>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Beginners section */}
-      <section aria-labelledby="beginners-heading" className="bg-sand-50 py-20">
-        <Container>
-          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-            <div className="lg:sticky lg:top-24">
+      {/* Beginners / Start here */}
+      <section aria-labelledby="beginners-heading" className="relative overflow-hidden bg-navy-950 py-24 text-white">
+        <Image src="/images/travel/palm-alley.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover opacity-25" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy-950/80" />
+        <Container className="relative">
+          <div className="grid items-start gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+            <div className="lg:sticky lg:top-28">
               <SectionHeading
-                eyebrow="Points and miles for beginners"
+                eyebrow="Points & miles for beginners"
                 title="New to points? Start here."
-                description="Points and miles look complicated from the outside — a dozen currencies, cryptic rules, and everyone online speaking in acronyms. The 101 hub untangles it in plain language, in the right order."
+                description="The 101 hub is a proper curriculum — read it in order or jump to what you need. Plain language, no assumptions, and honest about what points can and can't do."
+                tone="inverse"
               />
               <h2 id="beginners-heading" className="sr-only">
                 Points and miles for beginners
               </h2>
               <div className="mt-8">
-                <ButtonLink href="/points-and-miles-101" variant="secondary" size="lg">
+                <ButtonLink href="/points-and-miles-101" size="lg">
                   Learn About Points and Miles
                 </ButtonLink>
               </div>
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               {articles101.slice(0, 4).map((article, index) => (
-                <ArticleCard key={article.slug} article={article} index={index} />
+                <Reveal key={article.slug} delay={index * 90}>
+                  <ArticleCard article={article} index={index} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -192,10 +258,10 @@ export default async function HomePage() {
       </section>
 
       {/* Featured services */}
-      <section aria-labelledby="services-heading" className="py-20">
+      <section aria-labelledby="services-heading" className="bg-porcelain-50 py-24">
         <Container>
           <SectionHeading
-            eyebrow="Featured services"
+            eyebrow="Services"
             title="Strategy help, sized to your situation"
             description="From a single conversation to a full portfolio audit — education first, no fixed-price pressure, and a free consultation to find the right fit."
             align="center"
@@ -203,27 +269,36 @@ export default async function HomePage() {
           <h2 id="services-heading" className="sr-only">
             Featured services
           </h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {featuredServices.map((service) => (
-              <Link
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {featuredServices.map((service, index) => (
+              <Reveal
                 key={service.slug}
-                href={`/services/${service.slug}`}
-                className="group flex flex-col rounded-2xl border border-lagoon-100 bg-white p-7 shadow-sm transition-shadow hover:shadow-lg"
+                delay={index * 100}
+                as="div"
+                className="h-full"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-sunset-100 text-sunset-700">
-                  <Icon name={service.icon} />
-                </span>
-                <h3 className="font-display mt-5 text-xl font-bold text-lagoon-950 group-hover:text-lagoon-700">
-                  {service.name}
-                </h3>
-                <p className="mt-2 leading-relaxed text-ink/75">{service.summary}</p>
-                <span className="mt-auto pt-4 font-semibold text-sunset-700 group-hover:underline">
-                  Learn more →
-                </span>
-              </Link>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="group flex h-full flex-col rounded-3xl border border-navy-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-teal-200 hover:shadow-xl hover:shadow-navy-950/10"
+                >
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-900 text-gold-300">
+                    <Icon name={service.icon} className="h-7 w-7" />
+                  </span>
+                  <h3 className="mt-6 text-xl font-semibold text-navy-900 group-hover:text-teal-700">
+                    {service.name}
+                  </h3>
+                  <p className="mt-2 leading-relaxed text-ink/70">{service.summary}</p>
+                  <span className="mt-auto flex items-center gap-1.5 pt-5 font-semibold text-gold-700">
+                    Learn more
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
-          <div className="mt-10 text-center">
+          <div className="mt-12 text-center">
             <ButtonLink href="/services" variant="outline">
               See all services
             </ButtonLink>
@@ -233,108 +308,138 @@ export default async function HomePage() {
 
       <CardMasterHighlight />
 
-      {/* Real redemption examples */}
-      <section aria-labelledby="redemptions-heading" className="py-20">
+      {/* Destination marquee */}
+      <section aria-labelledby="destinations-heading" className="bg-white py-24">
+        <Container className="mb-12">
+          <SectionHeading
+            eyebrow="Where points can take you"
+            title="Thirty countries and counting"
+            description="Real places Jim has reached with points and miles — from Caribbean beaches to Pacific reefs."
+            align="center"
+          />
+          <h2 id="destinations-heading" className="sr-only">
+            Destinations
+          </h2>
+        </Container>
+        <PhotoMarquee images={destinationImages.images} />
+        <div className="mt-12 text-center">
+          <ButtonLink href="/success-stories" variant="secondary">
+            See the redemptions behind the trips
+          </ButtonLink>
+        </div>
+      </section>
+
+      {/* Real redemptions */}
+      <section aria-labelledby="redemptions-heading" className="bg-porcelain-50 py-24">
         <Container>
           <SectionHeading
             eyebrow="Real redemption examples"
             title="What points can actually buy"
-            description="Not hypotheticals — real trips Jim booked with points, with the honest math and the honest caveats."
+            description="Not hypotheticals — real trips Jim booked, with the honest math and the honest caveats."
             align="center"
           />
           <h2 id="redemptions-heading" className="sr-only">
             Real redemption examples
           </h2>
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            {featuredStories.map((story) => {
+          <div className="mt-14 grid gap-8 lg:grid-cols-2">
+            {featuredStories.map((story, index) => {
               const cpp = centsPerPoint(story.cashValueUsd, story.taxesFeesUsd, story.pointsUsed);
               return (
-                <div
+                <Reveal
                   key={story.slug}
-                  className="relative overflow-hidden rounded-3xl border border-lagoon-100 bg-white shadow-md"
+                  delay={index * 120}
+                  className="group overflow-hidden rounded-3xl border border-navy-100 bg-white shadow-sm transition-all duration-300 hover:shadow-2xl hover:shadow-navy-950/10"
                 >
-                  <div className="relative h-44">
-                    <Image
-                      src={story.image.src}
-                      alt={story.image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 36rem, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-7">
-                    <h3 className="font-display text-xl font-bold text-lagoon-950">
+                  <div className="relative h-52 overflow-hidden">
+                    <Image src={story.image.src} alt={story.image.alt} fill sizes="(min-width:1024px) 36rem, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/70 to-transparent" />
+                    {story.highlight ? (
+                      <span className="absolute left-5 top-5 rounded-full bg-gold-500 px-3.5 py-1.5 text-sm font-semibold text-navy-950 shadow-lg">
+                        {story.highlight}
+                      </span>
+                    ) : null}
+                    <h3 className="absolute bottom-4 left-5 right-5 font-serif text-2xl font-semibold text-white">
                       {story.title}
                     </h3>
-                    <p className="mt-1 text-sm font-medium text-ink/70">{story.route}</p>
-                    <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                  </div>
+                  <div className="p-7">
+                    <p className="text-sm font-medium text-ink/50">{story.route}</p>
+                    <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 text-sm sm:grid-cols-4">
                       <div>
-                        <dt className="inline font-semibold text-lagoon-800">
-                          {story.pointsUnit === "miles" ? "Miles: " : "Points: "}
-                        </dt>
-                        <dd className="inline">{formatNumber(story.pointsUsed)}</dd>
+                        <dt className="text-xs uppercase tracking-wide text-ink/45">{story.pointsUnit === "miles" ? "Miles" : "Points"}</dt>
+                        <dd className="font-semibold text-navy-900">{formatNumber(story.pointsUsed)}</dd>
                       </div>
                       <div>
-                        <dt className="inline font-semibold text-lagoon-800">Fees: </dt>
-                        <dd className="inline">{formatUsd(story.taxesFeesUsd)}</dd>
+                        <dt className="text-xs uppercase tracking-wide text-ink/45">Fees</dt>
+                        <dd className="font-semibold text-navy-900">{formatUsd(story.taxesFeesUsd)}</dd>
                       </div>
                       <div>
-                        <dt className="inline font-semibold text-lagoon-800">Cash price: </dt>
-                        <dd className="inline">~{formatUsd(story.cashValueUsd)}</dd>
+                        <dt className="text-xs uppercase tracking-wide text-ink/45">Cash price</dt>
+                        <dd className="font-semibold text-navy-900">~{formatUsd(story.cashValueUsd)}</dd>
                       </div>
                       <div>
-                        <dt className="inline font-semibold text-lagoon-800">Est. value: </dt>
-                        <dd className="inline">
-                          {formatCentsPerPoint(cpp)}/
-                          {story.pointsUnit === "miles" ? "mile" : "point"}
+                        <dt className="text-xs uppercase tracking-wide text-ink/45">Est. value</dt>
+                        <dd className="font-semibold text-teal-700">
+                          {formatCentsPerPoint(cpp)}/{story.pointsUnit === "miles" ? "mi" : "pt"}
                         </dd>
                       </div>
                     </dl>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>
-          <div className="mt-10 text-center">
-            <ButtonLink href="/success-stories" variant="secondary">
+          <div className="mt-12 text-center">
+            <ButtonLink href="/success-stories" variant="outline">
               Read the full success stories
             </ButtonLink>
           </div>
         </Container>
       </section>
 
-      {/* Destination gallery band */}
-      <section
-        aria-labelledby="destinations-heading"
-        className="relative isolate overflow-hidden bg-lagoon-950"
-      >
-        <RotatingImage
-          images={destinationImages.images}
-          intervalMs={destinationImages.intervalMs}
-          className="-z-20"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 -z-10 bg-lagoon-950/70" />
-        <Container className="py-24 text-center sm:py-28">
-          <h2
-            id="destinations-heading"
-            className="font-display mx-auto max-w-2xl text-3xl font-bold text-balance text-white sm:text-4xl"
-          >
-            Where will your points take you?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-lagoon-100">
-            Thirty countries and counting — most of them reached with points and miles.
-          </p>
-          <div className="mt-8">
-            <ButtonLink href="/success-stories" variant="inverse" size="lg">
-              See the redemptions that got Jim there
-            </ButtonLink>
+      {/* Why work with Jim */}
+      <section aria-labelledby="why-jim" className="bg-white py-24">
+        <Container>
+          <div className="grid items-center gap-14 lg:grid-cols-2">
+            <Reveal className="relative order-2 lg:order-1">
+              <div className="relative aspect-[5/4] overflow-hidden rounded-3xl shadow-2xl shadow-navy-950/20">
+                <Image src="/images/jim/jim-business-class.jpg" alt="Jim relaxing in a lie-flat business class seat" fill sizes="(min-width:1024px) 32rem, 100vw" className="object-cover" />
+              </div>
+              <div className="absolute -bottom-6 -right-4 rounded-2xl border border-navy-100 bg-white px-6 py-4 shadow-xl sm:-right-6">
+                <p className="font-serif text-3xl font-semibold text-navy-900">5M+</p>
+                <p className="text-sm text-ink/60">points &amp; miles redeemed</p>
+              </div>
+            </Reveal>
+            <div className="order-1 lg:order-2">
+              <SectionHeading
+                eyebrow="Why work with Jim"
+                title="An engineer's approach to unforgettable travel"
+                description="An experienced traveler who understands the tips, tools, and strategies that can help you travel in greater style and comfort."
+              />
+              <dl className="mt-8 grid gap-6 sm:grid-cols-2">
+                {whyJim.map((item) => (
+                  <div key={item.title}>
+                    <dt className="flex items-center gap-2 font-semibold text-navy-900">
+                      <span className="h-1.5 w-1.5 rounded-full bg-gold-500" aria-hidden="true" />
+                      {item.title}
+                    </dt>
+                    <dd className="mt-1.5 text-sm leading-relaxed text-ink/70">{item.description}</dd>
+                  </div>
+                ))}
+              </dl>
+              <Link href="/about" className="mt-8 inline-flex items-center gap-1.5 font-semibold text-gold-700 hover:text-gold-800">
+                Read Jim&apos;s full story
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className="h-4 w-4">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* Latest blog posts */}
-      <section aria-labelledby="blog-heading" className="bg-sand-50 py-20">
+      {/* Latest from the blog */}
+      <section aria-labelledby="blog-heading" className="bg-porcelain-50 py-24">
         <Container>
           <SectionHeading
             eyebrow="From the blog"
@@ -345,62 +450,15 @@ export default async function HomePage() {
           <h2 id="blog-heading" className="sr-only">
             Latest blog posts
           </h2>
-          <div className="mt-12">
+          <div className="mt-14">
             {blogItems.length > 0 ? <BlogCards items={blogItems} /> : <BlogFallbackCard />}
-          </div>
-        </Container>
-      </section>
-
-      {/* Why work with Jim */}
-      <section aria-labelledby="why-jim" className="py-20">
-        <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[300px_minmax(0,1fr)]">
-            <div className="relative mx-auto w-full max-w-[300px]">
-              <div
-                aria-hidden="true"
-                className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-lagoon-300/60 to-sunset-300/60 blur-lg"
-              />
-              <Image
-                src="/images/jim/jim-portrait.svg"
-                alt="Jim Shortall, founder of Travel Technician"
-                width={680}
-                height={850}
-                className="relative w-full rounded-3xl shadow-xl"
-              />
-            </div>
-            <div>
-              <SectionHeading
-                eyebrow="Why work with Jim"
-                title="An engineer's approach to unforgettable travel"
-                description="An experienced traveler who understands the tips, tools, and strategies that can help you travel in greater style and comfort."
-              />
-              <h2 id="why-jim" className="sr-only">
-                Why work with Jim
-              </h2>
-              <dl className="mt-8 grid gap-6 sm:grid-cols-2">
-                {whyJim.map((item) => (
-                  <div key={item.title}>
-                    <dt className="font-display font-bold text-lagoon-950">{item.title}</dt>
-                    <dd className="mt-1.5 text-sm leading-relaxed text-ink/75">
-                      {item.description}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <Link
-                href="/about"
-                className="mt-8 inline-block font-semibold text-sunset-700 hover:underline"
-              >
-                Read Jim&apos;s full story →
-              </Link>
-            </div>
           </div>
         </Container>
       </section>
 
       <NewsletterSection settings={settings.newsletter} />
 
-      <ConsultationCTA />
+      <ConsultationCTA image="/images/travel/marigot-sunset.jpg" />
     </>
   );
 }
