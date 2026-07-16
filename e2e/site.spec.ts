@@ -21,9 +21,12 @@ test.describe("Homepage", () => {
     page,
   }) => {
     await page.goto("/");
-    await expect(page.getByText("5M+", { exact: true })).toBeVisible();
-    await expect(page.getByText("30+", { exact: true })).toBeVisible();
-    await expect(page.getByText("Final figure pending")).toBeVisible();
+    // Scope to the stats landmark: a "5M+" figure also appears as a decorative
+    // badge elsewhere on the page.
+    const stats = page.getByRole("region", { name: /by the numbers/i });
+    await expect(stats.getByText("5M+", { exact: true })).toBeVisible();
+    await expect(stats.getByText("30+", { exact: true })).toBeVisible();
+    await expect(stats.getByText("Final figure pending")).toBeVisible();
   });
 
   test("newsletter section announces coming soon without a signup input", async ({ page }) => {
@@ -45,23 +48,29 @@ test.describe("Homepage", () => {
 });
 
 test.describe("Navigation", () => {
-  test("desktop navigation reaches every primary page", async ({ page, isMobile }) => {
+  test("desktop navigation reaches primary pages via direct links", async ({ page, isMobile }) => {
     test.skip(isMobile === true, "desktop-only navigation");
     await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Main" });
     const destinations: Array<[string, string, RegExp]> = [
-      ["Start Here", "/points-and-miles-101", /Points and Miles 101/],
       ["Services", "/services", /Personal help with your points strategy/],
-      ["Success Stories", "/success-stories", /Real redemptions, real numbers/],
       ["About Jim", "/about", /engineer behind Travel Technician/],
     ];
     for (const [label, path, heading] of destinations) {
-      await page
-        .getByRole("navigation", { name: "Main" })
-        .getByRole("link", { name: label })
-        .click();
+      await nav.getByRole("link", { name: label }).click();
       await expect(page).toHaveURL(path);
       await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
     }
+  });
+
+  test("desktop Learn dropdown reaches the educational pages", async ({ page, isMobile }) => {
+    test.skip(isMobile === true, "desktop-only navigation");
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Main" });
+    await nav.getByRole("button", { name: /Learn/ }).click();
+    await nav.getByRole("link", { name: /Points & Miles 101/ }).click();
+    await expect(page).toHaveURL("/points-and-miles-101");
+    await expect(page.getByRole("heading", { level: 1, name: /Points and Miles 101/ })).toBeVisible();
   });
 
   test("mobile menu opens, navigates, and closes", async ({ page, isMobile }) => {
@@ -124,8 +133,9 @@ test.describe("Success stories", () => {
     await expect(
       page.getByRole("heading", { name: /Austrian Airlines Business Class/ }),
     ).toBeVisible();
-    await expect(page.getByText("75,000 points", { exact: true })).toBeVisible();
-    await expect(page.getByText("70,000 miles", { exact: true })).toBeVisible();
+    // Redemption cards show the raw figures and the gold value chip.
+    await expect(page.getByText("75,000").first()).toBeVisible();
+    await expect(page.getByText("70,000").first()).toBeVisible();
     await expect(page.getByText(/Estimated value: 9\.0¢ per point/)).toBeVisible();
     await expect(page.getByText(/Estimated value: 11\.2¢ per mile/)).toBeVisible();
     await expect(

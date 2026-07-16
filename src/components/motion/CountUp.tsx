@@ -33,7 +33,10 @@ export function CountUp({
 }: CountUpProps) {
   const reducedMotion = useReducedMotion();
   const ref = useRef<HTMLSpanElement | null>(null);
-  const [display, setDisplay] = useState(0);
+  // Initialise to the final value so the real number is always present (for
+  // SSR, no-JS, SEO, and tests). The count-up is a progressive enhancement
+  // that runs when the element scrolls into view.
+  const [display, setDisplay] = useState(value);
   const started = useRef(false);
 
   useEffect(() => {
@@ -41,18 +44,14 @@ export function CountUp({
     if (!node) return;
 
     const run = () => {
-      if (started.current) return;
+      if (started.current || reducedMotion) return;
       started.current = true;
-      if (reducedMotion) {
-        setDisplay(value);
-        return;
-      }
       const start = performance.now();
       const tick = (now: number) => {
         const progress = Math.min((now - start) / durationMs, 1);
         // easeOutCubic
         const eased = 1 - Math.pow(1 - progress, 3);
-        setDisplay(value * eased);
+        setDisplay(progress >= 1 ? value : value * eased);
         if (progress < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);

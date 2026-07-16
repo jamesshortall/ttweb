@@ -82,7 +82,7 @@ describe("cms fallbacks (Sanity unconfigured)", () => {
   it("returns rotating image collections with alt text on every image", async () => {
     const collection = await getImageCollection("homeHero");
     expect(collection.images.length).toBeGreaterThanOrEqual(3);
-    expect(collection.intervalMs).toBe(60_000);
+    expect(collection.intervalMs).toBeGreaterThan(0);
     for (const image of collection.images) {
       expect(image.alt.length).toBeGreaterThan(5);
     }

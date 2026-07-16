@@ -19,7 +19,7 @@ export function ArticleCard({ article, index }: { article: Article; index?: numb
           </span>
         ) : null}
         <span className="rounded-full bg-teal-50 px-3 py-1 text-teal-800">{article.category}</span>
-        <span className="text-ink/50">{article.readingMinutes} min</span>
+        <span className="text-ink/70">{article.readingMinutes} min</span>
       </div>
       <h3 className="mt-4 text-xl font-semibold text-navy-900 transition-colors group-hover:text-teal-700">
         {article.title}

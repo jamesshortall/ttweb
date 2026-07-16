@@ -18,7 +18,7 @@ export function NewsletterSection({ settings }: { settings: NewsletterSettings }
             className="pointer-events-none absolute inset-0 opacity-90 [background:radial-gradient(40%_60%_at_100%_0%,rgba(31,147,168,0.1),transparent_60%),radial-gradient(40%_60%_at_0%_100%,rgba(199,150,58,0.1),transparent_60%)]"
           />
           <div className="relative max-w-2xl">
-            <p className="eyebrow flex items-center gap-3 text-gold-600">
+            <p className="eyebrow flex items-center gap-3 text-gold-700">
               <span className="rule-gold" aria-hidden="true" />
               Coming soon
             </p>

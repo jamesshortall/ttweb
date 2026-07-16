@@ -204,8 +204,11 @@ export function Header() {
       </header>
 
       {/* Mobile drawer — rendered as a sibling of <header> so the header's
-          backdrop-blur containing block doesn't trap this fixed element. */}
-      <div className="lg:hidden" aria-hidden={!drawerOpen}>
+          backdrop-blur containing block doesn't trap this fixed element.
+          When closed it is both aria-hidden (removed from the a11y tree) and
+          inert (its links are removed from the tab order), so no focusable
+          content is ever left hidden behind aria-hidden. */}
+      <div className="lg:hidden" aria-hidden={!drawerOpen} inert={!drawerOpen}>
         <div
           className={cn(
             "fixed inset-0 z-40 bg-navy-950/50 backdrop-blur-sm transition-opacity duration-300",

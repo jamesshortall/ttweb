@@ -11,11 +11,8 @@ export function SuccessStoryCard({ story }: { story: SuccessStory }) {
   const unit = story.pointsUnit === "miles" ? "mile" : "point";
 
   return (
-    <article aria-labelledby={`story-${story.slug}`} className="scroll-mt-28">
-      <h3 id={`story-${story.slug}`} className="sr-only">
-        {story.title}
-      </h3>
-
+    <article className="scroll-mt-28">
+      {/* The redemption card provides the visible <h3> heading for this story. */}
       <RedemptionCard story={story} />
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_1fr]">

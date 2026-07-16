@@ -64,7 +64,9 @@
   --color-porcelain-900: #574b3b;
   --color-porcelain-950: #2f281f;
 
-  --color-ink: #0c2136;
+  /* Near-black navy body ink. Tuned so the muted /60 variant still clears the
+     WCAG AA 4.5:1 threshold for normal text on white and porcelain surfaces. */
+  --color-ink: #081a2b;
 
   /* ── Backward-compatible aliases ──────────────────────────────────────────
      The rest of the site (pages not yet rebuilt) still uses the first-draft

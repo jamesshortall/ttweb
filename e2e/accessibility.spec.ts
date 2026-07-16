@@ -18,6 +18,11 @@ const pagesToAudit = [
 
 for (const path of pagesToAudit) {
   test(`axe audit: ${path} has no WCAG A/AA violations`, async ({ page }) => {
+    // Audit the settled visual state. Under prefers-reduced-motion the scroll
+    // reveals render at their final opacity immediately, so the snapshot isn't
+    // taken mid-fade (a transient, sub-second animation frame is not the state
+    // WCAG 1.4.3 governs and would make contrast checks non-deterministic).
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(path);
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])

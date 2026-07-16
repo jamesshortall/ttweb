@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Header } from "@/components/layout/Header";
 
@@ -8,22 +8,26 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("Header", () => {
-  it("renders the main navigation with all primary destinations", () => {
+  it("renders the primary navigation destinations", () => {
     render(<Header />);
     const nav = screen.getByRole("navigation", { name: "Main" });
-    for (const label of [
-      "Start Here",
-      "Tips & Strategies",
-      "Services",
-      "CardMaster",
-      "Success Stories",
-      "Resources",
-      "Blog",
-      "About Jim",
-      "Contact",
-    ]) {
-      expect(nav).toContainElement(screen.getAllByRole("link", { name: label })[0]!);
+    for (const label of ["Services", "CardMaster", "About Jim", "Blog"]) {
+      expect(within(nav).getByRole("link", { name: label })).toBeInTheDocument();
     }
+    // Educational pages are grouped under a "Learn" dropdown trigger.
+    expect(within(nav).getByRole("button", { name: /Learn/ })).toBeInTheDocument();
+  });
+
+  it("opens the Learn dropdown and shows the grouped educational links", async () => {
+    const user = userEvent.setup();
+    render(<Header />);
+    const trigger = screen.getByRole("button", { name: /Learn/ });
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+
+    await user.click(trigger);
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("link", { name: /Points & Miles 101/ })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Tips & Strategies/ })).toBeInTheDocument();
   });
 
   it("marks the current page with aria-current", () => {
@@ -37,11 +41,11 @@ describe("Header", () => {
   it("shows the consultation CTA", () => {
     render(<Header />);
     expect(
-      screen.getAllByRole("link", { name: "Schedule a Free Consultation" }).length,
+      screen.getAllByRole("link", { name: "Book a Free Consultation" }).length,
     ).toBeGreaterThanOrEqual(1);
   });
 
-  it("toggles the mobile menu with an accessible button", async () => {
+  it("toggles the mobile drawer with an accessible button", async () => {
     const user = userEvent.setup();
     render(<Header />);
 
@@ -49,32 +53,24 @@ describe("Header", () => {
     expect(toggle).toHaveAttribute("aria-expanded", "false");
 
     await user.click(toggle);
-    expect(screen.getByRole("button", { name: "Close menu" })).toHaveAttribute(
-      "aria-expanded",
-      "true",
-    );
-    expect(screen.getByRole("navigation", { name: "Mobile" })).toBeVisible();
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    // The drawer exposes the full flat navigation.
+    const mobileNav = screen.getByRole("navigation", { name: "Mobile" });
+    expect(within(mobileNav).getByRole("link", { name: "Success Stories" })).toBeInTheDocument();
+    expect(within(mobileNav).getByRole("link", { name: "Contact" })).toBeInTheDocument();
 
     await user.keyboard("{Escape}");
-    expect(screen.getByRole("button", { name: "Open menu" })).toHaveAttribute(
-      "aria-expanded",
-      "false",
-    );
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
   });
 
-  it("closes the mobile menu when a navigation link is clicked", async () => {
+  it("closes the drawer when a navigation link is clicked", async () => {
     const user = userEvent.setup();
     render(<Header />);
 
-    await user.click(screen.getByRole("button", { name: "Open menu" }));
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    await user.click(toggle);
     const mobileNav = screen.getByRole("navigation", { name: "Mobile" });
-    const link = Array.from(mobileNav.querySelectorAll("a")).find(
-      (a) => a.textContent === "Resources",
-    )!;
-    await user.click(link);
-    expect(screen.getByRole("button", { name: "Open menu" })).toHaveAttribute(
-      "aria-expanded",
-      "false",
-    );
+    await user.click(within(mobileNav).getByRole("link", { name: "Resources" }));
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
   });
 });

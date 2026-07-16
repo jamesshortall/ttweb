@@ -32,7 +32,7 @@ export function SectionHeading({
           className={cn(
             "eyebrow mb-4 flex items-center gap-3",
             align === "center" && "justify-center",
-            inverse ? "text-gold-300" : "text-gold-600",
+            inverse ? "text-gold-300" : "text-gold-700",
           )}
         >
           <span className="rule-gold" aria-hidden="true" />
