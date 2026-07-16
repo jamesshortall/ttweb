@@ -2,6 +2,9 @@
 
 How to change anything on the site without touching application code.
 
+> **Just want to manage photos?** See [PHOTO-ADMIN.md](PHOTO-ADMIN.md) for a start-to-finish,
+> non-technical walkthrough of adding and swapping images yourself.
+
 **The one concept to understand:** every piece of content has two possible homes —
 
 1. **Sanity Studio** (the CMS) — once configured, this is the editing home. Log in, edit,
