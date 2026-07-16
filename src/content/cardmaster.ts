@@ -40,21 +40,32 @@ export const fallbackCardMasterFeatures: CardMasterFeature[] = [
   },
 ];
 
+/** Real CardMaster screenshots. Editable in Sanity (cardmasterScreenshot documents). */
 export const fallbackCardMasterScreenshots: CardMasterScreenshot[] = [
   {
-    src: "/images/cardmaster/screenshot-dashboard.svg",
-    alt: "Placeholder screenshot of the CardMaster points dashboard listing loyalty balances",
-    caption: "Every balance in one dashboard",
+    src: "/images/cardmaster/screenshot-dashboard.png",
+    alt: "CardMaster overview dashboard showing value realized, open cards, total points, and credit scores",
+    caption: "Your whole portfolio at a glance",
   },
   {
-    src: "/images/cardmaster/screenshot-benefits.svg",
-    alt: "Placeholder screenshot of CardMaster benefit and statement-credit tracking",
-    caption: "Benefits and credits, tracked through the year",
+    src: "/images/cardmaster/screenshot-points.png",
+    alt: "CardMaster points tracker listing balances across credit card, hotel, and airline programs",
+    caption: "Every balance, tracked by program",
   },
   {
-    src: "/images/cardmaster/screenshot-household.svg",
-    alt: "Placeholder screenshot of CardMaster household card management",
-    caption: "Cards for the whole household",
+    src: "/images/cardmaster/screenshot-524.png",
+    alt: "CardMaster 5/24 dashboard tracking Chase application eligibility for two household members",
+    caption: "Application rules, tracked per person",
+  },
+  {
+    src: "/images/cardmaster/screenshot-trips.png",
+    alt: "CardMaster trips and bookings view with an interactive world map of upcoming trips",
+    caption: "Trips and bookings on a map",
+  },
+  {
+    src: "/images/cardmaster/screenshot-achievements.png",
+    alt: "CardMaster achievements grid showing unlocked and locked progress badges",
+    caption: "Progress and achievements",
   },
 ];
 

@@ -13,7 +13,6 @@ import {
 } from "@/lib/cms";
 import { serverEnv } from "@/lib/env";
 import { fetchBlogFeed } from "@/lib/rss";
-import { centsPerPoint, formatCentsPerPoint, formatNumber, formatUsd } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
@@ -26,6 +25,7 @@ import { PhotoMarquee } from "@/components/marketing/PhotoMarquee";
 import { NewsletterSection } from "@/components/marketing/NewsletterSection";
 import { ConsultationCTA } from "@/components/marketing/ConsultationCTA";
 import { ArticleCard } from "@/components/marketing/ArticleCard";
+import { RedemptionCard } from "@/components/marketing/RedemptionCard";
 import { BlogCards, BlogFallbackCard, toBlogCards } from "@/components/marketing/BlogCards";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { webPageJsonLd } from "@/lib/structured-data";
@@ -342,52 +342,11 @@ export default async function HomePage() {
             Real redemption examples
           </h2>
           <div className="mt-14 grid gap-8 lg:grid-cols-2">
-            {featuredStories.map((story, index) => {
-              const cpp = centsPerPoint(story.cashValueUsd, story.taxesFeesUsd, story.pointsUsed);
-              return (
-                <Reveal
-                  key={story.slug}
-                  delay={index * 120}
-                  className="group overflow-hidden rounded-3xl border border-navy-100 bg-white shadow-sm transition-all duration-300 hover:shadow-2xl hover:shadow-navy-950/10"
-                >
-                  <div className="relative h-52 overflow-hidden">
-                    <Image src={story.image.src} alt={story.image.alt} fill sizes="(min-width:1024px) 36rem, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/70 to-transparent" />
-                    {story.highlight ? (
-                      <span className="absolute left-5 top-5 rounded-full bg-gold-500 px-3.5 py-1.5 text-sm font-semibold text-navy-950 shadow-lg">
-                        {story.highlight}
-                      </span>
-                    ) : null}
-                    <h3 className="absolute bottom-4 left-5 right-5 font-serif text-2xl font-semibold text-white">
-                      {story.title}
-                    </h3>
-                  </div>
-                  <div className="p-7">
-                    <p className="text-sm font-medium text-ink/50">{story.route}</p>
-                    <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 text-sm sm:grid-cols-4">
-                      <div>
-                        <dt className="text-xs uppercase tracking-wide text-ink/45">{story.pointsUnit === "miles" ? "Miles" : "Points"}</dt>
-                        <dd className="font-semibold text-navy-900">{formatNumber(story.pointsUsed)}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-xs uppercase tracking-wide text-ink/45">Fees</dt>
-                        <dd className="font-semibold text-navy-900">{formatUsd(story.taxesFeesUsd)}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-xs uppercase tracking-wide text-ink/45">Cash price</dt>
-                        <dd className="font-semibold text-navy-900">~{formatUsd(story.cashValueUsd)}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-xs uppercase tracking-wide text-ink/45">Est. value</dt>
-                        <dd className="font-semibold text-teal-700">
-                          {formatCentsPerPoint(cpp)}/{story.pointsUnit === "miles" ? "mi" : "pt"}
-                        </dd>
-                      </div>
-                    </dl>
-                  </div>
-                </Reveal>
-              );
-            })}
+            {featuredStories.map((story, index) => (
+              <Reveal key={story.slug} delay={index * 120} className="h-full">
+                <RedemptionCard story={story} />
+              </Reveal>
+            ))}
           </div>
           <div className="mt-12 text-center">
             <ButtonLink href="/success-stories" variant="outline">

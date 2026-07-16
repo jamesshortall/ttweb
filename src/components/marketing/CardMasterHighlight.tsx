@@ -63,16 +63,13 @@ export function CardMasterHighlight() {
             <div aria-hidden="true" className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-teal-400/30 to-gold-400/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-2xl border border-white/15 shadow-2xl shadow-navy-950/50">
               <Image
-                src="/images/cardmaster/screenshot-dashboard.svg"
-                alt="Placeholder screenshot of the CardMaster points dashboard"
-                width={1440}
-                height={900}
+                src="/images/cardmaster/screenshot-dashboard.png"
+                alt="CardMaster overview dashboard showing value realized, open cards, total points, and credit scores"
+                width={1890}
+                height={880}
                 className="w-full"
               />
             </div>
-            <p className="mt-3 text-center text-xs text-navy-200/60">
-              Placeholder screenshot — replace with the live app before launch
-            </p>
           </Reveal>
         </div>
       </Container>
