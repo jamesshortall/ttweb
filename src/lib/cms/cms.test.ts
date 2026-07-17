@@ -37,7 +37,7 @@ describe("cms fallbacks (Sanity unconfigured)", () => {
     const lifemiles = stories.find((s) => s.slug === "lifemiles-business-monrovia-boston");
     expect(lifemiles).toMatchObject({ pointsUsed: 70_400, pointsUnit: "miles", cashValueUsd: 4_000 });
     const jetblue = stories.find((s) => s.slug === "jetblue-boston-costa-rica");
-    expect(jetblue).toMatchObject({ pointsUsed: 14_600, cashValueUsd: 436 });
+    expect(jetblue).toMatchObject({ pointsUsed: 14_600, cashValueUsd: 218 });
   });
 
   it("returns homepage settings with the configured estimated value", async () => {

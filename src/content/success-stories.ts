@@ -128,23 +128,23 @@ export const fallbackSuccessStories: SuccessStory[] = [
     pointsUsed: 14_600,
     pointsUnit: "points",
     taxesFeesUsd: 5.6,
-    cashValueUsd: 436,
+    cashValueUsd: 218,
     summary:
-      "Not every great redemption is an exotic suite. An escape to Costa Rica for 14,600 JetBlue points and $5.60 in taxes — the kind of everyday value a beginner can actually repeat.",
+      "Not every worthwhile redemption is an exotic suite. A trip to Costa Rica for 14,600 JetBlue points and $5.60 in taxes — an everyday, repeatable use of points that a beginner can actually pull off.",
     whyValuable: [
-      "A trip to Liberia, Costa Rica for 14,600 TrueBlue points and just $5.60 in taxes, against a cash fare around $436 — an estimated 2.9¢ per point.",
-      "That's roughly double JetBlue's typical baseline value, on a normal leisure route rather than a hard-to-find premium cabin — proof that points can beat cash on the trips beginners are most likely to take.",
+      "A trip to Liberia, Costa Rica for 14,600 TrueBlue points and just $5.60 in taxes, against a cash fare around $218 — an estimated 1.5¢ per point, right around JetBlue's typical value.",
+      "The win here isn't a jaw-dropping rate — it's repeatability and almost no out-of-pocket cost. This is an ordinary leisure trip covered with points instead of cash, the kind of redemption beginners are most likely to make.",
       "For JetBlue Mosaic members the effective value is even higher: Mosaic perks like waived change and cancel fees and points-back benefits stretch the same booking further.",
     ],
     context: [
-      "TrueBlue is a revenue-based program, so the points price generally tracks the cash fare — outsized value shows up when cash fares run high or award pricing lags, not on every date.",
-      "The $436 comparison is the cash fare around the time of booking; fares to Costa Rica move with the seasons, so the cents-per-point figure is an estimate.",
+      "TrueBlue is a revenue-based program, so the points price tracks the cash fare closely — the value stays fairly steady rather than spiking, which is what makes it dependable for everyday trips.",
+      "The $218 comparison is the cash fare around the time of booking; fares to Costa Rica move with the seasons, so the cents-per-point figure is an estimate.",
     ],
     image: {
       src: "/images/travel/palm-alley.jpg",
       alt: "A sunlit avenue of palm trees",
     },
-    highlight: "Estimated 2.9¢ per point in value",
+    highlight: "An everyday, repeatable points redemption",
   },
 ];
 
