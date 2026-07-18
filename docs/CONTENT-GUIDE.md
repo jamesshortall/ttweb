@@ -21,6 +21,34 @@ each file mirrors the Studio fields one-to-one.
 
 ---
 
+## First‑time: import all built‑in content into Sanity
+
+A new Studio starts empty, and the site shows its built‑in content. To make the **whole**
+site editable in the Studio (not just photos), import the built‑in content once. It creates
+a document for every stat, service, success story, article, FAQ, resource, legal page,
+CardMaster item, and photo collection — and uploads the images.
+
+1. Connect/deploy the Studio to a Sanity project first (see [PHOTO-ADMIN.md](PHOTO-ADMIN.md)).
+2. Create a **write token**: manage.sanity.io → your project → **API → Tokens → Add token**,
+   choose **Editor**, and copy it.
+3. From the repo root (where you've run `npm install`), run the importer:
+
+   **macOS / Linux**
+   ```bash
+   SANITY_PROJECT_ID=your-project-id SANITY_WRITE_TOKEN=your-token npm run seed
+   ```
+   **Windows (PowerShell)**
+   ```powershell
+   $env:SANITY_PROJECT_ID="your-project-id"; $env:SANITY_WRITE_TOKEN="your-token"; npm run seed
+   ```
+   Preview first without writing anything: `npm run seed -- --dry`.
+
+It's safe to re‑run — documents use stable IDs and are replaced, not duplicated. When it
+finishes, refresh the Studio and everything will be there. (The content comes from
+`scripts/seed-data.json`, a point‑in‑time export of `src/content`.)
+
+---
+
 ## Edit homepage copy
 
 - **Studio:** Site Settings → _Homepage hero headline_ / _supporting copy_.
