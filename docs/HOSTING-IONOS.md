@@ -255,7 +255,7 @@ allow it. Use these in place of the matching numbered steps above; the rest (dep
 
 ```bash
 dnf upgrade -y
-dnf install -y nano git
+dnf install -y nano git firewalld   # minimal IONOS images may not ship firewalld
 systemctl enable --now firewalld
 firewall-cmd --permanent --add-service=ssh
 firewall-cmd --permanent --add-service=http
