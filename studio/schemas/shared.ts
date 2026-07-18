@@ -1,0 +1,21 @@
+/** Icon names available in the website's Icon component (src/components/ui/Icon.tsx). */
+export const iconOptions = [
+  "compass",
+  "card",
+  "plane",
+  "chart",
+  "shield",
+  "bell",
+  "users",
+  "map",
+  "sparkles",
+  "calculator",
+  "luggage",
+  "globe",
+  "book",
+  "wrench",
+  "calendar",
+  "mail",
+  "search",
+  "check",
+];

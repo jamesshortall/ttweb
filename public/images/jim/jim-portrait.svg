@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-label="Professional photo of Jim Shortall (placeholder)">
+  <defs>
+    <linearGradient id="p1-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#20768b"/>
+      <stop offset="1" stop-color="#0f2b36"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#p1-bg)"/>
+  <circle cx="400" cy="380" r="152" fill="#79ced8" opacity="0.9"/>
+  <path d="M400 560 c -224.00000000000003 0 -272 220 -272 340 l 544 0 c 0 -120 -48 -340 -272 -340 Z" fill="#79ced8" opacity="0.9"/>
+  <text x="400" y="420" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="104" font-weight="bold" fill="#0f2b36">JS</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="20" y="934" rx="10" width="760" height="46" fill="#0f2b36" opacity="0.72"/>
+    <text x="36" y="964" font-size="19" fill="#ffffff">PLACEHOLDER · Professional photo of Jim Shortall</text>
+  </g>
+</svg>

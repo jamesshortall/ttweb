@@ -1,0 +1,275 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Travel Technician — "Premium Editorial" design system.
+ *
+ * Palette derived from the brand logo: deep navy + teal, warmed with a refined
+ * gold accent and porcelain/linen neutral surfaces. Light mode only by design.
+ * Type: Fraunces (serif display) + Inter (sans body).
+ */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+
+  /* Navy — primary brand color (from the logo wordmark / passport) */
+  --color-navy-50: #eef3f9;
+  --color-navy-100: #d7e3f0;
+  --color-navy-200: #b1c8df;
+  --color-navy-300: #82a4c8;
+  --color-navy-400: #517ba7;
+  --color-navy-500: #345d88;
+  --color-navy-600: #23486d;
+  --color-navy-700: #1b3a58;
+  --color-navy-800: #17304a;
+  --color-navy-900: #0e2c4a;
+  --color-navy-950: #071a2e;
+
+  /* Teal — secondary brand color (from "TECHNICIAN" / boarding pass) */
+  --color-teal-50: #edfafb;
+  --color-teal-100: #cff0f4;
+  --color-teal-200: #a3e1ea;
+  --color-teal-300: #69ccda;
+  --color-teal-400: #36b0c3;
+  --color-teal-500: #1f93a8;
+  --color-teal-600: #1c778c;
+  --color-teal-700: #1d6072;
+  --color-teal-800: #1f4f5e;
+  --color-teal-900: #1d414f;
+  --color-teal-950: #0c2833;
+
+  /* Gold — refined accent that adds warmth the first draft lacked */
+  --color-gold-50: #fbf8ef;
+  --color-gold-100: #f5edd1;
+  --color-gold-200: #ebd9a3;
+  --color-gold-300: #dfc06d;
+  --color-gold-400: #d4a944;
+  --color-gold-500: #c7963a;
+  --color-gold-600: #ab7a2f;
+  --color-gold-700: #895d29;
+  --color-gold-800: #714b27;
+  --color-gold-900: #603f24;
+  --color-gold-950: #372112;
+
+  /* Porcelain — warm neutral surfaces */
+  --color-porcelain-50: #fbf9f5;
+  --color-porcelain-100: #f6f2ea;
+  --color-porcelain-200: #ece4d5;
+  --color-porcelain-300: #ddd0ba;
+  --color-porcelain-400: #c8b699;
+  --color-porcelain-500: #b39f7c;
+  --color-porcelain-600: #9c8763;
+  --color-porcelain-700: #7f6d50;
+  --color-porcelain-800: #695a45;
+  --color-porcelain-900: #574b3b;
+  --color-porcelain-950: #2f281f;
+
+  /* Near-black navy body ink. Tuned so the muted /60 variant still clears the
+     WCAG AA 4.5:1 threshold for normal text on white and porcelain surfaces. */
+  --color-ink: #081a2b;
+
+  /* ── Backward-compatible aliases ──────────────────────────────────────────
+     The rest of the site (pages not yet rebuilt) still uses the first-draft
+     names. Aliasing them onto the new brand palette re-skins those pages
+     automatically: lagoon→navy, sunset→gold, sand→porcelain, palm→teal. */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --color-lagoon-50: #eef3f9;
+  --color-lagoon-100: #d7e3f0;
+  --color-lagoon-200: #b1c8df;
+  --color-lagoon-300: #82a4c8;
+  --color-lagoon-400: #517ba7;
+  --color-lagoon-500: #345d88;
+  --color-lagoon-600: #23486d;
+  --color-lagoon-700: #1b3a58;
+  --color-lagoon-800: #17304a;
+  --color-lagoon-900: #0e2c4a;
+  --color-lagoon-950: #071a2e;
+
+  --color-sunset-50: #fbf8ef;
+  --color-sunset-100: #f5edd1;
+  --color-sunset-200: #ebd9a3;
+  --color-sunset-300: #dfc06d;
+  --color-sunset-400: #d4a944;
+  --color-sunset-500: #c7963a;
+  --color-sunset-600: #ab7a2f;
+  --color-sunset-700: #895d29;
+  --color-sunset-800: #714b27;
+  --color-sunset-900: #603f24;
+  --color-sunset-950: #372112;
+
+  --color-sand-50: #fbf9f5;
+  --color-sand-100: #f6f2ea;
+  --color-sand-200: #ece4d5;
+  --color-sand-300: #ddd0ba;
+  --color-sand-400: #c8b699;
+  --color-sand-500: #b39f7c;
+  --color-sand-600: #9c8763;
+  --color-sand-700: #7f6d50;
+  --color-sand-800: #695a45;
+  --color-sand-900: #574b3b;
+  --color-sand-950: #2f281f;
+
+  --color-palm-50: #edfafb;
+  --color-palm-100: #cff0f4;
+  --color-palm-200: #a3e1ea;
+  --color-palm-300: #69ccda;
+  --color-palm-400: #36b0c3;
+  --color-palm-500: #1f93a8;
+  --color-palm-600: #1c778c;
+  --color-palm-700: #1d6072;
+  --color-palm-800: #1f4f5e;
+  --color-palm-900: #1d414f;
+  --color-palm-950: #0c2833;
+
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-ken-burns: ken-burns 20s ease-out both;
+  --animate-slow-zoom: slow-zoom 70s ease-in-out infinite alternate;
+  --animate-fade-in: fade-in 1.2s ease-out both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+
+  @keyframes slow-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.09);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes ken-burns {
+    from {
+      transform: scale(1.12) translate3d(1%, 1%, 0);
+    }
+    to {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-porcelain-50 font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+    font-optical-sizing: auto;
+  }
+
+  ::selection {
+    @apply bg-gold-200 text-navy-900;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold-500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-navy-900 focus:px-5 focus:py-3 focus:font-semibold focus:text-white;
+  }
+
+  /* Scroll-reveal: gated behind the `js` class (added by an inline script in
+     the layout) so that WITHOUT JavaScript every element stays fully visible.
+     With JS, elements start hidden and .is-visible reveals them on scroll. */
+  .reveal {
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Thin gold rule used as an editorial flourish */
+  .rule-gold {
+    @apply inline-block h-px w-10 bg-gold-500 align-middle;
+  }
+
+  /* Fine "eyebrow" label */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em];
+  }
+}
+
+/* Utility: subtle grain/gradient scrim helpers reused across sections */
+@utility scrim-b {
+  background: linear-gradient(to top, rgba(7, 26, 46, 0.85) 0%, rgba(7, 26, 46, 0.25) 45%, rgba(7, 26, 46, 0.1) 100%);
+}
+@utility scrim-l {
+  background: linear-gradient(to right, rgba(7, 26, 46, 0.9) 0%, rgba(7, 26, 46, 0.55) 45%, rgba(7, 26, 46, 0.15) 100%);
+}

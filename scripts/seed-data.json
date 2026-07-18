@@ -1,0 +1,1864 @@
+[
+  {
+    "_id": "stat-points-redeemed",
+    "_type": "statistic",
+    "value": "5M+",
+    "label": "Points and miles redeemed",
+    "description": "Real redemptions across airline, hotel, and transferable-points programs.",
+    "isPlaceholder": false,
+    "orderRank": 0
+  },
+  {
+    "_id": "stat-countries",
+    "_type": "statistic",
+    "value": "30+",
+    "label": "Countries visited",
+    "description": "First-hand experience with the destinations points can reach.",
+    "isPlaceholder": false,
+    "orderRank": 1
+  },
+  {
+    "_id": "stat-experience",
+    "_type": "statistic",
+    "value": "3+",
+    "label": "Years of focused points-and-miles experience",
+    "description": "Studying programs, tracking changes, and testing strategies.",
+    "isPlaceholder": false,
+    "orderRank": 2
+  },
+  {
+    "_id": "stat-estimated-value",
+    "_type": "statistic",
+    "value": "$125,000",
+    "label": "In estimated travel value",
+    "description": "Estimated value received from points, based on comparable cash prices.",
+    "isPlaceholder": false,
+    "orderRank": 3
+  },
+  {
+    "_id": "siteSettings",
+    "_type": "siteSettings",
+    "heroHeadline": "Turn your points into unforgettable travel.",
+    "heroSubheadline": "Learn how to earn, organize, and redeem points and miles with a strategy designed around your goals. Travel Technician helps beginners turn everyday spending into more comfortable and memorable travel.",
+    "estimatedTravelValue": "$125,000",
+    "newsletter": {
+      "mode": "coming-soon",
+      "heading": "The Travel Technician newsletter is coming soon",
+      "body": "Points and miles news, transfer bonuses, program changes, beginner education, and redemption ideas — delivered occasionally, never spammy. Sign-up opens once the newsletter launches.",
+      "topics": [
+        "Points and miles news",
+        "Transfer bonuses",
+        "Loyalty program changes",
+        "Beginner education",
+        "Credit card benefit reminders",
+        "New blog posts",
+        "Travel redemption tips"
+      ]
+    }
+  },
+  {
+    "_id": "service-points-and-miles-consultation",
+    "_type": "service",
+    "name": "One-on-One Points & Miles Consultation",
+    "slug": {
+      "_type": "slug",
+      "current": "points-and-miles-consultation"
+    },
+    "tagline": "A personal session focused on your accounts, your goals, and your next trip.",
+    "summary": "Personalized guidance to help you understand your loyalty accounts, clarify your travel goals, and find the opportunities hiding in the points you already have.",
+    "icon": "compass",
+    "description": [
+      "Every points situation is different. Maybe you have a pile of points and no idea what they're worth. Maybe you're starting from zero and want to do it right from day one. Maybe you're planning one important trip and want to make your balances stretch as far as they can.",
+      "In a one-on-one consultation, Jim walks through your loyalty accounts, your travel goals, and your spending patterns, then helps you build a plain-language plan you can actually follow. No jargon, no pressure, and no assumption that you already know how any of this works."
+    ],
+    "bestFor": [
+      "Beginners who want a clear starting point",
+      "People sitting on points they don't know how to use",
+      "Anyone planning a big or important trip",
+      "Families trying to reduce vacation costs"
+    ],
+    "includes": [
+      "A review of your current points, miles, and loyalty accounts",
+      "A discussion of your travel goals and timeline",
+      "Plain-language explanations of the programs you already use",
+      "A prioritized set of next steps tailored to you"
+    ],
+    "boundaries": [
+      "Educational guidance only — not financial, legal, or tax advice",
+      "Travel Technician does not book travel on your behalf"
+    ],
+    "cta": "Schedule a Free Consultation",
+    "featured": true,
+    "orderRank": 0
+  },
+  {
+    "_id": "service-credit-card-strategy",
+    "_type": "service",
+    "name": "Credit Card Strategy Session",
+    "slug": {
+      "_type": "slug",
+      "current": "credit-card-strategy"
+    },
+    "tagline": "Make sense of the cards you have — and the ones you're considering.",
+    "summary": "Educational guidance about selecting and organizing credit cards based on your travel goals, spending habits, annual fees, benefits, and loyalty programs.",
+    "icon": "card",
+    "description": [
+      "Credit card rewards are the engine of most points strategies — and also where people get overwhelmed. Annual fees stack up, benefits go unused, and it's hard to know whether a card is earning its keep.",
+      "A strategy session looks at your existing cards and your goals, and helps you understand how issuers' ecosystems, earning rates, benefits, and fees fit together. The focus is education: understanding the trade-offs so you can make your own informed decisions."
+    ],
+    "bestFor": [
+      "People whose annual fees have crept up over the years",
+      "Anyone unsure which card to use for which purchase",
+      "Travelers deciding between competing card ecosystems",
+      "Households coordinating cards across two or more people"
+    ],
+    "includes": [
+      "A walkthrough of your current cards, fees, and benefits",
+      "An explanation of how earning rates and categories work",
+      "A framework for evaluating whether a card is worth keeping",
+      "Education about issuer ecosystems and transferable points"
+    ],
+    "boundaries": [
+      "Education only — not financial advice, and never a recommendation to take on debt",
+      "Card approval decisions are made solely by issuers",
+      "Opening new cards is not appropriate for everyone; carrying a balance to earn rewards never makes sense"
+    ],
+    "cta": "Discuss Your Points Strategy",
+    "featured": true,
+    "orderRank": 1
+  },
+  {
+    "_id": "service-award-travel-assistance",
+    "_type": "service",
+    "name": "Award Travel Search Assistance",
+    "slug": {
+      "_type": "slug",
+      "current": "award-travel-assistance"
+    },
+    "tagline": "Understand your realistic award options before you transfer a single point.",
+    "summary": "Help understanding possible award routes, airline programs, transfer partners, redemption options, taxes, fees, and the trade-offs between them.",
+    "icon": "plane",
+    "description": [
+      "Finding award seats is the hardest part of points and miles. Availability is unpredictable, programs price the same seat differently, and taxes and fees can vary by hundreds of dollars depending on how you book.",
+      "Award search assistance helps you understand what's realistically available for your trip: which programs can book the flights you want, what they're likely to charge in points and cash, and what the trade-offs are between routings, cabins, and dates. You stay in control and make the bookings yourself — Jim makes sure you understand your options first."
+    ],
+    "bestFor": [
+      "Travelers with a specific trip in mind",
+      "Anyone confused by transfer partners and award charts",
+      "People who found 'no availability' and don't know what to try next",
+      "Premium-cabin hopefuls working with a fixed points budget"
+    ],
+    "includes": [
+      "A review of the routes and programs relevant to your trip",
+      "Plain-language explanation of transfer partners and pricing",
+      "Guidance on taxes, fees, and fuel surcharges by program",
+      "A realistic read on availability patterns and backup plans"
+    ],
+    "boundaries": [
+      "Travel Technician does not book flights or hotels and is not a travel agency",
+      "Award availability changes constantly and is never guaranteed"
+    ],
+    "cta": "Contact Jim for Details",
+    "featured": true,
+    "orderRank": 2
+  },
+  {
+    "_id": "service-loyalty-program-review",
+    "_type": "service",
+    "name": "Loyalty Program Review",
+    "slug": {
+      "_type": "slug",
+      "current": "loyalty-program-review"
+    },
+    "tagline": "Get more out of the programs you already belong to.",
+    "summary": "A guided review of airline, hotel, and transferable-points programs so you understand how to use each one more effectively.",
+    "icon": "chart",
+    "description": [
+      "Most people belong to more loyalty programs than they realize — and use almost none of them well. Each program has its own earning quirks, elite tiers, sweet spots, and expiration rules.",
+      "A loyalty program review looks at the programs you actually use, explains where each one shines and where it falls short, and shows you how they can work together instead of sitting in separate silos."
+    ],
+    "bestFor": [
+      "Travelers loyal to one airline or hotel chain out of habit",
+      "People juggling a half-dozen programs with no system",
+      "Anyone curious whether their loyalty is actually paying off"
+    ],
+    "includes": [
+      "A review of the airline and hotel programs you use",
+      "An explanation of each program's strengths and sweet spots",
+      "Expiration rules and simple ways to keep balances alive",
+      "How transferable currencies connect your programs"
+    ],
+    "boundaries": [
+      "Independent education — Travel Technician is not affiliated with any loyalty program",
+      "Program rules change; always confirm details with the program directly"
+    ],
+    "cta": "Contact Jim for Details",
+    "featured": false,
+    "orderRank": 3
+  },
+  {
+    "_id": "service-points-portfolio-audit",
+    "_type": "service",
+    "name": "Points Portfolio Audit",
+    "slug": {
+      "_type": "slug",
+      "current": "points-portfolio-audit"
+    },
+    "tagline": "A complete, technician-style review of everything you've earned.",
+    "summary": "A structured evaluation of your points, miles, credit cards, annual fees, benefits, expiration risks, and travel objectives — with clear next steps.",
+    "icon": "calculator",
+    "description": [
+      "Think of this as a systems check for your entire points life. An audit inventories every balance, card, fee, and benefit you have, flags points at risk of expiring, identifies benefits you're paying for but not using, and matches what you hold against what you actually want to do with it.",
+      "You leave with an organized picture of your portfolio and a prioritized action list — what to use, what to keep, what to watch, and what to rethink."
+    ],
+    "bestFor": [
+      "Long-time collectors who've lost track of what they have",
+      "Households with points scattered across many accounts",
+      "Anyone paying multiple annual fees without a clear reason",
+      "People who want a plan before points expire or devalue"
+    ],
+    "includes": [
+      "A full inventory of points, miles, and credit card benefits",
+      "Expiration-risk and devaluation-risk flags",
+      "An annual-fee versus benefits reality check",
+      "A prioritized, written action plan"
+    ],
+    "boundaries": [
+      "Educational analysis only — not financial advice",
+      "Estimated point values are estimates, not guarantees"
+    ],
+    "cta": "Contact Jim for Details",
+    "featured": false,
+    "orderRank": 4
+  },
+  {
+    "_id": "story-lifemiles-business-monrovia-boston",
+    "_type": "successStory",
+    "title": "Business Class from West Africa to Boston — Honestly Valued",
+    "slug": {
+      "_type": "slug",
+      "current": "lifemiles-business-monrovia-boston"
+    },
+    "route": "Monrovia (ROB) → Brussels (BRU) → Zurich (ZRH) → Boston (BOS)",
+    "airline": "Brussels Airlines & SWISS",
+    "cabin": "Business class",
+    "pointsUsed": 70400,
+    "pointsUnit": "miles",
+    "taxesFeesUsd": 279,
+    "cashValueUsd": 4000,
+    "summary": "Lie-flat business class the whole way from Monrovia to Boston via Brussels and Zurich — 70,400 Avianca LifeMiles and $279 in taxes — plus an honest note on what those miles were really worth.",
+    "whyValuable": [
+      "A multi-segment, lie-flat business class itinerary from West Africa to the U.S. on Brussels Airlines and SWISS, booked through Avianca LifeMiles — a Star Alliance program known for reasonable business class pricing and no fuel surcharges on these airlines.",
+      "Here's the honest part: the exact flights I booked were listed around $16,810 in cash — a price I would never pay, and neither would most people. A comparable business class routing (not the identical flights) ran about $4,000, which is the fair way to value the miles.",
+      "Measured against that $4,000 comparable fare, net of $279 in taxes, the 70,400 miles returned an estimated 5.3¢ per mile — a strong result that doesn't lean on an inflated sticker price to look good."
+    ],
+    "context": [
+      "The $16,810 figure is the real cash price of the specific flights flown; fares on niche long-haul routings can be extreme and are not what a savvy traveler would actually pay — which is exactly why the value here is anchored to the ~$4,000 comparable fare and still labeled an estimate.",
+      "Business class award space on these partners is limited and unpredictable, and LifeMiles pricing, partners, and availability can change without notice.",
+      "Multi-partner itineraries like this can be harder to find and ticket — flexibility on dates and connections is often what makes them possible."
+    ],
+    "highlight": "Honest value: ~5¢ per mile",
+    "image": {
+      "_upload": "/images/success-stories/austrian-boston-vienna.svg",
+      "alt": "Placeholder artwork representing a business class cabin"
+    },
+    "orderRank": 0
+  },
+  {
+    "_id": "story-qatar-qsuites-boston-singapore",
+    "_type": "successStory",
+    "title": "Qatar Airways QSuites to Singapore",
+    "slug": {
+      "_type": "slug",
+      "current": "qatar-qsuites-boston-singapore"
+    },
+    "route": "Boston (BOS) → Doha (DOH) → Singapore (SIN)",
+    "airline": "Qatar Airways",
+    "cabin": "QSuites business class",
+    "pointsUsed": 75000,
+    "pointsUnit": "points",
+    "taxesFeesUsd": 279,
+    "cashValueUsd": 7000,
+    "summary": "A lie-flat suite with a closing door for roughly the cash price of an economy ticket — one of the most sought-after business class products in the sky, booked with points.",
+    "whyValuable": [
+      "QSuites is widely considered one of the best business class products flying: a private suite with a sliding door, lie-flat bed, and dine-on-demand service — for more than 17 hours of flying time.",
+      "The comparable cash fare for this itinerary was around $7,000. After subtracting the $279 in taxes and fees, the points covered roughly $6,700 of value — an estimated 9¢ per point, several times the typical baseline valuation of a transferable point.",
+      "Because the points came from a transferable currency, they could have gone to many programs — choosing the right transfer partner is what unlocked this price."
+    ],
+    "context": [
+      "QSuites award space at this level is limited and unpredictable — it typically requires flexible dates and booking when space appears, not when it's convenient.",
+      "The cash price used for comparison is the fare on the same flights around the time of booking; premium-cabin cash fares swing widely, so the cents-per-point figure is an estimate, not a fixed exchange rate."
+    ],
+    "highlight": "Estimated 9¢ per point in value",
+    "image": {
+      "_upload": "/images/success-stories/qsuites-boston-singapore.svg",
+      "alt": "Placeholder artwork representing a night flight in a business class cabin"
+    },
+    "orderRank": 1
+  },
+  {
+    "_id": "story-austrian-business-boston-vienna",
+    "_type": "successStory",
+    "title": "Last-Minute Austrian Airlines Business Class to Vienna",
+    "slug": {
+      "_type": "slug",
+      "current": "austrian-business-boston-vienna"
+    },
+    "route": "Boston (BOS) → Vienna (VIE)",
+    "airline": "Austrian Airlines",
+    "cabin": "Business class",
+    "pointsUsed": 70000,
+    "pointsUnit": "miles",
+    "taxesFeesUsd": 58,
+    "cashValueUsd": 7900,
+    "summary": "A last-minute transatlantic business class seat — when the cash fare had climbed to nearly $8,000 — booked with 70,000 miles and $58 in taxes and fees.",
+    "whyValuable": [
+      "This is where points and miles shine brightest: last-minute premium fares are often at their most expensive exactly when award pricing stays flat. The cash fare here was approximately $7,900; the award cost 70,000 miles plus $58.",
+      "Net of taxes and fees, that's roughly $7,840 in value — an estimated 11¢ per mile, an exceptional result by any measure.",
+      "Airlines sometimes open premium award space close to departure to fill unsold seats. Knowing which programs to check — and having miles ready in the right place — is what turns that pattern into a booked seat."
+    ],
+    "context": [
+      "Last-minute award space is a pattern, not a promise: it appears on some flights and not others, and it can vanish in hours.",
+      "The near-$8,000 comparison fare reflects last-minute pricing that most travelers would never pay in cash — which is exactly why the cents-per-mile figure is presented as an estimate of comparable value, not money saved."
+    ],
+    "highlight": "Estimated 11¢ per mile in value",
+    "image": {
+      "_upload": "/images/success-stories/austrian-boston-vienna.svg",
+      "alt": "Placeholder artwork representing an aerial view of Vienna"
+    },
+    "orderRank": 2
+  },
+  {
+    "_id": "story-qatar-qsuites-boston-dubai",
+    "_type": "successStory",
+    "title": "Qatar Airways QSuites to Dubai",
+    "slug": {
+      "_type": "slug",
+      "current": "qatar-qsuites-boston-dubai"
+    },
+    "route": "Boston (BOS) → Doha (DOH) → Dubai (DXB)",
+    "airline": "Qatar Airways",
+    "cabin": "QSuites business class",
+    "pointsUsed": 75000,
+    "pointsUnit": "points",
+    "taxesFeesUsd": 268,
+    "cashValueUsd": 5666,
+    "summary": "The same award-winning QSuites product — a private business class suite with a closing door — flown Boston to Dubai via Doha, booked with 75,000 points and $268 in taxes and fees.",
+    "whyValuable": [
+      "QSuites is widely regarded as one of the best business class products in the sky: a private suite with a sliding door, a lie-flat bed, and dine-on-demand service across two long flights via Doha.",
+      "The comparable cash fare for this itinerary was around $5,666. After subtracting the $268 in taxes and fees, the points covered roughly $5,400 of value — an estimated 7¢ per point, comfortably above the typical baseline valuation of a transferable point.",
+      "Because the points came from a transferable currency, they could have moved to several programs — choosing the right transfer partner is what unlocked this price."
+    ],
+    "context": [
+      "QSuites award space is limited and unpredictable — it usually takes flexible dates and booking when space appears, not when it's convenient.",
+      "The cash price used for comparison is the fare on the same flights around the time of booking; premium-cabin fares swing widely, so the cents-per-point figure is an estimate, not a fixed exchange rate."
+    ],
+    "highlight": "Estimated 7¢ per point in value",
+    "image": {
+      "_upload": "/images/success-stories/qsuites-boston-singapore.svg",
+      "alt": "Placeholder artwork representing a night flight in a business class cabin"
+    },
+    "orderRank": 3
+  },
+  {
+    "_id": "story-jetblue-boston-costa-rica",
+    "_type": "successStory",
+    "title": "JetBlue to Costa Rica for 14,600 Points",
+    "slug": {
+      "_type": "slug",
+      "current": "jetblue-boston-costa-rica"
+    },
+    "route": "Boston (BOS) → Liberia, Costa Rica (LIR)",
+    "airline": "JetBlue",
+    "cabin": "Economy",
+    "pointsUsed": 14600,
+    "pointsUnit": "points",
+    "taxesFeesUsd": 5.6,
+    "cashValueUsd": 218,
+    "summary": "Not every worthwhile redemption is an exotic suite. A trip to Costa Rica for 14,600 JetBlue points and $5.60 in taxes — an everyday, repeatable use of points that a beginner can actually pull off.",
+    "whyValuable": [
+      "A trip to Liberia, Costa Rica for 14,600 TrueBlue points and just $5.60 in taxes, against a cash fare around $218 — an estimated 1.5¢ per point, right around JetBlue's typical value.",
+      "The win here isn't a jaw-dropping rate — it's repeatability and almost no out-of-pocket cost. This is an ordinary leisure trip covered with points instead of cash, the kind of redemption beginners are most likely to make.",
+      "For JetBlue Mosaic members the effective value is even higher: Mosaic perks like waived change and cancel fees and points-back benefits stretch the same booking further."
+    ],
+    "context": [
+      "TrueBlue is a revenue-based program, so the points price tracks the cash fare closely — the value stays fairly steady rather than spiking, which is what makes it dependable for everyday trips.",
+      "The $218 comparison is the cash fare around the time of booking; fares to Costa Rica move with the seasons, so the cents-per-point figure is an estimate."
+    ],
+    "highlight": "An everyday, repeatable points redemption",
+    "image": {
+      "_upload": "/images/travel/palm-alley.jpg",
+      "alt": "A sunlit avenue of palm trees"
+    },
+    "orderRank": 4
+  },
+  {
+    "_id": "resource-000",
+    "_type": "resource",
+    "title": "What Are Points and Miles?",
+    "description": "The five-minute foundation: what these currencies are and why they matter.",
+    "category": "Getting Started",
+    "kind": "internal",
+    "href": "/points-and-miles-101/what-are-points-and-miles",
+    "orderRank": 0
+  },
+  {
+    "_id": "resource-001",
+    "_type": "resource",
+    "title": "Points and Miles 101 Learning Hub",
+    "description": "The full beginner curriculum, in plain language and reading order.",
+    "category": "Getting Started",
+    "kind": "internal",
+    "href": "/points-and-miles-101",
+    "orderRank": 1
+  },
+  {
+    "_id": "resource-002",
+    "_type": "resource",
+    "title": "Common Beginner Mistakes (and How to Avoid Them)",
+    "description": "The mistakes almost everyone makes in year one — skip them entirely.",
+    "category": "Getting Started",
+    "kind": "internal",
+    "href": "/points-and-miles-101/common-beginner-mistakes",
+    "orderRank": 2
+  },
+  {
+    "_id": "resource-003",
+    "_type": "resource",
+    "title": "Airline Miles vs. Hotel Points",
+    "description": "How the two big loyalty families differ, and why the difference matters.",
+    "category": "Airline Loyalty Programs",
+    "kind": "internal",
+    "href": "/points-and-miles-101/airline-miles-vs-hotel-points",
+    "orderRank": 3
+  },
+  {
+    "_id": "resource-004",
+    "_type": "resource",
+    "title": "Award Search Techniques That Actually Work",
+    "description": "A practical process for finding award seats without losing your mind.",
+    "category": "Award Travel Basics",
+    "kind": "internal",
+    "href": "/tips-and-strategies/award-search-techniques",
+    "orderRank": 4
+  },
+  {
+    "_id": "resource-005",
+    "_type": "resource",
+    "title": "Transferable Points, Explained",
+    "description": "Why flexible currencies are the center of a modern points strategy.",
+    "category": "Transferable Points",
+    "kind": "internal",
+    "href": "/points-and-miles-101/transferable-points-explained",
+    "orderRank": 5
+  },
+  {
+    "_id": "resource-006",
+    "_type": "resource",
+    "title": "Making the Most of Transfer Bonuses",
+    "description": "How periodic transfer bonuses can stretch the points you already have.",
+    "category": "Transferable Points",
+    "kind": "internal",
+    "href": "/tips-and-strategies/maximize-transfer-bonuses",
+    "orderRank": 6
+  },
+  {
+    "_id": "resource-007",
+    "_type": "resource",
+    "title": "The Credit Card Benefit Checklist",
+    "description": "A simple system for using the credits and perks you already pay for.",
+    "category": "Credit Card Benefits",
+    "kind": "internal",
+    "href": "/tips-and-strategies/credit-card-benefit-checklist",
+    "orderRank": 7
+  },
+  {
+    "_id": "resource-008",
+    "_type": "resource",
+    "title": "The Annual Fee Review",
+    "description": "A once-a-year ritual that keeps your card lineup honest.",
+    "category": "Annual Fee Management",
+    "kind": "internal",
+    "href": "/tips-and-strategies/annual-fee-review",
+    "orderRank": 8
+  },
+  {
+    "_id": "resource-009",
+    "_type": "resource",
+    "title": "Keeping Your Points Alive",
+    "description": "Expiration rules by program type, and easy ways to reset the clock.",
+    "category": "Points Tracking",
+    "kind": "internal",
+    "href": "/tips-and-strategies/keeping-points-alive",
+    "orderRank": 9
+  },
+  {
+    "_id": "resource-010",
+    "_type": "resource",
+    "title": "CardMaster — Free Points & Benefits Tracker",
+    "description": "Track balances, benefits, annual fees, and expirations for your household.",
+    "category": "CardMaster Guides",
+    "kind": "external",
+    "href": "https://cardmaster.traveltechnician.info",
+    "orderRank": 10
+  },
+  {
+    "_id": "resource-011",
+    "_type": "resource",
+    "title": "Getting Started with CardMaster",
+    "description": "What CardMaster does, how approval works, and how to set up your account.",
+    "category": "CardMaster Guides",
+    "kind": "internal",
+    "href": "/cardmaster",
+    "orderRank": 11
+  },
+  {
+    "_id": "resource-012",
+    "_type": "resource",
+    "title": "The Travel Technician Blog",
+    "description": "Ongoing tips, redemption stories, and program news from Jim.",
+    "category": "Travel Tools",
+    "kind": "blog",
+    "href": "https://blog.traveltechnician.info",
+    "orderRank": 12
+  },
+  {
+    "_id": "faq-general-0",
+    "_type": "faq",
+    "question": "Is Travel Technician a travel agency?",
+    "answer": "No. Travel Technician is an independent education and consulting service focused on points, miles, and loyalty programs. It does not book flights, hotels, or any other travel, and it is not affiliated with any airline, hotel company, bank, credit card issuer, loyalty program, or travel agency.",
+    "group": "general",
+    "orderRank": 0
+  },
+  {
+    "_id": "faq-general-1",
+    "_type": "faq",
+    "question": "Do I need a lot of points to get value from a consultation?",
+    "answer": "No. Many clients are just starting out, and some of the most useful sessions happen before you've earned a single point — when the right early decisions matter most. If you already have points, a consultation helps you use them well instead of letting them sit or expire.",
+    "group": "general",
+    "orderRank": 1
+  },
+  {
+    "_id": "faq-general-2",
+    "_type": "faq",
+    "question": "Is this financial advice?",
+    "answer": "No. Everything Travel Technician provides is educational. Credit card discussions cover how rewards, benefits, and fees work so you can make your own informed decisions. Nothing on this site or in a session is financial, legal, tax, or investment advice, and card approvals are decided solely by issuers.",
+    "group": "general",
+    "orderRank": 2
+  },
+  {
+    "_id": "faq-general-3",
+    "_type": "faq",
+    "question": "How much do services cost?",
+    "answer": "The initial consultation is free, and paid engagements are scoped to what you actually need — from a single strategy session to a full points portfolio audit. Contact Jim for details and current rates.",
+    "group": "general",
+    "orderRank": 3
+  },
+  {
+    "_id": "faq-general-4",
+    "_type": "faq",
+    "question": "Can you guarantee a specific redemption, like QSuites?",
+    "answer": "No — and you should be skeptical of anyone who says otherwise. Award availability changes constantly. What a good strategy does is put you in position: the right points, in the right programs, with realistic expectations and backup plans.",
+    "group": "general",
+    "orderRank": 4
+  },
+  {
+    "_id": "faq-general-5",
+    "_type": "faq",
+    "question": "What is CardMaster and does it cost anything?",
+    "answer": "CardMaster is Travel Technician's free web application for tracking points balances, credit card benefits, statement credits, annual fees, and expiration dates — for you and your household. It's free to use; new accounts require a quick approval step.",
+    "group": "general",
+    "orderRank": 5
+  },
+  {
+    "_id": "faq-cardmaster-0",
+    "_type": "faq",
+    "question": "Is CardMaster really free?",
+    "answer": "Yes. CardMaster is free to use. It exists because Jim built the tool he needed to manage his own points and cards, and opening it up helps more people stay organized.",
+    "group": "cardmaster",
+    "orderRank": 0
+  },
+  {
+    "_id": "faq-cardmaster-1",
+    "_type": "faq",
+    "question": "Why do new accounts need approval?",
+    "answer": "Approval keeps the platform limited to real people and lets support stay personal while CardMaster grows. After you register, your account is reviewed and you'll receive access — typically within a day or two.",
+    "group": "cardmaster",
+    "orderRank": 1
+  },
+  {
+    "_id": "faq-cardmaster-2",
+    "_type": "faq",
+    "question": "Does CardMaster connect to my bank or credit card accounts?",
+    "answer": "No. CardMaster does not link to your financial accounts and never asks for banking credentials or card numbers. You enter and update the balances, benefits, and fees you want to track — you stay in control of your data.",
+    "group": "cardmaster",
+    "orderRank": 2
+  },
+  {
+    "_id": "faq-cardmaster-3",
+    "_type": "faq",
+    "question": "Can I track cards and points for my whole household?",
+    "answer": "Yes. CardMaster is built for households: you can manage cards and loyalty balances for multiple family members in one place, which is where most families' points strategies fall apart when tracked in spreadsheets.",
+    "group": "cardmaster",
+    "orderRank": 3
+  },
+  {
+    "_id": "faq-cardmaster-4",
+    "_type": "faq",
+    "question": "What reminders does CardMaster send?",
+    "answer": "CardMaster can remind you before points or miles expire and helps you keep an eye on annual fee dates and unused statement credits, so benefits you're paying for don't quietly go to waste.",
+    "group": "cardmaster",
+    "orderRank": 4
+  },
+  {
+    "_id": "faq-cardmaster-5",
+    "_type": "faq",
+    "question": "Is CardMaster connected to this website's data?",
+    "answer": "No. CardMaster is a separate application at cardmaster.traveltechnician.info with its own accounts. Nothing you do on this website is connected to CardMaster user data.",
+    "group": "cardmaster",
+    "orderRank": 5
+  },
+  {
+    "_id": "article-what-are-points-and-miles",
+    "_type": "article",
+    "title": "What Are Points and Miles?",
+    "slug": {
+      "_type": "slug",
+      "current": "what-are-points-and-miles"
+    },
+    "collection": "points-101",
+    "description": "The five-minute foundation: what loyalty currencies are, where they come from, and why people build strategies around them.",
+    "category": "Foundations",
+    "readingMinutes": 5,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Loyalty currencies, in plain language",
+        "paragraphs": [
+          "Points and miles are reward currencies issued by airlines, hotel chains, and banks. You earn them by flying, staying, and — most powerfully — by spending on rewards credit cards. You spend them on travel: flights, hotel nights, and sometimes upgrades or other perks.",
+          "The word \"miles\" is historical. Airline programs originally rewarded distance flown, so the currency was called miles. Today most programs reward dollars spent, but the name stuck. Functionally, airline miles and hotel or bank points work the same way: they are balances in an account that can be exchanged for travel."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "The three families of currency",
+        "paragraphs": [
+          "Almost everything in this hobby involves one of three currency types, and knowing which one you're holding is the first skill to build."
+        ],
+        "bullets": [
+          "Airline miles — issued by a specific airline's program and mostly redeemable for flights on that airline and its partners.",
+          "Hotel points — issued by a hotel chain's program and mostly redeemable for nights at that chain's properties.",
+          "Transferable points — issued by banks through their rewards programs, movable to many different airline and hotel partners. These are the most flexible and the center of most modern strategies."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Why people bother",
+        "paragraphs": [
+          "Used casually, points shave a little off a trip. Used deliberately, they change what kind of travel is possible: business class seats that sell for thousands of dollars, hotel stays that would blow a vacation budget, or simply a family's worth of flights each year without the airfare bill.",
+          "The catch is that value is uneven. The same 50,000 points might be worth $400 in one redemption and $2,000 in another. That gap — between careless and deliberate redemption — is the entire reason a points strategy is worth having, and it's what the rest of this hub teaches."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Points and miles are reward currencies earned from travel and credit card spending.",
+      "Airline miles, hotel points, and transferable bank points behave differently — know which you hold.",
+      "The value of a point varies wildly by how you redeem it; strategy is about capturing the high end."
+    ],
+    "orderRank": 0
+  },
+  {
+    "_id": "article-airline-miles-vs-hotel-points",
+    "_type": "article",
+    "title": "Airline Miles vs. Hotel Points",
+    "slug": {
+      "_type": "slug",
+      "current": "airline-miles-vs-hotel-points"
+    },
+    "collection": "points-101",
+    "description": "The two big loyalty families reward different behavior and redeem differently. Here's how to think about each.",
+    "category": "Foundations",
+    "readingMinutes": 6,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Airline miles: high ceilings, more homework",
+        "paragraphs": [
+          "Airline miles shine on expensive flights — especially international premium cabins, where a seat selling for $5,000 in cash might cost 70,000–90,000 miles. That's where the eye-popping value in this hobby lives.",
+          "The trade-off is complexity. Airlines limit how many seats can be booked with miles (award availability), partner airlines each have their own pricing, and some programs add hefty cash surcharges. Airline miles reward people willing to learn the system and stay flexible on dates."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Hotel points: steadier, simpler value",
+        "paragraphs": [
+          "Hotel points are the dependable sibling. Most chains let you book a standard room with points whenever one is for sale, so you rarely face the availability wall that frustrates flight redemptions.",
+          "Value per point is usually lower and steadier than the best airline redemptions, but hotel points come with practical perks: award nights often avoid resort-fee-style add-ons in some programs, and several chains offer a free night when you book four or five on points. For families, hotel points frequently deliver the most stress-free savings."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Which should a beginner collect?",
+        "paragraphs": [
+          "For most people the honest answer is: neither, at first. Transferable bank points can become either airline miles or hotel points later, which means you don't have to predict your travel two years in advance. Collect flexibility first, then convert when a real trip takes shape.",
+          "The exception is loyalty you already have. If your work or home airport ties you to one airline, or you genuinely stay loyal to one hotel chain, that program's currency (and possibly its co-branded card) can earn its place alongside a transferable core."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Airline miles offer the highest potential value but demand flexibility and homework.",
+      "Hotel points are easier to use and great for families, with steadier but lower value.",
+      "Beginners usually do best collecting transferable points and converting later."
+    ],
+    "orderRank": 1
+  },
+  {
+    "_id": "article-transferable-points-explained",
+    "_type": "article",
+    "title": "Transferable Points, Explained",
+    "slug": {
+      "_type": "slug",
+      "current": "transferable-points-explained"
+    },
+    "collection": "points-101",
+    "description": "Bank-issued flexible currencies are the center of a modern strategy. Here's how transfers work and why flexibility wins.",
+    "category": "Foundations",
+    "readingMinutes": 6,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "One balance, many destinations",
+        "paragraphs": [
+          "The major card issuers each run a rewards currency that can be transferred to a roster of airline and hotel partners — typically a dozen or more programs each. Earn one balance; decide later whether it becomes airline miles for a flight deal or hotel points for a beach week.",
+          "This matters because the best redemption is unpredictable. Award space appears and disappears; programs run promotions; your plans change. Holding transferable points means you commit at the last responsible moment, when you can see the actual deal in front of you."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "How a transfer actually works",
+        "paragraphs": [
+          "You link your loyalty account inside the bank's rewards portal, choose an amount, and confirm. Many transfers land in minutes; some take a day or two. Most transfer at a 1:1 ratio, though some partners differ, and banks periodically run transfer bonuses that stretch your points further.",
+          "Two rules keep beginners out of trouble. First, transfers are one-way — once points become airline miles, they never come back. Second, never transfer speculatively: find the award seat or room first, confirm it's bookable, then move exactly the points you need."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "The strategy that falls out of this",
+        "paragraphs": [
+          "Once you understand transfers, the standard advice writes itself: earn everyday spending into a transferable currency, learn the handful of partners that serve your home airport and dream destinations, and keep balances flexible until a real trip appears. It's the setup that keeps every option open while you learn."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Transferable points can become many different airline or hotel currencies — flexibility is their superpower.",
+      "Transfers are one-way and usually instant; never transfer before you've found the award you want.",
+      "Earning into a transferable currency is the default modern strategy for beginners."
+    ],
+    "orderRank": 2
+  },
+  {
+    "_id": "article-how-points-are-earned",
+    "_type": "article",
+    "title": "How Points Are Earned",
+    "slug": {
+      "_type": "slug",
+      "current": "how-points-are-earned"
+    },
+    "collection": "points-101",
+    "description": "Flying and staying earn points — but everyday spending, done thoughtfully and responsibly, is where balances really grow.",
+    "category": "Earning",
+    "readingMinutes": 7,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "The four earning engines",
+        "paragraphs": [
+          "Nearly every point in your future balance will arrive through one of four channels."
+        ],
+        "bullets": [
+          "Travel itself — flights and hotel stays credit points to the matching program, more if you hold elite status.",
+          "Credit card everyday spending — cards earn points per dollar, often with bonus categories like dining, groceries, or travel.",
+          "Credit card welcome offers — banks offer large point bonuses for new cards after meeting a minimum spend. This is the fastest legitimate accelerator in the hobby, and also the place where responsibility matters most.",
+          "Everything else — shopping portals, dining programs, and promotions add a steady trickle on top."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "A word about credit, before anything else",
+        "paragraphs": [
+          "Points are only free when credit is free. Rewards cards carry high interest rates, and carrying a balance to earn points is always a losing trade — interest will outrun the value of any points earned. If you don't pay cards in full every month, fix that first; the points will still be here when you're ready.",
+          "Opening cards also isn't right for everyone or every moment. Applications affect credit profiles, and issuers decide approvals. A mortgage on the horizon, for example, is a common reason to pause. None of this is financial advice — it's the honest context every beginner deserves before the fun parts."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Matching earning to your life",
+        "paragraphs": [
+          "Good earning strategies are boring on purpose: figure out where your money already goes, then make sure that spending earns the most useful currency at the best rate. A family that spends heavily on groceries needs a different setup than a consultant who lives in airports.",
+          "This is also where tracking pays off. Once you hold more than a card or two, remembering which card earns what — and which benefits you've already used — becomes a real chore. That's exactly the problem CardMaster, Travel Technician's free tracker, was built to solve."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Most points come from credit card spending and welcome offers, not from flying.",
+      "Never carry an interest-bearing balance to earn rewards — interest always wins.",
+      "Match cards to where your money already goes, and track what each card earns."
+    ],
+    "orderRank": 3
+  },
+  {
+    "_id": "article-how-points-are-redeemed",
+    "_type": "article",
+    "title": "How Points Are Redeemed",
+    "slug": {
+      "_type": "slug",
+      "current": "how-points-are-redeemed"
+    },
+    "collection": "points-101",
+    "description": "Redemption is where strategies succeed or fail. Learn what award availability means and how a real booking comes together.",
+    "category": "Redeeming",
+    "readingMinutes": 7,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Award availability: the concept that explains everything",
+        "paragraphs": [
+          "The single most important idea in redemption is this: having enough points does not mean you can book the seat. Airlines decide how many seats on each flight can be booked with miles — that allotment is called award availability or award space, and on popular routes in premium cabins it can be scarce.",
+          "Hotels are gentler: most chains let you book a standard room with points whenever it's for sale. This difference is why flight redemptions reward planning and flexibility while hotel redemptions mostly just work."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "What a real award booking looks like",
+        "paragraphs": [
+          "A typical high-value flight redemption runs in this order: pick a route and rough dates; find award space using airline sites or search tools; check which programs can book that space and what each charges in points, taxes, and fees; transfer exactly the points needed; book. Notice that finding space comes before transferring points — always.",
+          "The same seat can cost meaningfully different amounts through different programs, because partner programs price awards with their own charts and fees. Checking two or three booking options is often worth hundreds of dollars."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Habits that make redemptions succeed",
+        "paragraphs": [
+          "Flexibility is the master skill: shifting travel by a few days, considering a nearby airport, or flying a different partner routinely turns 'nothing available' into a booked trip. Booking either very early (when schedules open) or fairly late (when airlines release unsold premium seats) beats the crowded middle.",
+          "And keep expectations honest: some trips are simply better paid in cash. A good strategy uses points where they're strong and money where points are weak — that judgment is covered in “When to Use Points and When to Pay Cash.”"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Award availability — not your balance — determines what you can book with miles.",
+      "Find the award first, compare programs, and only then transfer points.",
+      "Date and route flexibility is the most powerful redemption skill you can build."
+    ],
+    "orderRank": 4
+  },
+  {
+    "_id": "article-why-point-values-vary",
+    "_type": "article",
+    "title": "Why Point Values Vary (and How Taxes and Fees Fit In)",
+    "slug": {
+      "_type": "slug",
+      "current": "why-point-values-vary"
+    },
+    "collection": "points-101",
+    "description": "The same points can be worth half a cent or ten cents each. Understand valuation, taxes, fees, and what 'a good deal' really means.",
+    "category": "Redeeming",
+    "readingMinutes": 6,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Cents per point: the measuring stick",
+        "paragraphs": [
+          "To compare redemptions, divide the cash price you'd realistically pay (minus the taxes and fees the award still charges) by the number of points used. That's cents per point. Redeem 70,000 miles for a flight selling at $7,900 with $58 in fees, and you received an estimated 11 cents per mile — exceptional. Redeem the same miles for a $400 economy fare and you got about half a cent.",
+          "Treat every such number as an estimate. Cash prices fluctuate daily, and nobody was necessarily going to pay that premium fare in cash. The point of the metric is comparison — separating strong uses of your points from weak ones — not accounting."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Taxes, fees, and surcharges",
+        "paragraphs": [
+          "Awards are rarely 100% free. Government taxes and airport charges always apply, and some airlines add carrier-imposed surcharges that can run into hundreds of dollars. The same seat can cost $60 in fees through one program and $600 through another, so the program you book through matters as much as the airline you fly.",
+          "Before any transfer, price the full award — points plus cash — and compare it against alternatives. A slightly higher points price with far lower fees is often the better deal."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Why values drift over time",
+        "paragraphs": [
+          "Programs periodically raise award prices or shift to demand-based dynamic pricing — devaluations, in hobby shorthand. The practical consequence: points are not a savings account. Earn with a purpose, redeem within a reasonable horizon, and don't hoard for a someday that programs can reprice out from under you."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Cents per point = (cash price − award taxes and fees) ÷ points used — always an estimate.",
+      "Fees vary enormously by booking program; price the whole award before transferring.",
+      "Devaluations punish hoarding — earn deliberately and redeem within a reasonable horizon."
+    ],
+    "orderRank": 5
+  },
+  {
+    "_id": "article-common-beginner-mistakes",
+    "_type": "article",
+    "title": "Common Beginner Mistakes (and How to Avoid Them)",
+    "slug": {
+      "_type": "slug",
+      "current": "common-beginner-mistakes"
+    },
+    "collection": "points-101",
+    "description": "Expired points, speculative transfers, unused credits — the predictable mistakes of year one, and simple habits that prevent them.",
+    "category": "Foundations",
+    "readingMinutes": 6,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Mistakes of money",
+        "paragraphs": [
+          "The costliest mistakes are financial. Carrying a balance to earn points loses money every single time — rewards run one to a few percent while card interest runs twenty or more. Chasing a welcome offer with spending you wouldn't otherwise do is quieter but similar: buying $1,000 of stuff you didn't need to earn $200 of points is not a win.",
+          "The prevention is a rule, not a technique: rewards cards only ever charge what you'd buy anyway, and they're paid in full monthly. If that rule doesn't fit your current situation, points can wait — that's the responsible answer, and anyone who tells you otherwise is selling something."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Mistakes of organization",
+        "paragraphs": [
+          "Points expire in some programs after periods of inactivity; annual fees renew silently; statement credits reset unused at year-end. None of these are hard to manage — they're just easy to forget, and forgetting has a price. Expired miles are gone; a $95 fee for a card you stopped using is a pure loss.",
+          "The fix is a system instead of memory: a tracker that lists every balance, card, fee date, and expiration in one place. That's precisely what CardMaster does for free, including reminders before points expire and a view of which credits you've actually used."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Mistakes of redemption",
+        "paragraphs": [
+          "The classic redemption errors: transferring points before finding award space (transfers don't reverse), burning high-value transferable points on low-value redemptions a cash payment would've beaten, and refusing all flexibility, then concluding awards 'never' exist. Each is avoidable with the habits from the redemption chapters: search first, compare programs, stay flexible."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Never carry a balance or manufacture spending for points — the math never works.",
+      "Replace memory with a tracking system; expirations and fees punish forgetfulness.",
+      "Search before transferring, and compare booking programs before committing points."
+    ],
+    "orderRank": 6
+  },
+  {
+    "_id": "article-points-or-cash",
+    "_type": "article",
+    "title": "When to Use Points and When to Pay Cash",
+    "slug": {
+      "_type": "slug",
+      "current": "points-or-cash"
+    },
+    "collection": "points-101",
+    "description": "Points aren't always the answer. A simple framework for choosing the smarter currency for any trip.",
+    "category": "Redeeming",
+    "readingMinutes": 5,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "The comparison habit",
+        "paragraphs": [
+          "Every redemption is a purchase with an alternative: the cash price. Before spending points, look up what the same flight or room costs in money, subtract the award's taxes and fees, and compute the cents per point. Then ask one question: is this above or below what a deliberate redemption of this currency usually gets?",
+          "As rough guides, transferable points redeemed thoughtfully tend to clear one to two cents each, with premium-cabin sweet spots far higher; hotel points vary by chain. When a redemption falls meaningfully below the value you know you can get elsewhere, cash is usually the smarter spend."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "When cash tends to win",
+        "paragraphs": [
+          "Some situations are consistently better paid in money:"
+        ],
+        "bullets": [
+          "Cheap economy fares and sale prices — awards rarely beat a bargain cash fare.",
+          "Refundable-fare needs — cash bookings often carry friendlier change rules than transfers you can't undo.",
+          "Earning opportunities — paid stays and flights earn points and elite credit; awards usually don't.",
+          "When your balances are small — spending your only points poorly leaves you with neither points nor flexibility."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "When points tend to win",
+        "paragraphs": [
+          "Points shine when cash prices are painful: last-minute travel, peak-season family flights, one-way international tickets, and premium cabins you'd never buy outright. They also win when a devaluation-prone balance is sitting idle — using points well beats watching them lose value.",
+          "The underlying principle: points are for beating expensive prices, cash is for taking cheap ones. Hold both, and let the trip decide."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Always compare the award against the real cash price before redeeming.",
+      "Cash wins on cheap fares; points win where cash prices are painful.",
+      "Points are a spending currency, not a savings account — use them well, don't hoard."
+    ],
+    "orderRank": 7
+  },
+  {
+    "_id": "article-maximize-transfer-bonuses",
+    "_type": "article",
+    "title": "Making the Most of Transfer Bonuses",
+    "slug": {
+      "_type": "slug",
+      "current": "maximize-transfer-bonuses"
+    },
+    "collection": "tips",
+    "description": "Banks periodically offer 20–40% bonuses when transferring points to partners. Used carefully, they're free leverage; used carelessly, a trap.",
+    "category": "Transfer Bonuses",
+    "readingMinutes": 5,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "What a transfer bonus really is",
+        "paragraphs": [
+          "Several times a year, transferable-points programs offer limited-time bonuses to specific partners — transfer 60,000 points, receive 75,000 or 80,000 miles. When a bonus aligns with an award you actually want, it's a straight discount on the trip: the same seat for 20–30% fewer points."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "The right way to use one",
+        "paragraphs": [
+          "Work backwards from the award, never forwards from the bonus. Find bookable award space first, confirm the total price in miles and fees, then transfer during the bonus window — moving only what the booking needs. The bonus is a multiplier on a good plan, not a reason to create one.",
+          "It's equally fine to ignore most bonuses. If the partner doesn't serve your routes, a 30% bonus to a program you'll never use converts flexible points into stranded ones."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "The trap to avoid",
+        "paragraphs": [
+          "Speculative transfers are the classic mistake: moving a big balance 'because the bonus is great' with no award in hand. Transfers are irreversible, availability may never materialize on your routes, and the destination program can devalue. When in doubt, keep points flexible — there will always be another bonus."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Treat bonuses as discounts on awards you've already found — not reasons to transfer.",
+      "Transfer only what the booking needs; keep the rest flexible.",
+      "Skipping a bonus is often the right call."
+    ],
+    "orderRank": 0
+  },
+  {
+    "_id": "article-annual-fee-review",
+    "_type": "article",
+    "title": "The Annual Fee Review: A Once-a-Year Ritual",
+    "slug": {
+      "_type": "slug",
+      "current": "annual-fee-review"
+    },
+    "collection": "tips",
+    "description": "A 30-minute yearly review of every card, fee, and benefit keeps your lineup honest — and catches the cards that stopped earning their keep.",
+    "category": "Annual Fee Reviews",
+    "readingMinutes": 6,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Why fees deserve a ritual",
+        "paragraphs": [
+          "Card lineups grow one good decision at a time — and quietly decay the same way. A card that made sense three years ago may now be a $95 or $550 subscription to benefits you no longer use. Because fees renew silently, the only defense is a scheduled review: once a year, every card, no exceptions."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "The keep-downgrade-cancel framework",
+        "paragraphs": [
+          "For each card, tally what you actually received in the last twelve months: credits you genuinely used (not theoretical ones), points earned above what a no-fee card would have earned, and perks you truly valued. Compare that to the fee."
+        ],
+        "bullets": [
+          "Keep — real value clearly exceeds the fee. Note which benefits justified it and use them again next year.",
+          "Downgrade — the card no longer earns its fee, but its history or ecosystem is worth keeping. Issuers can often move you to a no-fee version, preserving the account.",
+          "Cancel — no realistic use, no downgrade path. Redeem or transfer any orphaned points first; some currencies vanish when the card closes."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Make next year's review easy",
+        "paragraphs": [
+          "The review is only painful when the data is scattered. Track each card's fee date, credits, and usage as the year goes — CardMaster does exactly this for free — and next year's decision takes minutes instead of an afternoon of statement archaeology.",
+          "One caution: canceling cards can affect your credit profile, and issuers set their own rules about reapplying. Decide with your overall financial picture in mind, not just the points math."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Review every card annually against the value you actually received.",
+      "Downgrading often beats canceling; rescue orphaned points before closing anything.",
+      "Tracking benefits during the year makes the review trivial."
+    ],
+    "orderRank": 1
+  },
+  {
+    "_id": "article-family-points-strategy",
+    "_type": "article",
+    "title": "Points Strategy for Families and Households",
+    "slug": {
+      "_type": "slug",
+      "current": "family-points-strategy"
+    },
+    "collection": "tips",
+    "description": "Two adults, coordinated, can roughly double a points strategy — if the household runs a system instead of two solo hobbies.",
+    "category": "Family Strategies",
+    "readingMinutes": 6,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "The household advantage",
+        "paragraphs": [
+          "Most points advice is written for individuals, but families hold the structural edge: two adults can each earn welcome offers, spending can be routed deliberately, and many programs allow pooling or booking for each other. The same habits that earn one seat can earn a family's worth."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Coordinate, don't duplicate",
+        "paragraphs": [
+          "The common failure mode is two people independently collecting small balances in many programs — enough for nothing, spread everywhere. Coordination means agreeing where the household's points should concentrate, routing shared spending there, and timing card decisions as a team."
+        ],
+        "bullets": [
+          "Concentrate on one or two transferable currencies as the household core.",
+          "Check each program's rules for pooling points or booking award travel for family members — many allow it.",
+          "Stagger welcome offers between adults instead of doubling up in the same month.",
+          "Watch authorized-user fees: sometimes they add real benefits, sometimes just cost."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "The logistics nobody warns you about",
+        "paragraphs": [
+          "Four travelers need four award seats on the same flight — and award space frequently appears in ones and twos. Families win by planning earlier than solo travelers, splitting across two nearby flights when needed, and favoring hotel redemptions, where a points booking for the whole family is rarely rationed.",
+          "Household tracking also gets real: multiple people, cards, fee dates, and expirations outgrow both memory and spreadsheets fast. CardMaster's household management exists precisely for this."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Households that coordinate roughly double their earning power.",
+      "Concentrate balances in a shared core instead of scattering them.",
+      "Plan award searches earlier — space for four is scarcer than space for one."
+    ],
+    "orderRank": 2
+  },
+  {
+    "_id": "article-award-search-techniques",
+    "_type": "article",
+    "title": "Award Search Techniques That Actually Work",
+    "slug": {
+      "_type": "slug",
+      "current": "award-search-techniques"
+    },
+    "collection": "tips",
+    "description": "A repeatable process for finding award seats: where to search, in what order, and what to do when everything shows 'no availability.'",
+    "category": "Award Search",
+    "readingMinutes": 7,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Search like a technician, not a tourist",
+        "paragraphs": [
+          "Typing exact dates into one airline's site and giving up is how most people conclude award travel is dead. A working search runs the opposite way: start broad — a whole month if you can — identify which days have space at sane prices, and only then narrow to an itinerary.",
+          "Search where the space is visible, too. Partner programs often display the same seats with different pricing and fees, so the program you search through changes both what you see and what you pay."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "A repeatable five-step process",
+        "paragraphs": [
+          "When a trip gets serious, run the same sequence every time:"
+        ],
+        "bullets": [
+          "Define the mission loosely: region, cabin, rough window, and points budget — not one flight on one date.",
+          "Open a calendar-style award view to spot which dates have space at all.",
+          "Check the same flights through two or three programs that can book them; compare points plus fees.",
+          "Consider positioning: a short cash hop to a bigger gateway often unlocks far better long-haul space.",
+          "Book what's bookable — award space is not reserved by intention, and good space disappears in hours."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "When nothing shows up",
+        "paragraphs": [
+          "'No availability' usually means 'not this exact request.' Shift by a day or three, try the neighboring gateway, split the party across two flights, fly the outbound on points and the return on cash — or check again near departure, when airlines often release unsold premium seats (the pattern behind the last-minute Vienna redemption in Success Stories).",
+          "And know when to stop: if the award costs more points than the trip is worth to you, paying cash is a win, not a defeat."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Search broad-to-narrow with calendar views, not single dates.",
+      "Compare the same seats across multiple booking programs before committing.",
+      "Flexibility — dates, airports, routings — converts 'nothing' into booked trips."
+    ],
+    "orderRank": 3
+  },
+  {
+    "_id": "article-keeping-points-alive",
+    "_type": "article",
+    "title": "Keeping Your Points Alive: Expiration Rules That Bite",
+    "slug": {
+      "_type": "slug",
+      "current": "keeping-points-alive"
+    },
+    "collection": "tips",
+    "description": "Some programs expire points after 12–24 quiet months. Learn the rules by program type and the near-free ways to reset the clock.",
+    "category": "Program Rules",
+    "readingMinutes": 5,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "The expiration landscape",
+        "paragraphs": [
+          "Expiration policies fall into three rough camps. Bank transferable points generally live as long as the account stays open and in good standing. Many airline programs expire miles after a period of inactivity — commonly 18 or 24 months — though several large programs no longer expire miles at all. Hotel programs are frequently the strictest, with points dying after 12–24 quiet months.",
+          "The operative word is inactivity. In most expiring programs, any qualifying earn or redemption resets the entire clock — which makes expiration one of the cheapest problems in the hobby to prevent and one of the most expensive to ignore."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Near-free ways to reset the clock",
+        "paragraphs": [
+          "Keeping a balance alive rarely requires flying anywhere:"
+        ],
+        "bullets": [
+          "Earn a handful of points through the program's shopping portal or dining program.",
+          "Put one purchase on a co-branded card linked to the program.",
+          "Transfer a small amount from a bank currency (mind minimums — and remember it's one-way).",
+          "Redeem something tiny; small redemptions count as activity too.",
+          "Credit an occasional paid flight or stay to the program you're preserving."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "A system beats vigilance",
+        "paragraphs": [
+          "Nobody remembers eight programs' inactivity clocks — and closing a credit card can quietly forfeit that card's points, a separate trap worth checking before any cancellation. Put every balance and its expiration risk in one tracker with reminders (CardMaster does this for free), and the whole problem reduces to acting on a notification a few times a year."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Know each program's inactivity window — 12–24 months is common outside bank currencies.",
+      "Almost any earning or redeeming activity resets the clock cheaply.",
+      "Reminders in a tracker beat memory; check point forfeiture rules before closing cards."
+    ],
+    "orderRank": 4
+  },
+  {
+    "_id": "article-credit-card-benefit-checklist",
+    "_type": "article",
+    "title": "The Credit Card Benefit Checklist",
+    "slug": {
+      "_type": "slug",
+      "current": "credit-card-benefit-checklist"
+    },
+    "collection": "tips",
+    "description": "Annual fees make sense only when the benefits get used. A simple system for capturing the credits you're already paying for.",
+    "category": "Credit Card Benefits",
+    "readingMinutes": 5,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "The benefits you're leaving on the table",
+        "paragraphs": [
+          "Premium cards justify their fees through stacks of credits — airline fees, dining, rideshare, hotel, streaming — many of which quietly reset monthly, semiannually, or yearly. Issuers price these knowing a large share will never be used. Every unused credit is money you paid for and didn't collect."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Build the checklist once",
+        "paragraphs": [
+          "For each card, list every recurring benefit with three facts: what it's worth, what triggers it, and when it resets. That last column is the whole game — a 'use by December 31' credit remembered in January is worth nothing.",
+          "Then match benefits to spending you already do. A dining credit that shifts a restaurant meal to a different card costs nothing to capture; a credit that only pays off if you buy something you didn't want isn't a benefit, it's marketing. Count only the first kind when judging whether a card earns its fee."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Then let the system run",
+        "paragraphs": [
+          "Reviewing the checklist takes five minutes a month — or none, if your tracker does it for you. CardMaster tracks each card's benefits and statement credits with their reset dates, so 'did we use the airline credit this year?' has an answer instead of a shrug. Come annual-fee time, that usage history is exactly the evidence the keep-or-cancel decision needs."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "List every credit with its value, trigger, and reset date — resets are where value dies.",
+      "Only count benefits that map to spending you'd do anyway.",
+      "Tracked usage makes annual-fee decisions obvious."
+    ],
+    "orderRank": 5
+  },
+  {
+    "_id": "article-premium-cabins-for-less",
+    "_type": "article",
+    "title": "Luxury Travel on Points: Premium Cabins Without Premium Prices",
+    "slug": {
+      "_type": "slug",
+      "current": "premium-cabins-for-less"
+    },
+    "collection": "tips",
+    "description": "Business class seats selling for thousands are the classic high-value redemption. How realistic are they — and how do you actually land one?",
+    "category": "Luxury Travel",
+    "readingMinutes": 6,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Why premium cabins are the sweet spot",
+        "paragraphs": [
+          "The gap between cash price and award price is widest at the front of the plane. An economy seat selling for $900 might cost 40,000 miles — around two cents each. A business class seat on the same flight selling for $6,000 might cost 75,000 miles — closer to eight. Same currency, quadruple the value, and a lie-flat bed instead of a middle seat.",
+          "That's the honest case for 'luxury on points': it isn't extravagance, it's arithmetic. Points are most rationally spent exactly where cash prices are most irrational."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "What it takes in practice",
+        "paragraphs": [
+          "Premium award space is the scarcest resource in the hobby. The travelers who fly up front on points share habits: they hold transferable currencies that reach many airlines, they plan around availability rather than fixed dates, they check both far-out and last-minute windows, and they treat one or two seats as the realistic prize (four together is rare).",
+          "Set expectations accordingly: a couple with flexibility and a healthy transferable balance can reasonably target business class for a special trip. A family of five locked to school-holiday dates usually gets more joy from economy seats and great hotels — also a luxury, differently shaped."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Keep the value honest",
+        "paragraphs": [
+          "When you land one of these seats, compute the cents-per-point as an estimate against the real cash fare — like the QSuites and Austrian examples in Success Stories (roughly 9¢ and 11¢ respectively). And remember the estimate's limits: you likely weren't going to pay that cash fare. The seat is still magnificent; the number is context, not income."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Points buy the most value where cash prices are steepest — premium cabins.",
+      "Flexibility plus transferable points is the realistic path to the front of the plane.",
+      "Cents-per-point on premium awards is an estimate, not savings you'd otherwise spend."
+    ],
+    "orderRank": 6
+  },
+  {
+    "_id": "article-business-travel-points",
+    "_type": "article",
+    "title": "Business Travelers: Turn Work Trips into Personal Vacations",
+    "slug": {
+      "_type": "slug",
+      "current": "business-travel-points"
+    },
+    "collection": "tips",
+    "description": "If work puts you on planes and in hotels, you're sitting on the easiest points pipeline there is — as long as you set it up deliberately.",
+    "category": "Business Travel",
+    "readingMinutes": 5,
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "The double-dip that's usually allowed",
+        "paragraphs": [
+          "In many workplaces, travelers keep the points and status their work trips earn — the company pays the fare, you keep the miles (confirm your employer's policy first). For frequent travelers this compounds fast: loyalty balances, elite status, and card spending all feeding the same accounts, gratis."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Set the pipeline up once",
+        "paragraphs": [
+          "A deliberate setup beats habit-driven scattering:"
+        ],
+        "bullets": [
+          "Add your loyalty numbers to every corporate booking profile so no stay or flight credits to nowhere.",
+          "Concentrate: pick the airline and hotel programs that fit your actual routes, and credit everything there — status comes from focus.",
+          "Learn where partner crediting helps: paid flights on one alliance airline can often credit to another program you value more.",
+          "If you put reimbursable expenses on a personal rewards card, keep it disciplined and within employer rules — and never let reimbursement timing push you into carrying a balance."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Elite status: the quiet salary bump",
+        "paragraphs": [
+          "Status earned on the company's dime follows you on personal trips: upgrades, lounge access, late checkout, bonus earning. Mid-tier status from work travel often does more for a family vacation than a pile of points would. Track both — balances and status progress — so year-end requalification pushes happen on purpose, not by accident."
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Confirm policy, then keep every point and status credit your work travel earns.",
+      "Concentrate programs to convert scattered trips into status and usable balances.",
+      "Status earned at work is a personal-travel benefit — manage it deliberately."
+    ],
+    "orderRank": 7
+  },
+  {
+    "_id": "cmfeature-0",
+    "_type": "cardmasterFeature",
+    "title": "Track points and miles balances",
+    "description": "One dashboard for every airline, hotel, and transferable-points balance you have — no more logging into ten programs to remember what you've earned.",
+    "icon": "chart",
+    "orderRank": 0
+  },
+  {
+    "_id": "cmfeature-1",
+    "_type": "cardmasterFeature",
+    "title": "Track credit card benefits and credits",
+    "description": "Airline fee credits, dining credits, travel credits — see every recurring benefit on your cards and whether you've used it yet this year.",
+    "icon": "card",
+    "orderRank": 1
+  },
+  {
+    "_id": "cmfeature-2",
+    "_type": "cardmasterFeature",
+    "title": "Track annual fees",
+    "description": "Know exactly when each annual fee posts and what you're getting for it, so keep-or-cancel decisions happen on your schedule, not the bank's.",
+    "icon": "calculator",
+    "orderRank": 2
+  },
+  {
+    "_id": "cmfeature-3",
+    "_type": "cardmasterFeature",
+    "title": "Expiration reminders",
+    "description": "Get reminded before points and miles expire, while there's still time to extend or use them. Expired points are the most expensive mistake in this hobby.",
+    "icon": "bell",
+    "orderRank": 3
+  },
+  {
+    "_id": "cmfeature-4",
+    "_type": "cardmasterFeature",
+    "title": "Household management",
+    "description": "Manage cards and balances for multiple household members in one account — the way families actually earn and use points together.",
+    "icon": "users",
+    "orderRank": 4
+  },
+  {
+    "_id": "cmfeature-5",
+    "_type": "cardmasterFeature",
+    "title": "Built by a points traveler",
+    "description": "CardMaster is the tool Jim built to run his own 5-million-point strategy — shaped by real use, not by what looks good in a demo.",
+    "icon": "wrench",
+    "orderRank": 5
+  },
+  {
+    "_id": "cmshot-0",
+    "_type": "cardmasterScreenshot",
+    "image": {
+      "_upload": "/images/cardmaster/screenshot-dashboard.png",
+      "alt": "CardMaster overview dashboard showing value realized, open cards, total points, and credit scores"
+    },
+    "caption": "Your whole portfolio at a glance",
+    "orderRank": 0
+  },
+  {
+    "_id": "cmshot-1",
+    "_type": "cardmasterScreenshot",
+    "image": {
+      "_upload": "/images/cardmaster/screenshot-points.png",
+      "alt": "CardMaster points tracker listing balances across credit card, hotel, and airline programs"
+    },
+    "caption": "Every balance, tracked by program",
+    "orderRank": 1
+  },
+  {
+    "_id": "cmshot-2",
+    "_type": "cardmasterScreenshot",
+    "image": {
+      "_upload": "/images/cardmaster/screenshot-524.png",
+      "alt": "CardMaster 5/24 dashboard tracking Chase application eligibility for two household members"
+    },
+    "caption": "Application rules, tracked per person",
+    "orderRank": 2
+  },
+  {
+    "_id": "cmshot-3",
+    "_type": "cardmasterScreenshot",
+    "image": {
+      "_upload": "/images/cardmaster/screenshot-trips.png",
+      "alt": "CardMaster trips and bookings view with an interactive world map of upcoming trips"
+    },
+    "caption": "Trips and bookings on a map",
+    "orderRank": 3
+  },
+  {
+    "_id": "cmshot-4",
+    "_type": "cardmasterScreenshot",
+    "image": {
+      "_upload": "/images/cardmaster/screenshot-achievements.png",
+      "alt": "CardMaster achievements grid showing unlocked and locked progress badges"
+    },
+    "caption": "Progress and achievements",
+    "orderRank": 4
+  },
+  {
+    "_id": "imgcol-homeHero",
+    "_type": "imageCollection",
+    "key": "homeHero",
+    "intervalMs": 7000,
+    "images": [
+      {
+        "_upload": "/images/travel/marigot-sunset.jpg",
+        "alt": "Sailboats at rest in Marigot Bay, St. Lucia, at sunset",
+        "_key": "img0"
+      },
+      {
+        "_upload": "/images/travel/pitons.jpg",
+        "alt": "The Pitons rising above the sea in St. Lucia",
+        "_key": "img1"
+      },
+      {
+        "_upload": "/images/travel/palm-beach.jpg",
+        "alt": "Palm trees framing turquoise Caribbean water",
+        "_key": "img2"
+      },
+      {
+        "_upload": "/images/travel/footprints-sunset.jpg",
+        "alt": "Footprints in white sand at a tropical sunset",
+        "_key": "img3"
+      }
+    ]
+  },
+  {
+    "_id": "imgcol-destinations",
+    "_type": "imageCollection",
+    "key": "destinations",
+    "intervalMs": 7000,
+    "images": [
+      {
+        "_upload": "/images/destinations/tulum.jpg",
+        "alt": "Tulum ruins above a turquoise Caribbean cove",
+        "_key": "img0"
+      },
+      {
+        "_upload": "/images/destinations/coba-pyramid.jpg",
+        "alt": "The Cobá pyramid in the Yucatán jungle",
+        "_key": "img1"
+      },
+      {
+        "_upload": "/images/destinations/st-lucia-bay.jpg",
+        "alt": "A sweeping bay and green hills in St. Lucia",
+        "_key": "img2"
+      },
+      {
+        "_upload": "/images/destinations/saona.jpg",
+        "alt": "A boat on clear turquoise water in the Dominican Republic",
+        "_key": "img3"
+      },
+      {
+        "_upload": "/images/destinations/waikiki.jpg",
+        "alt": "The Honolulu skyline seen from the water",
+        "_key": "img4"
+      },
+      {
+        "_upload": "/images/travel/palm-alley.jpg",
+        "alt": "A sunlit avenue of palm trees",
+        "_key": "img5"
+      },
+      {
+        "_upload": "/images/destinations/resort-pool.jpg",
+        "alt": "An oceanfront resort pool lined with palms",
+        "_key": "img6"
+      },
+      {
+        "_upload": "/images/travel/turtle.jpg",
+        "alt": "A green sea turtle gliding over a reef",
+        "_key": "img7"
+      }
+    ]
+  },
+  {
+    "_id": "imgcol-successStories",
+    "_type": "imageCollection",
+    "key": "successStories",
+    "intervalMs": 7000,
+    "images": [
+      {
+        "_upload": "/images/travel/marigot-sunset.jpg",
+        "alt": "Marigot Bay at sunset",
+        "_key": "img0"
+      },
+      {
+        "_upload": "/images/destinations/waikiki.jpg",
+        "alt": "The Honolulu skyline from the water",
+        "_key": "img1"
+      },
+      {
+        "_upload": "/images/travel/sunset-sailboat.jpg",
+        "alt": "A sailboat silhouetted against a golden sunset",
+        "_key": "img2"
+      }
+    ]
+  },
+  {
+    "_id": "imgcol-aboutJim",
+    "_type": "imageCollection",
+    "key": "aboutJim",
+    "intervalMs": 7000,
+    "images": [
+      {
+        "_upload": "/images/jim/jim-business-class.jpg",
+        "alt": "Jim relaxing in a lie-flat business class seat",
+        "_key": "img0"
+      },
+      {
+        "_upload": "/images/jim/jim-group.jpg",
+        "alt": "Jim with friends in front of a Mayan pyramid",
+        "_key": "img1"
+      },
+      {
+        "_upload": "/images/jim/jim-horseback.jpg",
+        "alt": "Jim riding a horse along a Caribbean beach",
+        "_key": "img2"
+      }
+    ]
+  },
+  {
+    "_id": "legal-privacy-policy",
+    "_type": "legalPage",
+    "slug": "privacy-policy",
+    "title": "Privacy Policy",
+    "lastUpdated": "July 15, 2026",
+    "intro": "This Privacy Policy describes how Travel Technician (\"we,\" \"us\") handles information collected through www.traveltechnician.info. It is a placeholder draft prepared for review by legal counsel before launch.",
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Information we collect",
+        "paragraphs": [
+          "We collect information you choose to provide through the contact form: your name, email address, inquiry category, message, and optional contact preference. We do not require an account to use this website.",
+          "If nonessential analytics are enabled and you consent, we collect aggregate usage information (such as pages visited and approximate region) through a configurable analytics provider. Analytics are disabled until configured and, where required, until you consent."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "How we use information",
+        "paragraphs": [
+          "Contact-form submissions are used solely to respond to your inquiry and provide the services you request. We do not sell personal information, and we do not use contact-form details for marketing without your separate consent."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Cookies and consent",
+        "paragraphs": [
+          "Essential functionality on this site does not depend on tracking cookies. A consent banner lets you accept or reject nonessential analytics; your choice is stored in your browser and can be changed at any time via the \"Cookie Preferences\" link in the footer."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec3",
+        "heading": "Data retention",
+        "paragraphs": [
+          "Contact-form submissions delivered by email are retained in the recipient mailbox in line with ordinary email retention. Where optional database storage is enabled, submissions are reviewed and deleted when no longer needed, and no later than 24 months after receipt unless an active client relationship exists. [Retention period pending legal review.]"
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec4",
+        "heading": "Third-party services",
+        "paragraphs": [
+          "This site links to separate services — including CardMaster (cardmaster.traveltechnician.info), the Travel Technician blog (blog.traveltechnician.info), Instagram, Facebook, and, when configured, Calendly for scheduling. Each has its own privacy practices; this policy covers only www.traveltechnician.info.",
+          "CardMaster is a separate application with its own accounts. This website does not access CardMaster user data."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec5",
+        "heading": "Your choices and contact",
+        "paragraphs": [
+          "You may request a copy or deletion of the personal information you submitted through this site by contacting jim@traveltechnician.info. You can withdraw analytics consent at any time via Cookie Preferences."
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "legal-terms-of-use",
+    "_type": "legalPage",
+    "slug": "terms-of-use",
+    "title": "Terms of Use",
+    "lastUpdated": "July 15, 2026",
+    "intro": "These Terms of Use govern your use of www.traveltechnician.info, operated by Travel Technician. By using the site you accept these terms. This is a placeholder draft prepared for review by legal counsel before launch.",
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Educational purpose",
+        "paragraphs": [
+          "All content on this site is provided for general educational purposes. It is not financial, legal, tax, or investment advice, and it is not a recommendation to open, keep, or close any credit product. You are responsible for your own decisions and for reviewing the current terms and conditions of any loyalty program, credit card, or travel provider."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "What Travel Technician is not",
+        "paragraphs": [
+          "Travel Technician is independent and is not affiliated with, endorsed by, or sponsored by any airline, hotel company, bank, credit card issuer, loyalty program, or travel agency. Travel Technician does not provide travel booking services."
+        ],
+        "bullets": [
+          "Travel Technician is not a bank and is not a credit card issuer.",
+          "Travel Technician is not an airline, a hotel company, or a loyalty program.",
+          "Travel Technician is not a travel agency and does not book travel.",
+          "Credit card approval decisions are made solely by issuers."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Accuracy and change",
+        "paragraphs": [
+          "Loyalty programs, credit card offers, award pricing, benefits, taxes, and fees change frequently and without notice. Content is believed accurate when published but may become outdated. Award availability is never guaranteed, and all redemption values described on this site are estimates."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec3",
+        "heading": "Third-party links",
+        "paragraphs": [
+          "Links to third-party sites — including the Travel Technician blog and CardMaster, which are separate applications — are provided for convenience. Travel Technician is not responsible for third-party content or practices. There are currently no credit card affiliate links on this site; see the Disclaimer for how any future referral or affiliate relationships will be disclosed."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec4",
+        "heading": "Intellectual property and acceptable use",
+        "paragraphs": [
+          "Site content is owned by Travel Technician and may not be republished commercially without permission. You agree not to misuse the site, including attempting to disrupt it or submitting unlawful, deceptive, or abusive content through its forms."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec5",
+        "heading": "Disclaimer of warranties and limitation of liability",
+        "paragraphs": [
+          "The site is provided \"as is\" without warranties of any kind. To the maximum extent permitted by law, Travel Technician is not liable for losses arising from use of the site or reliance on its content. [Jurisdiction and dispute-resolution provisions pending legal review.]"
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "legal-disclaimer",
+    "_type": "legalPage",
+    "slug": "disclaimer",
+    "title": "Disclaimer",
+    "lastUpdated": "July 15, 2026",
+    "intro": "Points and miles are genuinely valuable — and genuinely complicated. This page states plainly what this site's content is, what it is not, and the limits you should keep in mind. It is a placeholder draft prepared for review by legal counsel before launch.",
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "Educational content only",
+        "paragraphs": [
+          "Everything on this site — including consultations and other services — is educational. It is not financial, legal, tax, or investment advice. Specific credit cards may be discussed for educational purposes; that discussion is never a recommendation that any card is right for you. Credit card approval is determined solely by the issuer.",
+          "Use credit responsibly. Rewards never outweigh interest: do not carry an interest-bearing balance in order to earn points or miles, and do not open credit products that don't fit your broader financial situation."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Independence",
+        "paragraphs": [
+          "Travel Technician is independent and is not affiliated with, endorsed by, or sponsored by any airline, hotel company, bank, credit card issuer, loyalty program, or travel agency. Travel Technician does not provide travel booking services.",
+          "References to airlines, hotels, banks, card issuers, and loyalty programs are for identification and education only. All trademarks belong to their owners."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Estimates, availability, and change",
+        "paragraphs": [
+          "When this site describes redemptions and values, remember:"
+        ],
+        "bullets": [
+          "Award availability changes constantly and is not guaranteed.",
+          "Loyalty program rules and award pricing change without notice.",
+          "Taxes, fees, and surcharges vary by program, route, and date.",
+          "Cash prices fluctuate; cents-per-point figures are estimates based on comparable cash prices, not promises of savings.",
+          "Transfer availability between programs is not guaranteed.",
+          "Offers, benefits, and program features described here may have changed since publication — always verify current terms with the provider."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec3",
+        "heading": "Affiliate, referral, and informational links",
+        "paragraphs": [
+          "There are currently no credit card affiliate links on this site, and this site does not currently earn affiliate revenue. Referral relationships may exist in the future; if Travel Technician ever receives compensation for a link, a clear disclosure will appear near that link.",
+          "For clarity: an affiliate link pays commission on purchases or approvals; a referral link provides a benefit (often points) to the referrer; an informational link is uncompensated. Unless disclosed otherwise, links on this site are informational."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec4",
+        "heading": "Your responsibility",
+        "paragraphs": [
+          "You are responsible for reviewing the current terms and conditions of any program, card, or travel provider before acting, and for decisions made based on this site's content."
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "legal-accessibility",
+    "_type": "legalPage",
+    "slug": "accessibility",
+    "title": "Accessibility Statement",
+    "lastUpdated": "July 15, 2026",
+    "intro": "Travel Technician wants everyone to be able to learn about points and miles. This site targets WCAG 2.2 Level AA conformance.",
+    "sections": [
+      {
+        "_type": "object",
+        "_key": "sec0",
+        "heading": "What we've built in",
+        "paragraphs": [
+          "Accessibility measures on this site include:"
+        ],
+        "bullets": [
+          "Full keyboard operability, visible focus indicators, and a skip-to-content link.",
+          "Semantic HTML with a logical heading structure and landmarks.",
+          "Labeled form fields with described, announced error messages.",
+          "Color contrast meeting WCAG AA, with no information conveyed by color alone.",
+          "Respect for reduced-motion preferences — rotating imagery becomes static.",
+          "Descriptive alternative text for meaningful images.",
+          "Touch targets sized for mobile use."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec1",
+        "heading": "Known limitations",
+        "paragraphs": [
+          "Some linked services — the Travel Technician blog, CardMaster, social platforms, and the scheduling provider — are separate applications whose accessibility we don't fully control. Automated and manual testing continues, and issues found on this site are prioritized for fixing."
+        ]
+      },
+      {
+        "_type": "object",
+        "_key": "sec2",
+        "heading": "Feedback",
+        "paragraphs": [
+          "If you encounter an accessibility barrier on this site, please contact jim@traveltechnician.info or use the contact form. Please describe the page and the problem; we aim to respond within a few business days."
+        ]
+      }
+    ]
+  }
+]
