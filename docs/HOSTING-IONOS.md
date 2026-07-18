@@ -7,7 +7,12 @@ running) + nginx (HTTPS in front) + Let's Encrypt (free SSL).
 > Do **not** use IONOS "Web Hosting" (shared PHP) — it can't run this app. You need a VPS
 > or Cloud Server with root SSH access.
 
-Replace `SERVER_IP` with your VPS's IP address throughout. Commands assume Ubuntu.
+Replace `SERVER_IP` with your VPS's IP address throughout.
+
+> **Which OS do you have?** The numbered steps below use **Ubuntu/Debian** commands (`apt`,
+> `ufw`). If `apt` isn't found, your server is **Rocky Linux / AlmaLinux / CentOS** (RHEL
+> family) — jump to the [RHEL-family section](#rocky-linux--almalinux--centos-rhel-family)
+> for the equivalent commands. Check with `cat /etc/os-release`.
 
 ---
 
@@ -236,3 +241,55 @@ pm2 restart traveltechnician
 - **HTTPS won't issue:** DNS isn't pointing at the server yet — recheck step 9 and wait.
 - **Env change didn't take effect:** `NEXT_PUBLIC_*` values require a rebuild
   (`npm run build` then `pm2 restart traveltechnician`), not just a restart.
+
+---
+
+## Rocky Linux / AlmaLinux / CentOS (RHEL family)
+
+IONOS often provisions **Rocky Linux**. It uses `dnf` (not `apt`), `firewalld` (not `ufw`),
+and ships with **SELinux enforcing** — which blocks nginx from reaching the app unless you
+allow it. Use these in place of the matching numbered steps above; the rest (deploy key,
+`.env.production.local`, `npm ci && npm run build`, pm2, DNS, verify) is identical.
+
+**Steps 1–2 — update, tools, firewall:**
+
+```bash
+dnf upgrade -y
+dnf install -y nano git
+systemctl enable --now firewalld
+firewall-cmd --permanent --add-service=ssh
+firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
+firewall-cmd --reload
+```
+
+**Step 4 — Node.js 20:**
+
+```bash
+curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
+dnf install -y nodejs
+node -v && npm -v
+```
+
+**Step 10 — nginx (config lives in `conf.d/`, plus the SELinux switch):**
+
+```bash
+dnf install -y nginx
+systemctl enable --now nginx
+# CRITICAL on RHEL/SELinux — without this nginx returns 502 to the app:
+setsebool -P httpd_can_network_connect 1
+nano /etc/nginx/conf.d/traveltechnician.conf   # paste the same server{} block as above
+nginx -t && systemctl reload nginx
+```
+
+**Step 11 — certbot (via EPEL):**
+
+```bash
+dnf install -y epel-release
+dnf install -y certbot python3-certbot-nginx
+certbot --nginx -d www.traveltechnician.info -d traveltechnician.info
+certbot renew --dry-run
+```
+
+Everything else — including the apex→www redirect block and the update workflow — is the
+same as the Ubuntu instructions above.
