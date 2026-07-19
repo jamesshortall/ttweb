@@ -57,6 +57,7 @@ const serverEnvSchema = z
     AD_UNIQUE_CLICK_WINDOW_HOURS: optionalPositiveInt,
     AD_EVENT_RETENTION_DAYS: optionalPositiveInt,
     AD_PREVIEW_MODE: optionalBool,
+    AD_HTML_EMBEDS_ENABLED: optionalBool,
     AD_REDIRECT_SIGNING_SECRET: optionalString,
     AD_SCRIPT_ALLOWLIST: optionalString,
     NEXT_PUBLIC_ADSENSE_ENABLED: optionalBool,

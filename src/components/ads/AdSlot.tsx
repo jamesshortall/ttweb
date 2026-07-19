@@ -7,6 +7,8 @@ import { AdDisclosure } from "./AdDisclosure";
 import { AdImpressionTracker } from "./AdImpressionTracker";
 import { ResponsiveImageAd } from "./ResponsiveImageAd";
 import { TextAd } from "./TextAd";
+import { VideoAd } from "./VideoAd";
+import { HtmlEmbedAd } from "./HtmlEmbedAd";
 import { PromoCode } from "./PromoCode";
 
 /**
@@ -57,24 +59,39 @@ export function AdSlot({
   // Loading or nothing eligible → collapse entirely.
   if (!ad) return null;
 
-  const body = (
-    <>
-      {ad.creative ? (
-        <ResponsiveImageAd creative={ad.creative} headline={ad.headline} eager={priority} />
-      ) : (
-        <TextAd headline={ad.headline} description={ad.description} />
-      )}
-      {ad.ctaLabel ? (
-        <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-teal-700 group-hover:text-teal-600">
-          {ad.ctaLabel}
-          <span aria-hidden="true">→</span>
-        </span>
-      ) : null}
-    </>
-  );
+  // Video and HTML embeds have their own interactive surface (controls, links),
+  // so the media is NOT wrapped in the click anchor; those show a CTA below.
+  const wrapInLink = ad.adType === "image" || ad.adType === "text";
+
+  const media =
+    ad.adType === "video" && ad.video ? (
+      <VideoAd
+        src={ad.video.src}
+        poster={ad.video.poster}
+        captionsUrl={ad.video.captionsUrl}
+        title={ad.headline}
+      />
+    ) : ad.adType === "html" && ad.sanitizedHtml ? (
+      <HtmlEmbedAd sanitizedHtml={ad.sanitizedHtml} title={ad.headline} />
+    ) : ad.creative ? (
+      <ResponsiveImageAd creative={ad.creative} headline={ad.headline} eager={priority} />
+    ) : (
+      <TextAd headline={ad.headline} description={ad.description} />
+    );
+
+  const ctaInline = ad.ctaLabel ? (
+    <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-teal-700 group-hover:text-teal-600">
+      {ad.ctaLabel}
+      <span aria-hidden="true">→</span>
+    </span>
+  ) : null;
 
   return (
-    <aside aria-label="Sponsored" data-ad-placement={placement} className={cn("not-prose my-6", className)}>
+    <aside
+      aria-label="Sponsored"
+      data-ad-placement={placement}
+      className={cn("not-prose my-6", className)}
+    >
       <AdImpressionTracker
         track={track}
         payload={{
@@ -90,17 +107,31 @@ export function AdSlot({
             {ad.disclosure.enabled ? <AdDisclosure label={ad.disclosure.label} /> : <span />}
           </div>
 
-          {ad.clickHref ? (
+          {wrapInLink && ad.clickHref ? (
             <a
               href={ad.clickHref}
               target="_blank"
               rel="noopener noreferrer sponsored"
               className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
             >
-              {body}
+              {media}
+              {ctaInline}
             </a>
           ) : (
-            <div>{body}</div>
+            <div>
+              {media}
+              {ad.clickHref && ad.ctaLabel ? (
+                <a
+                  href={ad.clickHref}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="group mt-3 inline-flex items-center gap-1 rounded-full bg-navy-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-navy-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
+                >
+                  {ad.ctaLabel}
+                  <span aria-hidden="true">→</span>
+                </a>
+              ) : null}
+            </div>
           )}
 
           {ad.promoCode ? (

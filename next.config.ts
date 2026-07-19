@@ -35,6 +35,12 @@ function buildContentSecurityPolicy(): string {
     frameHosts.push("https://calendly.com", "https://*.calendly.com");
   }
 
+  // Sandboxed HTML/embed ads render in a srcdoc iframe; allow framing from self
+  // only when the feature is enabled, so the default policy stays tightest.
+  if (process.env.AD_HTML_EMBEDS_ENABLED === "true") {
+    frameHosts.push("'self'");
+  }
+
   const directives = [
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline' ${scriptHosts.join(" ")}`.trim(),

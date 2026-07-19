@@ -1,6 +1,7 @@
 import { sanityClient } from "@/lib/cms/client";
 import { adsForPlacementQuery, placementZoneQuery } from "@/lib/ads/queries";
 import { filterEligible, selectAd } from "@/lib/ads/select";
+import { adConfig } from "@/lib/ads/config";
 import { devAdvertisements, devPlacementZones, isDevSeedEnabled } from "@/lib/ads/dev-content";
 import type { Advertisement, AdRequestContext, PlacementZone } from "@/lib/ads/types";
 
@@ -47,10 +48,13 @@ export async function resolveAd(ctx: AdRequestContext): Promise<Advertisement | 
   const zone = await fetchZone(ctx.placementKey);
   if (!zone || !zone.enabled) return null;
 
+  const htmlEmbedsEnabled = adConfig().htmlEmbedsEnabled;
   const candidates = await fetchCandidates(ctx.placementKey);
-  const eligible = filterEligible(candidates, ctx).filter((ad) =>
-    // Respect the zone's supported formats.
-    zone.supportedFormats.includes(ad.adType),
+  const eligible = filterEligible(candidates, ctx).filter(
+    (ad) =>
+      // Respect the zone's supported formats, and only serve HTML embeds when
+      // the feature (and its CSP allowance) is enabled.
+      zone.supportedFormats.includes(ad.adType) && (ad.adType !== "html" || htmlEmbedsEnabled),
   );
 
   return selectAd(eligible);

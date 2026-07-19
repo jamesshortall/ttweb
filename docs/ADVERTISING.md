@@ -5,9 +5,10 @@ website. Advertisers, campaigns, ads, placements, and creative are managed in
 **Sanity Studio**; impression/click analytics and the audit trail live in
 **Supabase (Postgres)**. Ads never appear inside the separate CardMaster app.
 
-> **Status:** Phase 1 (foundation + image/text vertical slice). Video, HTML/embed
-> sandboxing, weighted rotation UI, the analytics dashboard, CSV export, and the
-> AdSense network layer land in later phases. This guide grows with them.
+> **Status:** Phases 1–2. Image, text, **video**, and **sandboxed HTML/embed**
+> ads are supported, with targeting, scheduling, weighted rotation, and status
+> logic. The analytics dashboard, CSV export, and the AdSense network layer land
+> in later phases. This guide grows with them.
 
 ## Architecture at a glance
 
@@ -83,6 +84,27 @@ current placement, device, and page • and it has renderable content with a saf
   clearly-labeled MOCK seed ads; production shows nothing.
 - **Disclosure** — paid placements carry a configurable label ("Advertisement",
   "Sponsored", …), styled distinctly from editorial recommendations.
+
+### Ad formats
+
+- **Image** — responsive; add a "Responsive fallback" creative at minimum, plus
+  optional desktop/tablet/mobile variants (the most specific match wins). Alt
+  text is required.
+- **Text** — headline + optional description, in the site's visual system but
+  visually distinct from editorial.
+- **Video** — never autoplays; shows a poster and loads the source only near the
+  viewport; native accessible controls; add a **captions (VTT)** file when the
+  video contains speech. The media isn't wrapped in the click link — set a CTA
+  label to add a tracked button.
+- **HTML / embed** — for reviewed, trusted-partner rich content. Rendered inside
+  a **strictly sandboxed iframe** (no scripts, opaque origin, can't touch the
+  page or cookies) after server-side sanitization. Script-based third-party
+  widgets are out of scope here — those belong to the network layer. **Disabled
+  by default:** set `AD_HTML_EMBEDS_ENABLED=true` (which also opens
+  `frame-src 'self'` in the CSP) to allow them.
+- **Status** — visitor-facing expiry/activation is enforced at read time, so
+  scheduled ads go live and expired ads disappear with no admin action. A Phase 3
+  job will also rewrite the stored status field to match, for accurate reporting.
 
 ## Safety & privacy
 

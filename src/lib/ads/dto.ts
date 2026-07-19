@@ -25,6 +25,10 @@ export interface RenderableAd {
   headline?: string;
   description?: string;
   creative: RenderableCreative | null;
+  /** Video ads only. */
+  video?: { src: string; poster?: string; captionsUrl?: string };
+  /** HTML/embed ads only — already sanitized server-side. */
+  sanitizedHtml?: string;
   ctaLabel?: string;
   disclosure: { enabled: boolean; label: string };
   promoCode?: string;

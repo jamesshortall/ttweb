@@ -1,7 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { resolveAd } from "@/lib/ads/resolve";
 import { pickCreative } from "@/lib/ads/select";
-import { buildClickHref } from "@/lib/ads/url";
+import { buildClickHref, isSafeHttpUrl } from "@/lib/ads/url";
+import { sanitizeAdHtml } from "@/lib/ads/sanitize-html";
 import { adConfig } from "@/lib/ads/config";
 import { deviceFromUserAgent } from "@/lib/ads/device";
 import { createRateLimiter } from "@/lib/rate-limit";
@@ -50,6 +51,18 @@ export async function GET(request: NextRequest) {
   if (!ad) return noStore({ ad: null, track: !cfg.previewMode });
 
   const creative = ad.adType === "image" ? pickCreative(ad, device) : null;
+  const video =
+    ad.adType === "video" && isSafeHttpUrl(ad.videoUrl)
+      ? {
+          src: ad.videoUrl as string,
+          poster: ad.videoPoster,
+          captionsUrl: ad.videoCaptionsUrl,
+        }
+      : undefined;
+  // HTML is sanitized server-side; the browser only ever gets safe markup.
+  const sanitizedHtml =
+    ad.adType === "html" ? sanitizeAdHtml(ad.html) || undefined : undefined;
+
   const renderable: RenderableAd = {
     id: ad.id,
     campaignId: ad.campaignId,
@@ -60,6 +73,8 @@ export async function GET(request: NextRequest) {
     creative: creative
       ? { src: creative.src, alt: creative.alt, width: creative.width, height: creative.height }
       : null,
+    video,
+    sanitizedHtml,
     ctaLabel: ad.ctaLabel,
     disclosure: ad.disclosure,
     promoCode: ad.promoCode,

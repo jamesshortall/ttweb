@@ -12,6 +12,7 @@ export interface AdConfig {
   previewMode: boolean;
   redirectSigningSecret?: string;
   adsenseEnabled: boolean;
+  htmlEmbedsEnabled: boolean;
 }
 
 export function adConfig(): AdConfig {
@@ -25,5 +26,6 @@ export function adConfig(): AdConfig {
     previewMode: env.AD_PREVIEW_MODE === "true",
     redirectSigningSecret: env.AD_REDIRECT_SIGNING_SECRET,
     adsenseEnabled: env.NEXT_PUBLIC_ADSENSE_ENABLED === "true",
+    htmlEmbedsEnabled: env.AD_HTML_EMBEDS_ENABLED === "true",
   };
 }
