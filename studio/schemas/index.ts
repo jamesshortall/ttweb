@@ -10,6 +10,11 @@ import { cardmasterFeature, cardmasterScreenshot } from "./cardmaster";
 import { imageCollection } from "./imageCollection";
 import { legalPage } from "./legalPage";
 import { testimonial } from "./testimonial";
+import { advertiser } from "./advertiser";
+import { campaign } from "./campaign";
+import { advertisement } from "./advertisement";
+import { placementZone } from "./placementZone";
+import { adNetwork } from "./adNetwork";
 
 /**
  * All content models for the Travel Technician site. Field names mirror the
@@ -29,4 +34,10 @@ export const schemaTypes = [
   imageCollection,
   legalPage,
   testimonial,
+  // Advertising
+  advertiser,
+  campaign,
+  advertisement,
+  placementZone,
+  adNetwork,
 ];

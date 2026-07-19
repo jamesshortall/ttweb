@@ -15,6 +15,11 @@ const emptyToUndefined = (value: unknown) => (value === "" ? undefined : value);
 const optionalUrl = z.preprocess(emptyToUndefined, z.string().url().optional());
 const optionalEmail = z.preprocess(emptyToUndefined, z.string().email().optional());
 const optionalString = z.preprocess(emptyToUndefined, z.string().min(1).optional());
+const optionalBool = z.preprocess(emptyToUndefined, z.enum(["true", "false"]).optional());
+const optionalPositiveInt = z.preprocess(
+  emptyToUndefined,
+  z.coerce.number().int().positive().optional(),
+);
 
 const serverEnvSchema = z
   .object({
@@ -46,6 +51,17 @@ const serverEnvSchema = z
     NEXT_PUBLIC_SUPABASE_URL: optionalUrl,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: optionalString,
     SUPABASE_SERVICE_ROLE_KEY: optionalString,
+    // ── Advertising ──────────────────────────────────────────────────────────
+    AD_TRACKING_ENABLED: optionalBool,
+    AD_DEFAULT_TIMEZONE: optionalString,
+    AD_UNIQUE_CLICK_WINDOW_HOURS: optionalPositiveInt,
+    AD_EVENT_RETENTION_DAYS: optionalPositiveInt,
+    AD_PREVIEW_MODE: optionalBool,
+    AD_REDIRECT_SIGNING_SECRET: optionalString,
+    AD_SCRIPT_ALLOWLIST: optionalString,
+    NEXT_PUBLIC_ADSENSE_ENABLED: optionalBool,
+    NEXT_PUBLIC_ADSENSE_CLIENT_ID: optionalString,
+    ADSENSE_ALLOWED_DOMAINS: optionalString,
   })
   .superRefine((env, ctx) => {
     if (env.EMAIL_PROVIDER === "resend" && !env.RESEND_API_KEY) {
@@ -74,6 +90,13 @@ const serverEnvSchema = z
         code: z.ZodIssueCode.custom,
         path: ["NEXT_PUBLIC_ANALYTICS_ID"],
         message: "NEXT_PUBLIC_ANALYTICS_ID is required when NEXT_PUBLIC_ANALYTICS_PROVIDER is set",
+      });
+    }
+    if (env.NEXT_PUBLIC_ADSENSE_ENABLED === "true" && !env.NEXT_PUBLIC_ADSENSE_CLIENT_ID) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["NEXT_PUBLIC_ADSENSE_CLIENT_ID"],
+        message: "NEXT_PUBLIC_ADSENSE_CLIENT_ID is required when NEXT_PUBLIC_ADSENSE_ENABLED=true",
       });
     }
   });

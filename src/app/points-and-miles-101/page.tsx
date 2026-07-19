@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ConsultationCTA } from "@/components/marketing/ConsultationCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqJsonLd, webPageJsonLd } from "@/lib/structured-data";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 export const metadata: Metadata = {
   title: "Points and Miles 101 — A Beginner's Learning Hub",
@@ -58,6 +59,11 @@ export default async function Points101Page() {
           </div>
         </Container>
       </section>
+
+      <Container>
+        {/* Inline sponsor slot — collapses entirely when no ad is eligible. */}
+        <AdSlot placement="points-101-inline" />
+      </Container>
 
       <section aria-labelledby="glossary-heading" className="bg-sand-50 py-16 sm:py-20">
         <Container>
