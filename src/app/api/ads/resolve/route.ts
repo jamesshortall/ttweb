@@ -62,6 +62,7 @@ export async function GET(request: NextRequest) {
   // HTML is sanitized server-side; the browser only ever gets safe markup.
   const sanitizedHtml =
     ad.adType === "html" ? sanitizeAdHtml(ad.html) || undefined : undefined;
+  const networkSlotId = ad.adType === "network" ? ad.networkSlotId : undefined;
 
   const renderable: RenderableAd = {
     id: ad.id,
@@ -75,6 +76,7 @@ export async function GET(request: NextRequest) {
       : null,
     video,
     sanitizedHtml,
+    networkSlotId,
     ctaLabel: ad.ctaLabel,
     disclosure: ad.disclosure,
     promoCode: ad.promoCode,

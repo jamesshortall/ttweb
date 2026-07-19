@@ -68,6 +68,7 @@ export interface Advertisement {
   videoPoster?: string;
   videoCaptionsUrl?: string;
   html?: string;
+  networkSlotId?: string;
 
   destinationUrl?: string;
   ctaLabel?: string;

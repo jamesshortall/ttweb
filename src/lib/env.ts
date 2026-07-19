@@ -63,6 +63,7 @@ const serverEnvSchema = z
     AD_CRON_SECRET: optionalString,
     AD_ADMIN_PASSWORD: optionalString,
     AD_ADMIN_SESSION_SECRET: optionalString,
+    AD_AUDIT_WEBHOOK_SECRET: optionalString,
     NEXT_PUBLIC_ADSENSE_ENABLED: optionalBool,
     NEXT_PUBLIC_ADSENSE_CLIENT_ID: optionalString,
     ADSENSE_ALLOWED_DOMAINS: optionalString,

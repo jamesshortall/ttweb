@@ -48,13 +48,15 @@ export async function resolveAd(ctx: AdRequestContext): Promise<Advertisement | 
   const zone = await fetchZone(ctx.placementKey);
   if (!zone || !zone.enabled) return null;
 
-  const htmlEmbedsEnabled = adConfig().htmlEmbedsEnabled;
+  const cfg = adConfig();
   const candidates = await fetchCandidates(ctx.placementKey);
   const eligible = filterEligible(candidates, ctx).filter(
     (ad) =>
-      // Respect the zone's supported formats, and only serve HTML embeds when
-      // the feature (and its CSP allowance) is enabled.
-      zone.supportedFormats.includes(ad.adType) && (ad.adType !== "html" || htmlEmbedsEnabled),
+      // Respect the zone's supported formats, and only serve HTML embeds /
+      // network ads when their feature (and CSP/consent gating) is enabled.
+      zone.supportedFormats.includes(ad.adType) &&
+      (ad.adType !== "html" || cfg.htmlEmbedsEnabled) &&
+      (ad.adType !== "network" || cfg.adsenseEnabled),
   );
 
   return selectAd(eligible);

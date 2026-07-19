@@ -42,6 +42,7 @@ export const adsForPlacementQuery = /* groq */ `
   "videoPoster": videoPoster.asset->url,
   videoCaptionsUrl,
   html,
+  networkSlotId,
   destinationUrl,
   ctaLabel,
   "placementKeys": coalesce(placements[]->placementKey.current, []),

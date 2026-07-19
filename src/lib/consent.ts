@@ -1,8 +1,8 @@
 /**
- * Cookie-consent state, shared by the banner, the preferences dialog, and the
- * analytics loader. Stored in localStorage (a first-party, non-tracking
- * preference) and mirrored through a browser event so all listeners update
- * without a reload.
+ * Cookie-consent state, shared by the banner, the preferences dialog, the
+ * analytics loader, and third-party ad-network loading. Stored in localStorage
+ * (a first-party, non-tracking preference) and mirrored through a browser event
+ * so all listeners update without a reload.
  */
 
 export const CONSENT_STORAGE_KEY = "tt-cookie-consent";
@@ -12,6 +12,8 @@ export const CONSENT_OPEN_EVENT = "tt-consent-open";
 export interface ConsentState {
   /** Nonessential analytics cookies/scripts. */
   analytics: boolean;
+  /** Third-party advertising networks (e.g. AdSense). Defaults to false. */
+  advertising: boolean;
   /** ISO timestamp of the decision, for future policy-version handling. */
   decidedAt: string;
 }
@@ -25,14 +27,19 @@ export function readConsent(): ConsentState | null {
     if (typeof parsed.analytics !== "boolean" || typeof parsed.decidedAt !== "string") {
       return null;
     }
-    return { analytics: parsed.analytics, decidedAt: parsed.decidedAt };
+    // `advertising` was added later; older stored decisions default it to false.
+    return {
+      analytics: parsed.analytics,
+      advertising: parsed.advertising === true,
+      decidedAt: parsed.decidedAt,
+    };
   } catch {
     return null;
   }
 }
 
-export function writeConsent(analytics: boolean): ConsentState {
-  const state: ConsentState = { analytics, decidedAt: new Date().toISOString() };
+export function writeConsent(analytics: boolean, advertising = false): ConsentState {
+  const state: ConsentState = { analytics, advertising, decidedAt: new Date().toISOString() };
   try {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(state));
   } catch {

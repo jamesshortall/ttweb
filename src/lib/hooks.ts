@@ -60,6 +60,15 @@ export function useAnalyticsConsent(): boolean {
   );
 }
 
+/** True when the visitor has accepted third-party advertising cookies/scripts. */
+export function useAdvertisingConsent(): boolean {
+  return useSyncExternalStore(
+    subscribeToConsent,
+    () => readConsent()?.advertising === true,
+    () => false,
+  );
+}
+
 /** True when the visitor has made any consent decision (server assumes yes). */
 export function useConsentDecided(): boolean {
   return useSyncExternalStore(

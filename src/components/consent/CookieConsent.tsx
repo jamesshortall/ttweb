@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { analyticsConfig } from "@/lib/site-config";
+import { adsConfig, analyticsConfig } from "@/lib/site-config";
 import { CONSENT_OPEN_EVENT, writeConsent } from "@/lib/consent";
 import { useConsentDecided } from "@/lib/hooks";
 import { Button } from "@/components/ui/Button";
@@ -25,8 +25,10 @@ export function CookieConsent() {
   const [showDetails, setShowDetails] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  // Banner is only required up front when consent-gated analytics exist.
-  const consentRequired = analyticsConfig.enabled && !analyticsConfig.cookieless;
+  // Banner is required up front when consent-gated analytics exist, or when
+  // third-party ad networks are enabled (they need advertising consent).
+  const consentRequired =
+    (analyticsConfig.enabled && !analyticsConfig.cookieless) || adsConfig.networksEnabled;
   const visible = manuallyOpened || (consentRequired && !decided);
 
   useEffect(() => {
@@ -42,11 +44,13 @@ export function CookieConsent() {
     if (visible) dialogRef.current?.focus();
   }, [visible]);
 
-  const decide = useCallback((analytics: boolean) => {
-    writeConsent(analytics);
+  const decide = useCallback((analytics: boolean, advertising = false) => {
+    writeConsent(analytics, advertising);
     setManuallyOpened(false);
     setShowDetails(false);
   }, []);
+
+  const adsEnabled = adsConfig.networksEnabled;
 
   if (!visible) return null;
 
@@ -92,14 +96,38 @@ export function CookieConsent() {
                   : "No analytics are currently configured on this site, so rejecting changes nothing."}
               </dd>
             </div>
+            {adsEnabled ? (
+              <div>
+                <dt className="font-semibold text-lagoon-950">Advertising (optional)</dt>
+                <dd className="text-ink/75">
+                  Lets third-party advertising partners (e.g. Google AdSense) show ads and measure
+                  them. Loaded only if you accept. Ads sold directly by Travel Technician use
+                  first-party, non-tracking measurement and are unaffected by this choice.
+                </dd>
+              </div>
+            ) : null}
           </dl>
         ) : null}
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Button onClick={() => decide(true)}>Accept analytics</Button>
-          <Button variant="secondary" onClick={() => decide(false)}>
-            Reject nonessential
-          </Button>
+          {adsEnabled ? (
+            <>
+              <Button onClick={() => decide(true, true)}>Accept all</Button>
+              <Button variant="secondary" onClick={() => decide(true, false)}>
+                Analytics only
+              </Button>
+              <Button variant="secondary" onClick={() => decide(false, false)}>
+                Reject nonessential
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button onClick={() => decide(true)}>Accept analytics</Button>
+              <Button variant="secondary" onClick={() => decide(false)}>
+                Reject nonessential
+              </Button>
+            </>
+          )}
           {!showDetails ? (
             <button
               type="button"

@@ -5,10 +5,11 @@ website. Advertisers, campaigns, ads, placements, and creative are managed in
 **Sanity Studio**; impression/click analytics and the audit trail live in
 **Supabase (Postgres)**. Ads never appear inside the separate CardMaster app.
 
-> **Status:** Phases 1–3. All ad types (image, text, video, sandboxed
-> HTML/embed) with targeting, scheduling, weighted rotation, and status logic,
-> **plus the analytics dashboard, aggregation job, and CSV export**. The AdSense
-> network layer and consent category land in Phase 4. This guide grows with them.
+> **Status:** Complete (Phases 1–4). All ad types (image, text, video, sandboxed
+> HTML/embed, and third-party network) with targeting, scheduling, weighted
+> rotation, status logic, the analytics dashboard, aggregation, CSV export, an
+> advertising cookie-consent category, a Sanity publish audit webhook, and
+> Privacy Policy coverage.
 
 ## Architecture at a glance
 
@@ -139,11 +140,31 @@ it — hourly is plenty. It's idempotent: re-running a window recomputes and
 upserts, so overlaps never double-count. Purge raw events past
 `AD_EVENT_RETENTION_DAYS`.
 
+## Third-party networks (Google AdSense)
+
+Disabled by default. To enable:
+
+1. Set `NEXT_PUBLIC_ADSENSE_ENABLED=true` and `NEXT_PUBLIC_ADSENSE_CLIENT_ID`
+   (`ca-pub-…`). This also opens the AdSense hosts in the CSP and adds an
+   **Advertising** category to the cookie-consent banner.
+2. Create an `advertisement` of type **Ad network**, set its network slot id, and
+   assign it to a placement (approve + activate like any ad).
+
+A network unit renders only when the network is enabled, a client id is set, AND
+the visitor has granted **advertising** consent — otherwise nothing loads. All of
+this flows through one `NetworkAd` component; pages never embed ad scripts
+directly. Directly sold ads are unaffected by the advertising consent choice
+(they use first-party, non-tracking measurement).
+
 ## Audit log
 
-Server-initiated advertising actions (admin sign-in, aggregation runs, and —
-Phase 4 — status syncs and Studio publishes) are recorded in `ad_audit_log`
-with actor, action, entity, and metadata.
+Server-initiated actions (admin sign-in, aggregation runs) and Studio content
+edits are recorded in `ad_audit_log` with actor, action, entity, and metadata.
+Wire Studio edits via **Manage → API → Webhooks**: POST to
+`/api/ads/audit-webhook`, trigger on Create/Update/Delete, projection at least
+`{_type, _id, name, displayName, status}`, with
+`Authorization: Bearer <AD_AUDIT_WEBHOOK_SECRET>`. Inert (501) until the secret is
+set.
 
 ## Safety & privacy
 

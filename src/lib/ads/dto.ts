@@ -29,6 +29,8 @@ export interface RenderableAd {
   video?: { src: string; poster?: string; captionsUrl?: string };
   /** HTML/embed ads only — already sanitized server-side. */
   sanitizedHtml?: string;
+  /** Network ads only — the AdSense slot id (publisher id comes from env). */
+  networkSlotId?: string;
   ctaLabel?: string;
   disclosure: { enabled: boolean; label: string };
   promoCode?: string;

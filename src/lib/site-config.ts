@@ -44,6 +44,16 @@ export const analyticsConfig = {
   },
 } as const;
 
+/**
+ * Third-party ad-network config (client-safe). Networks are OFF unless
+ * explicitly enabled; when enabled, scripts still load only after the visitor
+ * grants advertising consent.
+ */
+export const adsConfig = {
+  networksEnabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true",
+  adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "",
+} as const;
+
 /** Absolute URL for a site path — used by metadata and structured data. */
 export function absoluteUrl(path = "/"): string {
   return new URL(path, siteConfig.url).toString();

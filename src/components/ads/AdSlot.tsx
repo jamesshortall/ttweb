@@ -9,6 +9,7 @@ import { ResponsiveImageAd } from "./ResponsiveImageAd";
 import { TextAd } from "./TextAd";
 import { VideoAd } from "./VideoAd";
 import { HtmlEmbedAd } from "./HtmlEmbedAd";
+import { NetworkAd } from "./NetworkAd";
 import { PromoCode } from "./PromoCode";
 
 /**
@@ -59,8 +60,9 @@ export function AdSlot({
   // Loading or nothing eligible → collapse entirely.
   if (!ad) return null;
 
-  // Video and HTML embeds have their own interactive surface (controls, links),
-  // so the media is NOT wrapped in the click anchor; those show a CTA below.
+  // Video, HTML embeds, and network units have their own interactive surface
+  // (controls, links, network click handling), so the media is NOT wrapped in
+  // the click anchor; those show a tracked CTA below where applicable.
   const wrapInLink = ad.adType === "image" || ad.adType === "text";
 
   const media =
@@ -73,6 +75,8 @@ export function AdSlot({
       />
     ) : ad.adType === "html" && ad.sanitizedHtml ? (
       <HtmlEmbedAd sanitizedHtml={ad.sanitizedHtml} title={ad.headline} />
+    ) : ad.adType === "network" ? (
+      <NetworkAd slotId={ad.networkSlotId} />
     ) : ad.creative ? (
       <ResponsiveImageAd creative={ad.creative} headline={ad.headline} eager={priority} />
     ) : (

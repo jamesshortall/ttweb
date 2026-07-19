@@ -16,6 +16,7 @@ function buildContentSecurityPolicy(): string {
   const scriptHosts: string[] = [];
   const connectHosts: string[] = [];
   const frameHosts: string[] = [];
+  const imgHosts: string[] = [];
 
   const analyticsProvider = process.env.NEXT_PUBLIC_ANALYTICS_PROVIDER;
   if (analyticsProvider === "plausible") {
@@ -41,11 +42,24 @@ function buildContentSecurityPolicy(): string {
     frameHosts.push("'self'");
   }
 
+  // Google AdSense hosts, added only when the network is enabled so the default
+  // policy carries no third-party ad surface.
+  if (process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true") {
+    scriptHosts.push("https://pagead2.googlesyndication.com");
+    connectHosts.push("https://pagead2.googlesyndication.com");
+    frameHosts.push("https://googleads.g.doubleclick.net", "https://tpc.googlesyndication.com");
+    imgHosts.push(
+      "https://pagead2.googlesyndication.com",
+      "https://googleads.g.doubleclick.net",
+      "https://tpc.googlesyndication.com",
+    );
+  }
+
   const directives = [
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline' ${scriptHosts.join(" ")}`.trim(),
     "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
-    "img-src 'self' data: blob: https://cdn.sanity.io",
+    `img-src 'self' data: blob: https://cdn.sanity.io ${imgHosts.join(" ")}`.trim(),
     "font-src 'self'",
     `connect-src 'self' ${connectHosts.join(" ")}`.trim(),
     frameHosts.length > 0 ? `frame-src ${frameHosts.join(" ")}` : "frame-src 'none'",
