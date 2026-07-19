@@ -5,10 +5,10 @@ website. Advertisers, campaigns, ads, placements, and creative are managed in
 **Sanity Studio**; impression/click analytics and the audit trail live in
 **Supabase (Postgres)**. Ads never appear inside the separate CardMaster app.
 
-> **Status:** Phases 1–2. Image, text, **video**, and **sandboxed HTML/embed**
-> ads are supported, with targeting, scheduling, weighted rotation, and status
-> logic. The analytics dashboard, CSV export, and the AdSense network layer land
-> in later phases. This guide grows with them.
+> **Status:** Phases 1–3. All ad types (image, text, video, sandboxed
+> HTML/embed) with targeting, scheduling, weighted rotation, and status logic,
+> **plus the analytics dashboard, aggregation job, and CSV export**. The AdSense
+> network layer and consent category land in Phase 4. This guide grows with them.
 
 ## Architecture at a glance
 
@@ -105,6 +105,45 @@ current placement, device, and page • and it has renderable content with a saf
 - **Status** — visitor-facing expiry/activation is enforced at read time, so
   scheduled ads go live and expired ads disappear with no admin action. A Phase 3
   job will also rewrite the stored status field to match, for accurate reporting.
+
+## Analytics dashboard
+
+An admin-only dashboard lives at **`/admin/ads`** (never indexed, never linked
+from the public site).
+
+- **Enable it:** set `AD_ADMIN_PASSWORD` and `AD_ADMIN_SESSION_SECRET`
+  (`openssl rand -hex 32`) together, then restart. Sign in at `/admin/login`;
+  the session is an httpOnly, signed, 12-hour cookie.
+- **Shows:** total impressions, clicks, unique clicks, and CTR for a date range,
+  with breakdowns by campaign, advertisement, placement, device, page, and day.
+- **CSV export:** each table has an "Export CSV" link (`/api/ads/export`);
+  reports are `campaign`, `ad`, `placement`, `advertiser`, `device`, `daily`.
+  Fields are escaped and formula-injection-safe.
+- **Auth note:** this is a lightweight password/cookie guard rather than a
+  Sanity-Studio-embedded tool, so it's fully self-contained and verifiable; it
+  can be swapped for Studio SSO later without touching the reporting layer.
+
+## Aggregation job
+
+The dashboard reads **pre-aggregated** daily rows (`ad_daily_aggregates`), never
+raw events. Populate them by calling the aggregation endpoint on a schedule:
+
+```
+POST /api/ads/aggregate            # last 48h (catches late events)
+POST /api/ads/aggregate?hours=168  # wider window, e.g. weekly backfill
+Authorization: Bearer <AD_CRON_SECRET>
+```
+
+Set `AD_CRON_SECRET` and point a scheduler (cron, GitHub Actions, host cron) at
+it — hourly is plenty. It's idempotent: re-running a window recomputes and
+upserts, so overlaps never double-count. Purge raw events past
+`AD_EVENT_RETENTION_DAYS`.
+
+## Audit log
+
+Server-initiated advertising actions (admin sign-in, aggregation runs, and —
+Phase 4 — status syncs and Studio publishes) are recorded in `ad_audit_log`
+with actor, action, entity, and metadata.
 
 ## Safety & privacy
 

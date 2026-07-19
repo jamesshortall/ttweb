@@ -60,6 +60,9 @@ const serverEnvSchema = z
     AD_HTML_EMBEDS_ENABLED: optionalBool,
     AD_REDIRECT_SIGNING_SECRET: optionalString,
     AD_SCRIPT_ALLOWLIST: optionalString,
+    AD_CRON_SECRET: optionalString,
+    AD_ADMIN_PASSWORD: optionalString,
+    AD_ADMIN_SESSION_SECRET: optionalString,
     NEXT_PUBLIC_ADSENSE_ENABLED: optionalBool,
     NEXT_PUBLIC_ADSENSE_CLIENT_ID: optionalString,
     ADSENSE_ALLOWED_DOMAINS: optionalString,
@@ -98,6 +101,14 @@ const serverEnvSchema = z
         code: z.ZodIssueCode.custom,
         path: ["NEXT_PUBLIC_ADSENSE_CLIENT_ID"],
         message: "NEXT_PUBLIC_ADSENSE_CLIENT_ID is required when NEXT_PUBLIC_ADSENSE_ENABLED=true",
+      });
+    }
+    // The admin dashboard needs both a password and a session secret, or neither.
+    if (Boolean(env.AD_ADMIN_PASSWORD) !== Boolean(env.AD_ADMIN_SESSION_SECRET)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["AD_ADMIN_SESSION_SECRET"],
+        message: "AD_ADMIN_PASSWORD and AD_ADMIN_SESSION_SECRET must be set together",
       });
     }
   });
