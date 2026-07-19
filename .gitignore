@@ -10,6 +10,7 @@ next-env.d.ts
 # production
 build
 studio/dist
+studio/.sanity
 
 # testing
 coverage
