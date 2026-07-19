@@ -58,8 +58,10 @@ current placement, device, and page • and it has renderable content with a saf
 ## How things work
 
 - **Placements** — a page requests one by key: `<AdSlot placement="points-101-inline" />`.
-  The component resolves an eligible ad, renders it, or **collapses entirely**
-  (no box, no gap) when none is eligible.
+  The host page stays fully static/ISR: it ships without ads, and the slot
+  fetches an eligible ad from `/api/ads/resolve` after mount (all targeting,
+  creative selection, and click-URL signing happen server-side there). It
+  renders it, or **collapses entirely** (no box, no gap) when none is eligible.
 - **Rotation** — when several ads are eligible, the highest *priority* tier wins,
   then a *weighted-random* pick (weight 0 opts an ad out; equal chance if all
   are 0). Selection is stable for the page view.

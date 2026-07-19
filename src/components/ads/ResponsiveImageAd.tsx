@@ -1,17 +1,23 @@
 import Image from "next/image";
-import type { AdCreative } from "@/lib/ads/types";
 
 /**
  * Presentational responsive image creative. Reserves the creative's aspect
- * ratio (width/height) so the slot never shifts layout as the image loads, and
+ * ratio (width/height) so the image itself never shifts as it loads, and
  * lazy-loads by default (AdSlot marks above-the-fold instances eager).
  */
+export interface ImageCreative {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
 export function ResponsiveImageAd({
   creative,
   headline,
   eager = false,
 }: {
-  creative: AdCreative;
+  creative: ImageCreative;
   headline?: string;
   eager?: boolean;
 }) {
