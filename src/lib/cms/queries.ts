@@ -120,3 +120,18 @@ export const imageCollectionQuery = /* groq */ `
     "alt": alt
   }
 }`;
+
+export const appsQuery = /* groq */ `
+*[_type == "app"] | order(orderRank asc) {
+  "id": _id,
+  name,
+  tagline,
+  description,
+  url,
+  "image": select(defined(image.asset) => { "src": image.asset->url, "alt": coalesce(image.alt, name) }),
+  icon,
+  badge,
+  cta,
+  "status": coalesce(status, "live"),
+  "kind": coalesce(kind, "app")
+}`;

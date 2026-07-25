@@ -20,6 +20,7 @@ const serverEnvSchema = z
   .object({
     NEXT_PUBLIC_SITE_URL: optionalUrl,
     NEXT_PUBLIC_CARDMASTER_URL: optionalUrl,
+    NEXT_PUBLIC_APPPASSPORT_URL: optionalUrl,
     NEXT_PUBLIC_BLOG_URL: optionalUrl,
     NEXT_PUBLIC_INSTAGRAM_URL: optionalUrl,
     NEXT_PUBLIC_FACEBOOK_URL: optionalUrl,
