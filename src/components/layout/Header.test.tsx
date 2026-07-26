@@ -11,7 +11,7 @@ describe("Header", () => {
   it("renders the primary navigation destinations", () => {
     render(<Header />);
     const nav = screen.getByRole("navigation", { name: "Main" });
-    for (const label of ["Home", "Services", "CardMaster", "About Jim", "Blog"]) {
+    for (const label of ["Home", "Services", "Apps", "About Jim", "Blog"]) {
       expect(within(nav).getByRole("link", { name: label })).toBeInTheDocument();
     }
     // Educational pages are grouped under a "Learn" dropdown trigger.

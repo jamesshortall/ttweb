@@ -15,6 +15,7 @@ import { campaign } from "./campaign";
 import { advertisement } from "./advertisement";
 import { placementZone } from "./placementZone";
 import { adNetwork } from "./adNetwork";
+import { app } from "./app";
 
 /**
  * All content models for the Travel Technician site. Field names mirror the
@@ -40,4 +41,5 @@ export const schemaTypes = [
   advertisement,
   placementZone,
   adNetwork,
+  app,
 ];
