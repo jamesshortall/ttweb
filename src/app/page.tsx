@@ -27,6 +27,7 @@ import { ConsultationCTA } from "@/components/marketing/ConsultationCTA";
 import { ArticleCard } from "@/components/marketing/ArticleCard";
 import { RedemptionCard } from "@/components/marketing/RedemptionCard";
 import { BlogCards, BlogFallbackCard, toBlogCards } from "@/components/marketing/BlogCards";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { webPageJsonLd } from "@/lib/structured-data";
 import type { IconName } from "@/lib/cms/types";
@@ -305,6 +306,11 @@ export default async function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* Inline sponsor slot — collapses entirely when no ad is eligible. */}
+      <Container>
+        <AdSlot placement="home-inline" />
+      </Container>
 
       <CardMasterHighlight />
 
