@@ -15,6 +15,8 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.traveltechnician.info",
   cardmasterUrl:
     process.env.NEXT_PUBLIC_CARDMASTER_URL ?? "https://cardmaster.traveltechnician.info",
+  passportUrl:
+    process.env.NEXT_PUBLIC_APPPASSPORT_URL ?? "https://passport.traveltechnician.info",
   blogUrl: process.env.NEXT_PUBLIC_BLOG_URL ?? "https://blog.traveltechnician.info",
   instagramUrl:
     process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? "https://instagram.com/the_travel_technician",

@@ -22,6 +22,7 @@ import { fallbackArticles101 } from "@/content/articles-101";
 import { fallbackTips } from "@/content/tips";
 import { fallbackCardMasterFeatures, fallbackCardMasterScreenshots } from "@/content/cardmaster";
 import { fallbackImageCollections } from "@/content/images";
+import { apps as fallbackApps, type AppEntry } from "@/content/apps";
 
 /**
  * Content access layer.
@@ -139,4 +140,12 @@ export async function getImageCollection(
     fallback,
     (value) => !!value && value.images.length > 0,
   );
+}
+
+/**
+ * The apps suite. CMS-managed `app` documents (with uploaded photos) when they
+ * exist; otherwise the built-in registry in src/content/apps.ts.
+ */
+export async function getApps(): Promise<AppEntry[]> {
+  return fromCms(() => sanityClient()!.fetch<AppEntry[]>(q.appsQuery), fallbackApps);
 }
