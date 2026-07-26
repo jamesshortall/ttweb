@@ -49,13 +49,23 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "Cookies and consent",
       paragraphs: [
-        'Essential functionality on this site does not depend on tracking cookies. A consent banner lets you accept or reject nonessential analytics; your choice is stored in your browser and can be changed at any time via the "Cookie Preferences" link in the footer.',
+        'Essential functionality on this site does not depend on tracking cookies. A consent banner lets you accept or reject nonessential analytics and, where third-party advertising is enabled, advertising cookies; your choice is stored in your browser and can be changed at any time via the "Cookie Preferences" link in the footer.',
+      ],
+    },
+    {
+      heading: "Advertising",
+      paragraphs: [
+        "This site may display advertisements. Ads sold and served directly by Travel Technician use first-party, privacy-conscious measurement: we count ad impressions (recorded only when an ad is actually viewed) and clicks so we can report campaign performance to advertisers. Clicks pass through a first-party redirect that records the click before sending you to the advertiser.",
+        'To distinguish repeat clicks from unique ones, we compute a short-lived, one-way hashed value from limited request information (a hashed, truncated network address and a coarse browser signal) within a configurable time window. This "unique click" method does not store your raw IP address and does not build a persistent profile or cross-site browsing history of you.',
+        "If third-party advertising networks (for example, Google AdSense) are enabled in the future, their scripts and cookies will load only after you grant advertising consent, and those partners' own privacy policies will govern the data they collect. Directly sold ads are unaffected by the advertising consent choice because they use no third-party tracking.",
+        "Advertisements may include referral links and promotional codes; using them may share standard campaign parameters (such as a source or campaign identifier) with the advertiser. Sponsored placements are labeled as advertisements and kept visually distinct from our own editorial recommendations. [Advertising practices pending legal review.]",
       ],
     },
     {
       heading: "Data retention",
       paragraphs: [
         "Contact-form submissions delivered by email are retained in the recipient mailbox in line with ordinary email retention. Where optional database storage is enabled, submissions are reviewed and deleted when no longer needed, and no later than 24 months after receipt unless an active client relationship exists. [Retention period pending legal review.]",
+        "Advertising analytics events (impressions and clicks) are retained for a configurable period (365 days by default) and then purged; aggregated, non-identifying campaign totals may be retained longer for reporting.",
       ],
     },
     {
