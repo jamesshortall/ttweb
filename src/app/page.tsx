@@ -10,6 +10,7 @@ import {
   getServices,
   getStats,
   getSuccessStories,
+  getTestimonials,
 } from "@/lib/cms";
 import { serverEnv } from "@/lib/env";
 import { fetchBlogFeed } from "@/lib/rss";
@@ -24,6 +25,7 @@ import { CardMasterHighlight } from "@/components/marketing/CardMasterHighlight"
 import { PhotoMarquee } from "@/components/marketing/PhotoMarquee";
 import { NewsletterSection } from "@/components/marketing/NewsletterSection";
 import { ConsultationCTA } from "@/components/marketing/ConsultationCTA";
+import { TestimonialHighlights } from "@/components/marketing/TestimonialHighlights";
 import { ArticleCard } from "@/components/marketing/ArticleCard";
 import { RedemptionCard } from "@/components/marketing/RedemptionCard";
 import { BlogCards, BlogFallbackCard, toBlogCards } from "@/components/marketing/BlogCards";
@@ -102,16 +104,25 @@ const whyJim = [
 
 export default async function HomePage() {
   const env = serverEnv();
-  const [settings, stats, services, stories, articles101, heroImages, destinationImages] =
-    await Promise.all([
-      getHomepageSettings(),
-      getStats(),
-      getServices(),
-      getSuccessStories(),
-      getArticles("points-101"),
-      getImageCollection("homeHero"),
-      getImageCollection("destinations"),
-    ]);
+  const [
+    settings,
+    stats,
+    services,
+    stories,
+    articles101,
+    heroImages,
+    destinationImages,
+    testimonials,
+  ] = await Promise.all([
+    getHomepageSettings(),
+    getStats(),
+    getServices(),
+    getSuccessStories(),
+    getArticles("points-101"),
+    getImageCollection("homeHero"),
+    getImageCollection("destinations"),
+    getTestimonials(),
+  ]);
 
   const blogItems = env.BLOG_RSS_URL
     ? toBlogCards(await fetchBlogFeed(env.BLOG_RSS_URL, 3))
@@ -414,6 +425,9 @@ export default async function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* Collapses entirely until real, permission-confirmed testimonials exist. */}
+      <TestimonialHighlights testimonials={testimonials} />
 
       <NewsletterSection settings={settings.newsletter} />
 

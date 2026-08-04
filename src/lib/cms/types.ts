@@ -152,3 +152,17 @@ export interface HomepageSettings {
   estimatedTravelValue: string | null;
   newsletter: NewsletterSettings;
 }
+
+/**
+ * A published, permission-confirmed client testimonial. The query never
+ * returns drafts or unconfirmed quotes, so anything of this shape is safe to
+ * display publicly.
+ */
+export interface Testimonial {
+  id: string;
+  quote: string;
+  attribution: string;
+  context?: string;
+  rating?: number;
+  featured?: boolean;
+}
