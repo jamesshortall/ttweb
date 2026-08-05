@@ -12,6 +12,7 @@ import type {
   Service,
   SiteStat,
   SuccessStory,
+  Testimonial,
 } from "@/lib/cms/types";
 import { fallbackHomepageSettings, fallbackStats } from "@/content/site";
 import { fallbackServices } from "@/content/services";
@@ -148,4 +149,14 @@ export async function getImageCollection(
  */
 export async function getApps(): Promise<AppEntry[]> {
   return fromCms(() => sanityClient()!.fetch<AppEntry[]>(q.appsQuery), fallbackApps);
+}
+
+/**
+ * Published, permission-confirmed testimonials. The fallback is an empty list
+ * on purpose: testimonials are never invented, so with no CMS (or none
+ * approved yet) the site simply shows none and its testimonial surfaces
+ * collapse. `() => true` lets a legitimately empty result through.
+ */
+export async function getTestimonials(): Promise<Testimonial[]> {
+  return fromCms(() => sanityClient()!.fetch<Testimonial[]>(q.testimonialsQuery), [], () => true);
 }

@@ -135,3 +135,18 @@ export const appsQuery = /* groq */ `
   "status": coalesce(status, "live"),
   "kind": coalesce(kind, "app")
 }`;
+
+/**
+ * Published testimonials only, and only those with written permission on file.
+ * The published perspective already excludes drafts; the permissionConfirmed
+ * gate means an accidental publish still can't surface an unverified quote.
+ */
+export const testimonialsQuery = /* groq */ `
+*[_type == "testimonial" && permissionConfirmed == true] | order(featured desc, orderRank asc, _createdAt desc) {
+  "id": _id,
+  quote,
+  attribution,
+  context,
+  rating,
+  featured
+}`;
