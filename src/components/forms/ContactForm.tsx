@@ -54,6 +54,17 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
     },
   });
 
+  // Focus target for the confirmation panel, so success is seen and announced
+  // even when the form was submitted from far down a long page.
+  const successHeadingRef = useRef<HTMLParagraphElement | null>(null);
+  useEffect(() => {
+    if (status === "success") {
+      // scrollIntoView is guarded — some environments (e.g. jsdom) don't provide it.
+      successHeadingRef.current?.scrollIntoView?.({ behavior: "smooth", block: "center" });
+      successHeadingRef.current?.focus();
+    }
+  }, [status]);
+
   const submitForm = async (data: ContactFormInput) => {
     setStatus("submitting");
     setServerMessage("");
@@ -79,6 +90,42 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
     }
   };
 
+  // On success, replace the whole form with an unambiguous confirmation panel —
+  // no lingering fields to make the sender wonder whether it actually sent.
+  if (status === "success") {
+    return (
+      <div aria-live="polite" role="status" className="rounded-2xl border border-palm-300 bg-palm-50 p-6 sm:p-8">
+        <p
+          ref={successHeadingRef}
+          tabIndex={-1}
+          className="text-xl font-semibold text-palm-900 outline-none"
+        >
+          Message sent — thank you!
+        </p>
+        <p className="mt-2 text-palm-900/90">
+          Jim reads every inquiry personally and typically replies within one to two business days.
+          Want to talk sooner? You can also{" "}
+          <Link href="/services" className="font-medium underline">
+            review the services
+          </Link>{" "}
+          while you wait.
+        </p>
+        <div className="mt-6">
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={() => {
+              setStatus("idle");
+              setServerMessage("");
+            }}
+          >
+            Send another message
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <form
       onSubmit={(event) => void handleSubmit(submitForm)(event)}
@@ -87,19 +134,6 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
     >
       {/* Status region: announced politely to screen readers. */}
       <div aria-live="polite" role="status">
-        {status === "success" ? (
-          <div className="rounded-xl border border-palm-300 bg-palm-50 p-4">
-            <p className="font-semibold text-palm-900">Message sent — thank you!</p>
-            <p className="mt-1 text-sm text-palm-900/90">
-              Jim reads every inquiry personally and typically replies within one to two business
-              days. Want to talk sooner? You can also{" "}
-              <Link href="/services" className="font-medium underline">
-                review the services
-              </Link>{" "}
-              while you wait.
-            </p>
-          </div>
-        ) : null}
         {status === "error" ? (
           <div className="rounded-xl border border-sunset-300 bg-sunset-50 p-4">
             <p className="font-semibold text-sunset-900">Your message wasn&apos;t sent</p>
