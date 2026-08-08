@@ -77,6 +77,43 @@ function postmarkDriver(serverToken: string): EmailDriver {
   };
 }
 
+interface SmtpConfig {
+  host: string;
+  port: number;
+  /** true for implicit TLS (port 465); false for STARTTLS (port 587). */
+  secure: boolean;
+  user: string;
+  pass: string;
+}
+
+/**
+ * SMTP driver for a standard mailbox (e.g. IONOS). Nodemailer is imported
+ * dynamically so it only loads when SMTP is actually the configured provider,
+ * keeping it out of every other server bundle.
+ */
+function smtpDriver(config: SmtpConfig): EmailDriver {
+  return {
+    name: "smtp",
+    async send(message) {
+      const nodemailer = await import("nodemailer");
+      const transport = nodemailer.createTransport({
+        host: config.host,
+        port: config.port,
+        secure: config.secure,
+        auth: { user: config.user, pass: config.pass },
+      });
+      // sendMail throws on failure; the caller logs the error's name only.
+      await transport.sendMail({
+        from: message.from,
+        to: message.to,
+        replyTo: message.replyTo,
+        subject: message.subject,
+        text: message.text,
+      });
+    },
+  };
+}
+
 function resolveDriver(): EmailDriver | null {
   const env = serverEnv();
   if (env.EMAIL_PROVIDER === "resend" && env.RESEND_API_KEY) {
@@ -84,6 +121,17 @@ function resolveDriver(): EmailDriver | null {
   }
   if (env.EMAIL_PROVIDER === "postmark" && env.POSTMARK_SERVER_TOKEN) {
     return postmarkDriver(env.POSTMARK_SERVER_TOKEN);
+  }
+  if (env.EMAIL_PROVIDER === "smtp" && env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASSWORD) {
+    const port = env.SMTP_PORT ?? 587;
+    return smtpDriver({
+      host: env.SMTP_HOST,
+      port,
+      // Default from the port (465 = implicit TLS); SMTP_SECURE overrides.
+      secure: env.SMTP_SECURE ? env.SMTP_SECURE === "true" : port === 465,
+      user: env.SMTP_USER,
+      pass: env.SMTP_PASSWORD,
+    });
   }
   return null;
 }
