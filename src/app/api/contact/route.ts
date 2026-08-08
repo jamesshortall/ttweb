@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { contactFormSchema } from "@/lib/contact-schema";
-import { sendContactEmail } from "@/lib/email";
+import { sendContactConfirmation, sendContactEmail } from "@/lib/email";
 import { storeContactSubmission } from "@/lib/contact-storage";
 import { createRateLimiter } from "@/lib/rate-limit";
 
@@ -59,6 +59,13 @@ export async function POST(request: NextRequest) {
 
   try {
     const [emailed] = await Promise.all([sendContactEmail(data), storeContactSubmission(data)]);
+    // Courtesy auto-reply to the sender. Best-effort: a failure here must not
+    // fail the submission — Jim's notification above is what matters.
+    try {
+      await sendContactConfirmation(data);
+    } catch (error) {
+      console.error(`[contact] Confirmation auto-reply failed: ${(error as Error).name}`);
+    }
     if (!emailed && process.env.NODE_ENV === "production" && process.env.EMAIL_PROVIDER) {
       // A provider is configured but delivery failed upstream of throwing.
       return NextResponse.json(

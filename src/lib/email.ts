@@ -176,3 +176,44 @@ export async function sendContactEmail(data: ContactFormData): Promise<boolean> 
   });
   return true;
 }
+
+/**
+ * Send the sender a courtesy auto-reply confirming their message arrived.
+ * Best-effort: returns false (without throwing) when no provider is
+ * configured, so the caller can treat delivery failures as non-fatal — the
+ * inquiry to Jim is what actually matters.
+ */
+export async function sendContactConfirmation(data: ContactFormData): Promise<boolean> {
+  const env = serverEnv();
+  const driver = resolveDriver();
+
+  if (!driver || !env.CONTACT_TO_EMAIL || !env.EMAIL_FROM_ADDRESS) {
+    return false;
+  }
+
+  await driver.send({
+    to: data.email,
+    from: env.EMAIL_FROM_ADDRESS,
+    // Replies to the confirmation reach Jim directly.
+    replyTo: env.CONTACT_TO_EMAIL,
+    subject: "Thanks for reaching out to Travel Technician",
+    text: [
+      `Hi ${data.name},`,
+      ``,
+      `Thanks for getting in touch with Travel Technician — this is a quick note to`,
+      `confirm your message came through. Jim reads every inquiry personally and`,
+      `typically replies within one to two business days.`,
+      ``,
+      `For your records, here's what you sent:`,
+      ``,
+      `Topic: ${categoryLabel(data.category)}`,
+      ``,
+      data.message,
+      ``,
+      `Need to add something? Just reply to this email and it'll reach Jim.`,
+      ``,
+      `— Travel Technician`,
+    ].join("\n"),
+  });
+  return true;
+}
