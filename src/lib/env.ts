@@ -31,11 +31,20 @@ const serverEnvSchema = z
     NEXT_PUBLIC_FACEBOOK_URL: optionalUrl,
     NEXT_PUBLIC_CALENDLY_URL: optionalUrl,
     BLOG_RSS_URL: optionalUrl,
-    EMAIL_PROVIDER: z.preprocess(emptyToUndefined, z.enum(["resend", "postmark"]).optional()),
+    EMAIL_PROVIDER: z.preprocess(
+      emptyToUndefined,
+      z.enum(["resend", "postmark", "smtp"]).optional(),
+    ),
     CONTACT_TO_EMAIL: optionalEmail,
     EMAIL_FROM_ADDRESS: optionalEmail,
     RESEND_API_KEY: optionalString,
     POSTMARK_SERVER_TOKEN: optionalString,
+    // SMTP provider (e.g. IONOS mailbox).
+    SMTP_HOST: optionalString,
+    SMTP_PORT: optionalPositiveInt,
+    SMTP_USER: optionalString,
+    SMTP_PASSWORD: optionalString,
+    SMTP_SECURE: optionalBool,
     NEXT_PUBLIC_ANALYTICS_PROVIDER: z.preprocess(
       emptyToUndefined,
       z.enum(["plausible", "google"]).optional(),
@@ -84,6 +93,16 @@ const serverEnvSchema = z
         code: z.ZodIssueCode.custom,
         path: ["POSTMARK_SERVER_TOKEN"],
         message: "POSTMARK_SERVER_TOKEN is required when EMAIL_PROVIDER=postmark",
+      });
+    }
+    if (
+      env.EMAIL_PROVIDER === "smtp" &&
+      (!env.SMTP_HOST || !env.SMTP_USER || !env.SMTP_PASSWORD)
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["SMTP_HOST"],
+        message: "SMTP_HOST, SMTP_USER and SMTP_PASSWORD are required when EMAIL_PROVIDER=smtp",
       });
     }
     if (env.EMAIL_PROVIDER && (!env.CONTACT_TO_EMAIL || !env.EMAIL_FROM_ADDRESS)) {
