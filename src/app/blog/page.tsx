@@ -10,6 +10,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { BlogCards, BlogFallbackCard, toBlogCards } from "@/components/marketing/BlogCards";
 import { NewsletterSection } from "@/components/marketing/NewsletterSection";
 import { getHomepageSettings } from "@/lib/cms";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { webPageJsonLd } from "@/lib/structured-data";
 
@@ -61,6 +62,9 @@ export default async function BlogPage() {
               </div>
             </div>
           ) : null}
+
+          {/* Inline sponsor slot — collapses entirely when no ad is eligible. */}
+          <AdSlot placement="blog-inline" />
 
           <SectionHeading
             eyebrow="Latest posts"
