@@ -68,7 +68,8 @@ export const resourcesQuery = /* groq */ `
   description,
   category,
   kind,
-  href
+  href,
+  "fileUrl": file.asset->url
 }`;
 
 export const faqsQuery = /* groq */ `

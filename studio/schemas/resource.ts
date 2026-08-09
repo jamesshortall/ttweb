@@ -38,11 +38,25 @@ export const resource = defineType({
       initialValue: "internal",
     }),
     defineField({
+      name: "file",
+      title: "PDF file (for downloadable guides / checklists)",
+      description:
+        "Upload the PDF here. When set, it is served from Sanity and takes precedence over the Link below — so you can swap the file anytime without a redeploy. Leave empty for article, external, or blog resources.",
+      type: "file",
+      options: { accept: ".pdf" },
+    }),
+    defineField({
       name: "href",
       title: "Link",
-      description: "Internal path (/points-and-miles-101/…) or full external URL.",
+      description:
+        "Internal path (/points-and-miles-101/…) or full external URL. Not needed if you uploaded a PDF above.",
       type: "string",
-      validation: (r) => r.required(),
+      validation: (r) =>
+        r.custom((value, context) => {
+          const doc = context.document as { file?: unknown } | undefined;
+          if (!value && !doc?.file) return "Enter a link, or upload a PDF file above.";
+          return true;
+        }),
     }),
     defineField({ name: "orderRank", title: "Sort order", type: "number", initialValue: 0 }),
   ],
