@@ -31,6 +31,33 @@ export const siteSettings = defineType({
       type: "string",
     }),
     defineField({
+      name: "spotlight",
+      title: "Homepage spotlight",
+      description:
+        "Feature one existing item on the homepage. Change it anytime to rotate — no redeploy needed. Leave empty to hide the spotlight section entirely.",
+      type: "reference",
+      to: [
+        { type: "article" },
+        { type: "resource" },
+        { type: "successStory" },
+        { type: "service" },
+      ],
+    }),
+    defineField({
+      name: "spotlightEyebrow",
+      title: "Spotlight label",
+      description: 'Small label above the spotlight, e.g. "Editor\'s pick" or "Featured this week". Defaults to "Featured".',
+      type: "string",
+    }),
+    defineField({
+      name: "spotlightBlurb",
+      title: "Spotlight blurb (optional)",
+      description:
+        "A custom one-line description shown with the spotlight. Leave empty to use the item's own description.",
+      type: "text",
+      rows: 2,
+    }),
+    defineField({
       name: "newsletter",
       title: "Newsletter section",
       type: "object",

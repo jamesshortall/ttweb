@@ -18,6 +18,17 @@ export const homeSettingsQuery = /* groq */ `
   heroHeadline,
   heroSubheadline,
   estimatedTravelValue,
+  spotlightEyebrow,
+  spotlightBlurb,
+  "spotlight": spotlight->{
+    _type,
+    "title": coalesce(title, name),
+    "summary": coalesce(description, summary),
+    "slug": slug.current,
+    collection,
+    href,
+    "fileUrl": file.asset->url
+  },
   "newsletter": newsletter {
     mode,
     heading,

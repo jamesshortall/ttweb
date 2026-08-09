@@ -26,6 +26,7 @@ import { PhotoMarquee } from "@/components/marketing/PhotoMarquee";
 import { NewsletterSection } from "@/components/marketing/NewsletterSection";
 import { ConsultationCTA } from "@/components/marketing/ConsultationCTA";
 import { TestimonialHighlights } from "@/components/marketing/TestimonialHighlights";
+import { HomepageSpotlight } from "@/components/marketing/HomepageSpotlight";
 import { ArticleCard } from "@/components/marketing/ArticleCard";
 import { RedemptionCard } from "@/components/marketing/RedemptionCard";
 import { BlogCards, BlogFallbackCard, toBlogCards } from "@/components/marketing/BlogCards";
@@ -149,6 +150,8 @@ export default async function HomePage() {
       />
 
       <StatsSection stats={stats} />
+
+      <HomepageSpotlight spotlight={settings.spotlight} />
 
       {/* Editorial intro */}
       <section aria-labelledby="intro-heading" className="bg-porcelain-50 py-24">
