@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { RotatingImage } from "@/components/media/RotatingImage";
-import { siteConfig } from "@/lib/site-config";
 import type { RotatingImageItem } from "@/lib/cms/types";
 
 interface HomeHeroProps {
@@ -39,8 +38,8 @@ export function HomeHero({ headline, subheadline, images }: HomeHeroProps) {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <ButtonLink href={siteConfig.cardmasterUrl} external size="lg">
-              Start Using the Free App
+            <ButtonLink href="/apps" size="lg">
+              Start Using Our Free Apps
             </ButtonLink>
             <ButtonLink href="/services" variant="inverse" size="lg">
               Get a Points Strategy
