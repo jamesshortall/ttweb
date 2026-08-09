@@ -148,12 +148,33 @@ export interface NewsletterSettings {
   topics: string[];
 }
 
+/**
+ * A single homepage spotlight, normalized from a Sanity reference to an
+ * existing article, resource, success story, or service. Null when nothing is
+ * selected — the homepage then renders no spotlight (never invented).
+ */
+export interface HomepageSpotlight {
+  /** Small label above the card, e.g. "Featured" or "Editor's pick". */
+  eyebrow: string;
+  title: string;
+  /** Custom blurb, or the item's own description. May be empty. */
+  blurb: string;
+  /** Resolved link to the item. */
+  href: string;
+  /** True when the link opens in a new tab (a PDF or external resource). */
+  external: boolean;
+  /** Short type tag, e.g. "Article", "Guide (PDF)", "Service". */
+  kindLabel: string;
+}
+
 export interface HomepageSettings {
   heroHeadline: string;
   heroSubheadline: string;
   /** Null until Jim finalizes the estimated-travel-value statistic. */
   estimatedTravelValue: string | null;
   newsletter: NewsletterSettings;
+  /** The chosen homepage spotlight, or null when none is selected. */
+  spotlight?: HomepageSpotlight | null;
 }
 
 /**

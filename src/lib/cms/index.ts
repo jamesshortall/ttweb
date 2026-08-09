@@ -7,6 +7,7 @@ import type {
   Faq,
   FeaturedBlogPost,
   HomepageSettings,
+  HomepageSpotlight,
   Resource,
   RotatingImageCollection,
   Service,
@@ -53,17 +54,94 @@ export async function getStats(): Promise<SiteStat[]> {
   return fromCms(() => sanityClient()!.fetch<SiteStat[]>(q.statsQuery), fallbackStats);
 }
 
+/** Raw shape of the dereferenced spotlight, before it is normalized to a link. */
+interface RawSpotlight {
+  _type: string;
+  title?: string;
+  summary?: string;
+  slug?: string;
+  collection?: "points-101" | "tips";
+  href?: string;
+  fileUrl?: string;
+}
+
+interface RawHomeSettings {
+  heroHeadline?: string;
+  heroSubheadline?: string;
+  estimatedTravelValue?: string | null;
+  spotlightEyebrow?: string;
+  spotlightBlurb?: string;
+  spotlight?: RawSpotlight | null;
+  newsletter?: Partial<HomepageSettings["newsletter"]>;
+}
+
+/**
+ * Turn the referenced document into a homepage spotlight with a resolved link.
+ * Returns null when nothing is selected or the target can't be linked, so the
+ * homepage simply renders no spotlight.
+ */
+function normalizeSpotlight(raw: RawHomeSettings | null): HomepageSpotlight | null {
+  const s = raw?.spotlight;
+  if (!s?.title) return null;
+
+  let href: string | undefined;
+  let external = false;
+  let kindLabel = "Featured";
+
+  switch (s._type) {
+    case "article":
+      if (!s.slug) return null;
+      href =
+        s.collection === "tips"
+          ? `/tips-and-strategies/${s.slug}`
+          : `/points-and-miles-101/${s.slug}`;
+      kindLabel = "Article";
+      break;
+    case "resource":
+      // An uploaded PDF (opens in a new tab) or the resource's own link.
+      href = s.fileUrl ?? s.href ?? undefined;
+      external = true;
+      kindLabel = s.fileUrl ? "Guide (PDF)" : "Resource";
+      break;
+    case "successStory":
+      // Success stories have no per-item page; link to the collection.
+      href = "/success-stories";
+      kindLabel = "Success story";
+      break;
+    case "service":
+      if (!s.slug) return null;
+      href = `/services/${s.slug}`;
+      kindLabel = "Service";
+      break;
+    default:
+      return null;
+  }
+
+  if (!href) return null;
+
+  return {
+    eyebrow: raw?.spotlightEyebrow?.trim() || "Featured",
+    title: s.title,
+    blurb: raw?.spotlightBlurb?.trim() || s.summary?.trim() || "",
+    href,
+    external,
+    kindLabel,
+  };
+}
+
 export async function getHomepageSettings(): Promise<HomepageSettings> {
-  const settings = await fromCms(
-    () => sanityClient()!.fetch<HomepageSettings | null>(q.homeSettingsQuery),
-    fallbackHomepageSettings,
+  const raw = await fromCms<RawHomeSettings | null>(
+    () => sanityClient()!.fetch<RawHomeSettings | null>(q.homeSettingsQuery),
+    null,
     (value) => !!value?.heroHeadline,
   );
   // Guarantee newsletter settings even for partially filled CMS documents.
   return {
-    ...fallbackHomepageSettings,
-    ...settings,
-    newsletter: { ...fallbackHomepageSettings.newsletter, ...settings.newsletter },
+    heroHeadline: raw?.heroHeadline ?? fallbackHomepageSettings.heroHeadline,
+    heroSubheadline: raw?.heroSubheadline ?? fallbackHomepageSettings.heroSubheadline,
+    estimatedTravelValue: raw?.estimatedTravelValue ?? fallbackHomepageSettings.estimatedTravelValue,
+    newsletter: { ...fallbackHomepageSettings.newsletter, ...(raw?.newsletter ?? {}) },
+    spotlight: normalizeSpotlight(raw),
   };
 }
 
