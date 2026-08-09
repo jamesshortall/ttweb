@@ -76,6 +76,8 @@ export interface Resource {
   category: string;
   kind: ResourceKind;
   href: string;
+  /** CDN URL of a PDF uploaded to Sanity; when present it is the link target. */
+  fileUrl?: string;
 }
 
 export interface Faq {
