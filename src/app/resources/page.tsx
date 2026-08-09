@@ -35,6 +35,11 @@ function PdfTag() {
 function ResourceCard({ resource }: { resource: Resource }) {
   const download = isDownload(resource);
   const external = isExternal(resource);
+  // The link target: uploaded PDF (downloads) or the typed link. May be
+  // absent for a misconfigured CMS entry — in that case we render a plain,
+  // unlinked card rather than pass a nullish href to <Link>, which would
+  // crash prerendering.
+  const target = download ? downloadHref(resource) : resource.href;
 
   const inner = (
     <>
@@ -49,37 +54,40 @@ function ResourceCard({ resource }: { resource: Resource }) {
         ) : null}
       </div>
       <p className="mt-2 text-sm leading-relaxed text-ink/75">{resource.description}</p>
-      {download ? (
-        <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-sunset-700 px-4 py-2 text-sm font-semibold text-white transition-colors group-hover:bg-sunset-800">
-          Download Now
-          <span aria-hidden="true">↓</span>
-        </span>
-      ) : (
-        <span className="mt-4 block text-sm font-semibold text-sunset-700 group-hover:underline">
-          {external ? "Open (leaves this site) →" : "Read →"}
-        </span>
-      )}
+      {target ? (
+        download ? (
+          <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-sunset-700 px-4 py-2 text-sm font-semibold text-white transition-colors group-hover:bg-sunset-800">
+            Download Now
+            <span aria-hidden="true">↓</span>
+          </span>
+        ) : (
+          <span className="mt-4 block text-sm font-semibold text-sunset-700 group-hover:underline">
+            {external ? "Open (leaves this site) →" : "Read →"}
+          </span>
+        )
+      ) : null}
     </>
   );
 
   const classes =
     "group block h-full rounded-2xl border border-lagoon-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg";
 
+  // No usable link/file — show the card without making it a link.
+  if (!target) {
+    return <div className={classes}>{inner}</div>;
+  }
+
   // Downloads and external links leave the site / open the file in a new tab.
-  if (download) {
+  if (download || external) {
     return (
-      <a href={downloadHref(resource)} target="_blank" rel="noopener noreferrer" className={classes}>
+      <a href={target} target="_blank" rel="noopener noreferrer" className={classes}>
         {inner}
       </a>
     );
   }
 
-  return external ? (
-    <a href={resource.href} target="_blank" rel="noopener noreferrer" className={classes}>
-      {inner}
-    </a>
-  ) : (
-    <Link href={resource.href} className={classes}>
+  return (
+    <Link href={target} className={classes}>
       {inner}
     </Link>
   );
