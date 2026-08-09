@@ -75,7 +75,8 @@ export interface Resource {
   description: string;
   category: string;
   kind: ResourceKind;
-  href: string;
+  /** Optional: a resource may instead carry an uploaded PDF (see fileUrl). */
+  href?: string;
   /** CDN URL of a PDF uploaded to Sanity; when present it is the link target. */
   fileUrl?: string;
 }
