@@ -162,24 +162,30 @@ const serviceCards: ServiceCard[] = [
 
 interface AwardTier {
   where: string;
-  first: string;
-  additional: string;
+  /** One price per reservation — everyone on that record is included. */
+  price: string;
 }
 
 const awardTiers: AwardTier[] = [
-  { where: "Domestic, Mexico, Caribbean", first: "$95", additional: "$75" },
-  { where: "International — economy / premium economy", first: "$150", additional: "$125" },
-  { where: "International — business or first", first: "$250", additional: "$200" },
+  { where: "Domestic, Mexico, Caribbean", price: "$95" },
+  { where: "International — economy / premium economy", price: "$150" },
+  { where: "International — business or first", price: "$250" },
 ];
 
 const awardSteps = [
   `${RESEARCH_FEE} research fee upfront. That buys the search itself, and I keep it whether or not the seats exist.`,
   "I search, and I watch — space opens and closes constantly.",
   "When I find it, you get written instructions and a heads-up on the clock.",
-  "You book. The per-traveler fee is due then.",
+  "You book. The booking fee is due then.",
 ];
 
 const awardCaption = `Departing within 10 days: add ${RUSH_FEE}. Multi-city, stopovers, and round-the-world quoted individually.`;
+
+/** The differentiator: one price per reservation, however many people are on it. */
+const noPerTravelerFee = {
+  heading: "No per-traveler fees.",
+  body: "Everyone on the same reservation — booked from one points account — is included. Finding four seats on one record is the same work as finding one, so you pay once. Most services in this space charge per person. If award space has to be split across separate reservations, each one is its own booking fee, and I'll tell you before I start.",
+};
 
 const faqs = [
   {
@@ -200,7 +206,12 @@ const faqs = [
   {
     question: "What if you find the seats but I change my mind?",
     answer:
-      "The per-traveler fee is due once I deliver instructions for space matching what we agreed on. That's the finding, not the flying.",
+      "The booking fee is due once I deliver instructions for space matching what we agreed on. That's the finding, not the flying.",
+  },
+  {
+    question: "Do you charge extra for additional travelers?",
+    answer:
+      "No. As long as everyone is on the same reservation, booked from one points account, it's one price — finding four seats on one record is the same work as finding one. Most services in this space charge per person; I don't. If award space has to be split across separate reservations, each one is its own booking fee, and I'll tell you before I start.",
   },
   {
     question: "Can you guarantee a specific flight?",
@@ -299,7 +310,7 @@ function ServiceCardView({ card }: { card: ServiceCard }) {
 }
 
 export default function PricingPage() {
-  const awardHeadline = `from ${RESEARCH_FEE} + ${awardTiers[0]!.first}`;
+  const awardHeadline = `from ${RESEARCH_FEE} + ${awardTiers[0]!.price}`;
 
   return (
     <>
@@ -404,19 +415,18 @@ export default function PricingPage() {
             ))}
           </ol>
 
-          <p className="mt-10 font-semibold text-lagoon-900">Per traveler, on top of the research fee:</p>
+          <p className="mt-10 font-semibold text-lagoon-900">
+            One price per reservation, on top of the research fee:
+          </p>
           <div className="mt-4 overflow-x-auto rounded-2xl border border-lagoon-100">
-            <table className="w-full min-w-[36rem] border-collapse text-left">
+            <table className="w-full min-w-[28rem] border-collapse text-left">
               <thead>
                 <tr className="bg-lagoon-50 text-sm text-lagoon-950">
                   <th scope="col" className="px-5 py-3 font-semibold">
                     Where you&apos;re going
                   </th>
                   <th scope="col" className="px-5 py-3 font-semibold">
-                    First traveler
-                  </th>
-                  <th scope="col" className="px-5 py-3 font-semibold">
-                    Each additional
+                    Price per reservation
                   </th>
                 </tr>
               </thead>
@@ -427,10 +437,7 @@ export default function PricingPage() {
                       {tier.where}
                     </th>
                     <td className="px-5 py-4 font-display text-lg font-bold text-navy-900">
-                      {tier.first}
-                    </td>
-                    <td className="px-5 py-4 font-display text-lg font-bold text-navy-900">
-                      {tier.additional}
+                      {tier.price}
                     </td>
                   </tr>
                 ))}
@@ -438,6 +445,13 @@ export default function PricingPage() {
             </table>
           </div>
           <p className="mt-4 text-sm italic text-ink/60">{awardCaption}</p>
+
+          <div className="mt-6 rounded-2xl border-2 border-lagoon-800 bg-lagoon-50/50 p-6">
+            <p className="font-display text-lg font-bold text-lagoon-950">
+              {noPerTravelerFee.heading}
+            </p>
+            <p className="mt-2 leading-relaxed text-ink/80">{noPerTravelerFee.body}</p>
+          </div>
 
           <div className="mt-8">
             <CalendlyButton label="Start a Search" />
