@@ -2,13 +2,14 @@ import type { Faq } from "@/lib/cms/types";
 
 /**
  * FAQ list built on native <details>/<summary> — keyboard accessible and
- * screen-reader friendly with zero JavaScript.
+ * screen-reader friendly with zero JavaScript. Pass a shared `name` to make
+ * the group exclusive (only one item open at a time).
  */
-export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
+export function FaqAccordion({ faqs, name }: { faqs: Faq[]; name?: string }) {
   return (
     <div className="divide-y divide-lagoon-100 rounded-2xl border border-lagoon-100 bg-white">
       {faqs.map((faq) => (
-        <details key={faq.question} className="group px-6 py-4 open:bg-lagoon-50/40">
+        <details key={faq.question} name={name} className="group px-6 py-4 open:bg-lagoon-50/40">
           <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-1 font-semibold text-lagoon-950 [&::-webkit-details-marker]:hidden">
             <span>{faq.question}</span>
             <span
