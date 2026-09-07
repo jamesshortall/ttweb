@@ -184,7 +184,10 @@ const awardCaption = `Departing within 10 days: add ${RUSH_FEE}. Multi-city, sto
 /** The differentiator: one price per reservation, however many people are on it. */
 const noPerTravelerFee = {
   heading: "No per-traveler fees.",
-  body: "Everyone on the same reservation — booked from one points account — is included. Finding four seats on one record is the same work as finding one, so you pay once. Most services in this space charge per person. If award space has to be split across separate reservations, each one is its own booking fee, and I'll tell you before I start.",
+  body: [
+    "Everyone on the same reservation — booked from one points account — is included. Finding two seats on one record is the same work as finding one, so you pay once. Most services in this space charge per person.",
+    "Being straight with you: award space for more than two travelers is genuinely hard to find. Two is the sweet spot. I'll always try for more, and I won't charge extra if I get them — but if the space has to be split across separate reservations, each one is its own booking fee, and I'll tell you before I start.",
+  ],
 };
 
 const faqs = [
@@ -211,7 +214,7 @@ const faqs = [
   {
     question: "Do you charge extra for additional travelers?",
     answer:
-      "No. As long as everyone is on the same reservation, booked from one points account, it's one price — finding four seats on one record is the same work as finding one. Most services in this space charge per person; I don't. If award space has to be split across separate reservations, each one is its own booking fee, and I'll tell you before I start.",
+      "No. As long as everyone is on the same reservation, booked from one points account, it's one price — finding two seats on one record is the same work as finding one. Most services in this space charge per person; I don't. Being straight with you: award space for more than two travelers is genuinely hard to find. Two is the sweet spot. I'll always try for more, and I won't charge extra if I get them — but if the space has to be split across separate reservations, each one is its own booking fee, and I'll tell you before I start.",
   },
   {
     question: "Can you guarantee a specific flight?",
@@ -450,7 +453,11 @@ export default function PricingPage() {
             <p className="font-display text-lg font-bold text-lagoon-950">
               {noPerTravelerFee.heading}
             </p>
-            <p className="mt-2 leading-relaxed text-ink/80">{noPerTravelerFee.body}</p>
+            {noPerTravelerFee.body.map((para) => (
+              <p key={para} className="mt-2 leading-relaxed text-ink/80">
+                {para}
+              </p>
+            ))}
           </div>
 
           <div className="mt-8">
