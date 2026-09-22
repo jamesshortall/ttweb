@@ -28,6 +28,8 @@ export async function storeContactSubmission(data: ContactFormData): Promise<boo
       category: data.category,
       message: data.message,
       preferred_contact: data.preferredContact,
+      phone: data.phone || null,
+      sms_consent: data.smsConsent ?? false,
     });
     if (error) {
       console.error(`[contact] Supabase storage failed: ${error.code ?? "unknown error"}`);

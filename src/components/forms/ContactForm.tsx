@@ -51,6 +51,9 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
       category: validCategory,
       preferredContact: "email",
       website: "",
+      phone: "",
+      // Opt-in must start unchecked — never pre-consent a visitor to SMS.
+      smsConsent: false,
     },
   });
 
@@ -83,7 +86,13 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
         return;
       }
       setStatus("success");
-      reset({ category: validCategory, preferredContact: "email", website: "" });
+      reset({
+        category: validCategory,
+        preferredContact: "email",
+        website: "",
+        phone: "",
+        smsConsent: false,
+      });
     } catch {
       setStatus("error");
       setServerMessage("We couldn't reach the server. Please check your connection and try again.");
@@ -177,6 +186,27 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
       </div>
 
       <div>
+        <label htmlFor="contact-phone" className="mb-1.5 block font-semibold text-lagoon-950">
+          Mobile number <span className="font-normal text-ink/70">(optional)</span>
+        </label>
+        <p id="contact-phone-hint" className="mb-1.5 text-sm text-ink/70">
+          Only needed if you&apos;d like a reply by text.
+        </p>
+        <input
+          id="contact-phone"
+          type="tel"
+          autoComplete="tel"
+          aria-invalid={!!errors.phone}
+          aria-describedby={
+            errors.phone ? "contact-phone-hint contact-phone-error" : "contact-phone-hint"
+          }
+          className={inputClasses}
+          {...register("phone")}
+        />
+        <FieldError id="contact-phone-error" message={errors.phone?.message} />
+      </div>
+
+      <div>
         <label htmlFor="contact-category" className="mb-1.5 block font-semibold text-lagoon-950">
           What can Jim help you with?
         </label>
@@ -254,6 +284,34 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
           autoComplete="off"
           {...register("website")}
         />
+      </div>
+
+      <div>
+        <label className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            aria-describedby="contact-sms-disclosure"
+            className="mt-1 h-5 w-5 shrink-0 accent-lagoon-700"
+            {...register("smsConsent")}
+          />
+          <span className="text-sm font-medium leading-relaxed text-ink/80">
+            Text me about my inquiry.
+          </span>
+        </label>
+        <p id="contact-sms-disclosure" className="mt-2 pl-8 text-sm leading-relaxed text-ink/70">
+          By checking this box, you agree to receive text messages from Travel Technician at the
+          mobile number provided, about your inquiry and scheduling. Consent is not a condition of
+          purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt
+          out or HELP for help. See our{" "}
+          <Link href="/privacy-policy" className="font-medium text-lagoon-700 underline">
+            Privacy Policy
+          </Link>{" "}
+          and{" "}
+          <Link href="/terms-of-use" className="font-medium text-lagoon-700 underline">
+            Terms of Service
+          </Link>
+          .
+        </p>
       </div>
 
       <div>
