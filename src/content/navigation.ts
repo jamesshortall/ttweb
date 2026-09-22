@@ -73,6 +73,7 @@ export const footerCompanyLinks: NavItem[] = [
   { label: "Apps", href: "/apps" },
   { label: "CardMaster", href: "/cardmaster" },
   { label: "Contact", href: "/contact" },
+  { label: "Text Updates", href: "/sms-opt-in" },
 ];
 
 export const footerLegalLinks: NavItem[] = [
