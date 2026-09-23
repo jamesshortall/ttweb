@@ -44,6 +44,18 @@ export const contactFormSchema = z.object({
     .min(20, "Please add a little more detail (at least 20 characters).")
     .max(5000, "Message must be 5,000 characters or fewer."),
   preferredContact: z.enum(["email", "either", "no-preference"]).optional().default("email"),
+  /** Optional mobile number. Required only when SMS consent is given. */
+  phone: z
+    .string()
+    .trim()
+    .max(32, "Phone number must be 32 characters or fewer.")
+    .optional()
+    .or(z.literal("")),
+  /**
+   * Explicit opt-in to text messages, unchecked by default. Recorded as the
+   * consent of record for A2P 10DLC messaging.
+   */
+  smsConsent: z.boolean().optional().default(false),
   consent: z.literal(true, {
     errorMap: () => ({
       message: "Please confirm you agree to be contacted about your inquiry.",
@@ -56,7 +68,17 @@ export const contactFormSchema = z.object({
   website: z.string().max(0, "Invalid submission.").optional().or(z.literal("")),
   /** Millisecond timestamp when the form rendered — used for a minimum fill time. */
   startedAt: z.coerce.number().int().positive().optional(),
-});
+})
+  .superRefine((data, ctx) => {
+    // You cannot consent to texts without giving a number to text.
+    if (data.smsConsent && !data.phone) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["phone"],
+        message: "Add your mobile number so we can text you, or uncheck the text-message box.",
+      });
+    }
+  });
 
 export type ContactFormInput = z.input<typeof contactFormSchema>;
 export type ContactFormData = z.output<typeof contactFormSchema>;

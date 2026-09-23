@@ -56,6 +56,25 @@ describe("contactFormSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("defaults smsConsent to false when omitted", () => {
+    const result = contactFormSchema.parse(validSubmission);
+    expect(result.smsConsent).toBe(false);
+  });
+
+  it("rejects SMS consent without a phone number", () => {
+    const result = contactFormSchema.safeParse({ ...validSubmission, smsConsent: true });
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts SMS consent together with a phone number", () => {
+    const result = contactFormSchema.safeParse({
+      ...validSubmission,
+      smsConsent: true,
+      phone: "512-555-1234",
+    });
+    expect(result.success).toBe(true);
+  });
+
   it("covers all nine inquiry categories with labels", () => {
     expect(inquiryCategories).toHaveLength(9);
     for (const category of inquiryCategories) {

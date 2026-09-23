@@ -36,7 +36,7 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "Information we collect",
       paragraphs: [
-        "We collect information you choose to provide through the contact form: your name, email address, inquiry category, message, and optional contact preference. We do not require an account to use this website.",
+        "We collect information you choose to provide through the contact form: your name, email address, inquiry category, message, optional contact preference, and — only if you choose to give them — your mobile number and your consent to receive text messages. We do not require an account to use this website.",
         "If nonessential analytics are enabled and you consent, we collect aggregate usage information (such as pages visited and approximate region) through a configurable analytics provider. Analytics are disabled until configured and, where required, until you consent.",
       ],
     },
@@ -76,9 +76,18 @@ export const privacyPolicy: LegalDocument = {
       ],
     },
     {
+      heading: "Text messages (SMS)",
+      paragraphs: [
+        "Travel Technician offers an optional text-message program. You opt in by entering your mobile number on our contact form and checking the text-message consent box, which is never checked for you. Providing a mobile number and consenting to texts is optional and is never a condition of any purchase.",
+        "When you opt in, we collect your mobile number, the fact and time of your consent, and the messages exchanged with you. We use them only to reply to your inquiry, arrange scheduling, and keep the record of your consent that mobile carriers require us to be able to produce.",
+        "We do not sell or share your SMS opt-in data or personal information with third parties for marketing purposes. Your SMS opt-in data and consent are not shared with any third party or affiliate for marketing purposes. We disclose your mobile number only to the messaging provider that delivers the messages for us, solely so those messages can be sent.",
+        "You can opt out at any time by replying STOP to any message, and you can reach a human by replying HELP or emailing jim@traveltechnician.info. Message frequency varies. Message and data rates may apply.",
+      ],
+    },
+    {
       heading: "Your choices and contact",
       paragraphs: [
-        "You may request a copy or deletion of the personal information you submitted through this site by contacting jim@traveltechnician.info. You can withdraw analytics consent at any time via Cookie Preferences.",
+        "You may request a copy or deletion of the personal information you submitted through this site, including your mobile number and SMS consent record, by contacting jim@traveltechnician.info. You can withdraw analytics consent at any time via Cookie Preferences.",
       ],
     },
   ],
@@ -86,12 +95,23 @@ export const privacyPolicy: LegalDocument = {
 
 export const termsOfUse: LegalDocument = {
   slug: "terms-of-use",
-  title: "Terms of Use",
+  title: "Terms of Service",
   description: "The terms that govern use of www.traveltechnician.info.",
   lastUpdated: LAST_UPDATED,
   intro:
-    "These Terms of Use govern your use of www.traveltechnician.info, operated by Travel Technician. By using the site you accept these terms. This is a placeholder draft prepared for review by legal counsel before launch.",
+    "These Terms of Service govern your use of www.traveltechnician.info, operated by Travel Technician. By using the site you accept these terms. This is a placeholder draft prepared for review by legal counsel before launch.",
   sections: [
+    {
+      heading: "SMS Terms",
+      paragraphs: [
+        "Travel Technician operates an optional text-message (SMS) program. You opt in by entering your mobile number on the Travel Technician contact form and checking the text-message consent box. Consent is not a condition of any purchase.",
+        "Program description: Travel Technician sends messages about the inquiry you submitted, scheduling, and appointment reminders. Message frequency varies.",
+        "Message and data rates may apply.",
+        "To stop receiving messages, reply STOP to any message; you will get one confirmation and nothing after that. For help, reply HELP or email jim@traveltechnician.info.",
+        "Carriers are not liable for delayed or undelivered messages. Supported carriers may change without notice.",
+        "For how Travel Technician handles the information collected through this program, see the Privacy Policy.",
+      ],
+    },
     {
       heading: "Educational purpose",
       paragraphs: [

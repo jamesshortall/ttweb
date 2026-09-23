@@ -77,7 +77,7 @@ export const footerCompanyLinks: NavItem[] = [
 
 export const footerLegalLinks: NavItem[] = [
   { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms of Use", href: "/terms-of-use" },
+  { label: "Terms of Service", href: "/terms-of-use" },
   { label: "Disclaimer", href: "/disclaimer" },
   { label: "Accessibility Statement", href: "/accessibility" },
 ];

@@ -24,7 +24,7 @@ async function fillValidForm(user: ReturnType<typeof userEvent.setup>) {
     screen.getByLabelText("Message"),
     "I have 200,000 points and no idea how to use them for a trip to Japan.",
   );
-  await user.click(screen.getByRole("checkbox"));
+  await user.click(screen.getByRole("checkbox", { name: /I agree that Travel Technician/ }));
 }
 
 describe("ContactForm", () => {
@@ -79,6 +79,50 @@ describe("ContactForm", () => {
       category: "free-consultation",
       consent: true,
     });
+  });
+
+  it("leaves the SMS opt-in unchecked by default", () => {
+    render(<ContactForm />);
+    const smsOptIn = screen.getByRole("checkbox", { name: /Text me about my inquiry/ });
+    expect(smsOptIn).not.toBeChecked();
+  });
+
+  it("discloses message and data rates next to the SMS opt-in", () => {
+    render(<ContactForm />);
+    expect(screen.getByText(/Message and data rates may apply/)).toBeInTheDocument();
+    expect(screen.getByText(/Reply STOP to opt/)).toBeInTheDocument();
+  });
+
+  it("rejects SMS consent without a mobile number", async () => {
+    const fetchMock = mockFetchOnce({ ok: true });
+    const user = userEvent.setup();
+    render(<ContactForm />);
+
+    await fillValidForm(user);
+    await user.click(screen.getByRole("checkbox", { name: /Text me about my inquiry/ }));
+    await user.click(screen.getByRole("button", { name: "Send Message" }));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Add your mobile number so we can text you/),
+      ).toBeInTheDocument();
+    });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("sends the mobile number and SMS consent when opted in", async () => {
+    const fetchMock = mockFetchOnce({ ok: true, body: { ok: true } });
+    const user = userEvent.setup();
+    render(<ContactForm />);
+
+    await fillValidForm(user);
+    await user.type(screen.getByRole("textbox", { name: /Mobile number/ }), "5125551234");
+    await user.click(screen.getByRole("checkbox", { name: /Text me about my inquiry/ }));
+    await user.click(screen.getByRole("button", { name: "Send Message" }));
+
+    await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+    const payload = JSON.parse((fetchMock.mock.calls[0]?.[1] as RequestInit).body as string);
+    expect(payload).toMatchObject({ phone: "5125551234", smsConsent: true });
   });
 
   it("shows the server's failure message when delivery fails", async () => {

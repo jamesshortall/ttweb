@@ -167,6 +167,8 @@ export async function sendContactEmail(data: ContactFormData): Promise<boolean> 
       ``,
       `Name: ${data.name}`,
       `Email: ${data.email}`,
+      `Phone: ${data.phone || "(not provided)"}`,
+      `SMS consent: ${data.smsConsent ? "YES — opted in to text messages" : "no"}`,
       `Category: ${categoryLabel(data.category)}`,
       `Preferred contact: ${data.preferredContact}`,
       ``,
