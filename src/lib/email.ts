@@ -180,6 +180,43 @@ export async function sendContactEmail(data: ContactFormData): Promise<boolean> 
 }
 
 /**
+ * Notify Jim that someone opted in to text messages. This is the human-readable
+ * half of the consent record; the durable half is the sms_optins table.
+ */
+export async function sendSmsOptInNotification(details: {
+  name?: string;
+  phone: string;
+  consentText: string;
+  welcomeSent: boolean;
+}): Promise<boolean> {
+  const env = serverEnv();
+  const driver = resolveDriver();
+
+  if (!driver || !env.CONTACT_TO_EMAIL || !env.EMAIL_FROM_ADDRESS) {
+    console.info("[sms-optin] Email provider not configured; opt-in recorded without notification.");
+    return false;
+  }
+
+  await driver.send({
+    to: env.CONTACT_TO_EMAIL,
+    from: env.EMAIL_FROM_ADDRESS,
+    subject: "[Travel Technician] New SMS opt-in",
+    text: [
+      `Someone opted in to text messages on the Travel Technician website.`,
+      ``,
+      `Name: ${details.name || "(not provided)"}`,
+      `Mobile: ${details.phone}`,
+      `Welcome message sent: ${details.welcomeSent ? "yes" : "no (Twilio not configured)"}`,
+      `Opted in at: ${new Date().toISOString()}`,
+      ``,
+      `They agreed to:`,
+      details.consentText,
+    ].join("\n"),
+  });
+  return true;
+}
+
+/**
  * Send the sender a courtesy auto-reply confirming their message arrived.
  * Best-effort: returns false (without throwing) when no provider is
  * configured, so the caller can treat delivery failures as non-fatal — the

@@ -45,6 +45,10 @@ const serverEnvSchema = z
     SMTP_USER: optionalString,
     SMTP_PASSWORD: optionalString,
     SMTP_SECURE: optionalBool,
+    // Twilio (outbound SMS for the opt-in confirmation message).
+    TWILIO_ACCOUNT_SID: optionalString,
+    TWILIO_AUTH_TOKEN: optionalString,
+    TWILIO_FROM_NUMBER: optionalString,
     NEXT_PUBLIC_ANALYTICS_PROVIDER: z.preprocess(
       emptyToUndefined,
       z.enum(["plausible", "google"]).optional(),
@@ -93,6 +97,16 @@ const serverEnvSchema = z
         code: z.ZodIssueCode.custom,
         path: ["POSTMARK_SERVER_TOKEN"],
         message: "POSTMARK_SERVER_TOKEN is required when EMAIL_PROVIDER=postmark",
+      });
+    }
+    // Twilio is all-or-nothing: a partial config would fail at send time.
+    const twilio = [env.TWILIO_ACCOUNT_SID, env.TWILIO_AUTH_TOKEN, env.TWILIO_FROM_NUMBER];
+    if (twilio.some(Boolean) && !twilio.every(Boolean)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["TWILIO_ACCOUNT_SID"],
+        message:
+          "TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN and TWILIO_FROM_NUMBER must be set together",
       });
     }
     if (
