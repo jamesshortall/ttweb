@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { siteConfig } from "@/lib/site-config";
 import { Container } from "@/components/ui/Container";
@@ -78,6 +79,25 @@ export default async function ContactPage({ searchParams }: Props) {
                     user={siteConfig.contactEmail.user}
                     domain={siteConfig.contactEmail.domain}
                   />
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-lagoon-100 bg-white p-7">
+                <h2 className="font-display text-lg font-bold text-lagoon-950">Prefer a text?</h2>
+                <p className="mt-2 text-sm leading-relaxed text-ink/75">
+                  Get replies and scheduling by text instead of email. Opting in takes a moment, and
+                  you can stop any time by replying STOP.
+                </p>
+                <p className="mt-4">
+                  <Link
+                    href="/sms-opt-in"
+                    className="font-semibold text-lagoon-700 underline hover:text-lagoon-900"
+                  >
+                    Sign up for text updates
+                  </Link>
+                </p>
+                <p className="mt-3 text-xs leading-relaxed text-ink/55">
+                  Message frequency varies. Message and data rates may apply.
                 </p>
               </div>
 
