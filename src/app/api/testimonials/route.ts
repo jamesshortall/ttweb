@@ -72,12 +72,14 @@ export async function POST(request: NextRequest) {
 
   const data = parsed.data;
 
-  // Spam heuristics: honeypot content or superhuman fill speed -> pretend
-  // success so bots learn nothing, store nothing.
-  const tooFast =
-    typeof data.startedAt === "number" && Date.now() - data.startedAt < MINIMUM_FILL_MS;
-  if ((data.website && data.website.length > 0) || tooFast) {
+  // Honeypot only — a human never fills a field they cannot see. Fill speed is
+  // weak evidence (autofill, password managers, assistive tech), so it is noted
+  // rather than used to discard a testimonial the writer was thanked for.
+  if (data.website && data.website.length > 0) {
     return NextResponse.json({ ok: true });
+  }
+  if (typeof data.startedAt === "number" && Date.now() - data.startedAt < MINIMUM_FILL_MS) {
+    console.info("[testimonials] Submission filled unusually fast; storing anyway.");
   }
 
   const client = writeClient();
