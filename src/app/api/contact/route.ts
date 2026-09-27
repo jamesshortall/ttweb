@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { contactFormSchema } from "@/lib/contact-schema";
-import { sendContactConfirmation, sendContactEmail } from "@/lib/email";
+import { describeEmailError, sendContactConfirmation, sendContactEmail } from "@/lib/email";
 import { storeContactSubmission } from "@/lib/contact-storage";
 import { createRateLimiter } from "@/lib/rate-limit";
 
@@ -49,12 +49,17 @@ export async function POST(request: NextRequest) {
 
   const data = parsed.data;
 
-  // Spam heuristics: honeypot content or superhuman fill speed → pretend
-  // success so bots learn nothing, deliver nothing.
-  const tooFast =
-    typeof data.startedAt === "number" && Date.now() - data.startedAt < MINIMUM_FILL_MS;
-  if ((data.website && data.website.length > 0) || tooFast) {
+  // The honeypot is the only signal trusted to discard a submission: a human
+  // never fills a field they cannot see. Bots learn nothing from the success.
+  if (data.website && data.website.length > 0) {
     return NextResponse.json({ ok: true });
+  }
+
+  // Fill speed is weak evidence — browser autofill, password managers and
+  // assistive tech all submit fast. It is noted, never used to drop a message:
+  // silently discarding one told the sender "Message sent" and lost it.
+  if (typeof data.startedAt === "number" && Date.now() - data.startedAt < MINIMUM_FILL_MS) {
+    console.info("[contact] Submission filled unusually fast; delivering anyway.");
   }
 
   try {
@@ -64,7 +69,7 @@ export async function POST(request: NextRequest) {
     try {
       await sendContactConfirmation(data);
     } catch (error) {
-      console.error(`[contact] Confirmation auto-reply failed: ${(error as Error).name}`);
+      console.error(`[contact] Confirmation auto-reply failed: ${describeEmailError(error)}`);
     }
     if (!emailed && process.env.NODE_ENV === "production" && process.env.EMAIL_PROVIDER) {
       // A provider is configured but delivery failed upstream of throwing.
@@ -76,7 +81,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     // Log the failure class only — never form content.
-    console.error(`[contact] Delivery failed: ${(error as Error).name}`);
+    console.error(`[contact] Delivery failed: ${describeEmailError(error)}`);
     return NextResponse.json(
       { message: "We couldn't send your message right now. Please try again shortly." },
       { status: 502 },

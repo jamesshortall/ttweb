@@ -3,7 +3,7 @@ import { smsOptInFormSchema, normalizePhone } from "@/lib/sms-optin-schema";
 import { CONSENT_TEXT } from "@/content/sms-program";
 import { sendWelcomeSms } from "@/lib/sms";
 import { storeSmsOptIn } from "@/lib/sms-optin-storage";
-import { sendSmsOptInNotification } from "@/lib/email";
+import { describeEmailError, sendSmsOptInNotification } from "@/lib/email";
 import { createRateLimiter } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -51,12 +51,13 @@ export async function POST(request: NextRequest) {
 
   const data = parsed.data;
 
-  // Spam heuristics: honeypot content or superhuman fill speed → pretend
-  // success so bots learn nothing, deliver nothing.
-  const tooFast =
-    typeof data.startedAt === "number" && Date.now() - data.startedAt < MINIMUM_FILL_MS;
-  if ((data.website && data.website.length > 0) || tooFast) {
+  // Honeypot only — see the contact route: fill speed must never drop a real
+  // opt-in, which would lose a consent record the subscriber believes exists.
+  if (data.website && data.website.length > 0) {
     return NextResponse.json({ ok: true });
+  }
+  if (typeof data.startedAt === "number" && Date.now() - data.startedAt < MINIMUM_FILL_MS) {
+    console.info("[sms-optin] Opt-in filled unusually fast; recording anyway.");
   }
 
   // The welcome message is the confirmation the subscriber expects, so send it
@@ -77,7 +78,7 @@ export async function POST(request: NextRequest) {
       consentText: CONSENT_TEXT,
       welcomeSent,
     }).catch((error: Error) => {
-      console.error(`[sms-optin] Notification failed: ${error.name}`);
+      console.error(`[sms-optin] Notification failed: ${describeEmailError(error)}`);
       return false;
     }),
   ]);

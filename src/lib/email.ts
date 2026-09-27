@@ -30,6 +30,35 @@ class EmailDeliveryError extends Error {
   }
 }
 
+/** Shape of the diagnostic fields nodemailer and Node attach to SMTP errors. */
+interface SmtpErrorFields {
+  code?: string;
+  responseCode?: number;
+  command?: string;
+  response?: string;
+}
+
+/**
+ * A one-line, log-safe description of why sending failed.
+ *
+ * Carries the pieces that actually identify the fault — the transport error
+ * code, the SMTP status, the failing command, and the server's own reply
+ * (truncated) — none of which contain the submitted message. Logging only
+ * `error.name` yields a bare "Error" for every nodemailer failure, which
+ * cannot be diagnosed.
+ */
+export function describeEmailError(error: unknown): string {
+  if (!(error instanceof Error)) return "unknown error";
+  const { code, responseCode, command, response } = error as Error & SmtpErrorFields;
+  const parts = [error.name];
+  if (code) parts.push(`code=${code}`);
+  if (responseCode) parts.push(`smtp=${responseCode}`);
+  if (command) parts.push(`command=${command}`);
+  if (response) parts.push(`response=${response.replace(/\s+/g, " ").slice(0, 200)}`);
+  else if (error.message) parts.push(`message=${error.message.slice(0, 200)}`);
+  return parts.join(" ");
+}
+
 function resendDriver(apiKey: string): EmailDriver {
   return {
     name: "resend",
