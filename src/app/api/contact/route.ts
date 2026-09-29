@@ -1,7 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { contactFormSchema } from "@/lib/contact-schema";
-import { describeEmailError, sendContactConfirmation, sendContactEmail } from "@/lib/email";
+import { describeDeliveryError, sendContactConfirmation, sendContactEmail } from "@/lib/email";
 import { storeContactSubmission } from "@/lib/contact-storage";
+import { storeSmsOptIn } from "@/lib/sms-optin-storage";
+import { sendWelcomeSms } from "@/lib/sms";
+import { CONSENT_TEXT } from "@/content/sms-program";
 import { createRateLimiter } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -62,6 +65,26 @@ export async function POST(request: NextRequest) {
     console.info("[contact] Submission filled unusually fast; delivering anyway.");
   }
 
+  // Someone who ticked the SMS box consented for real, so honour it here the
+  // same way the opt-in page does: same welcome message, same consent record.
+  // Deliberately independent of the inquiry email — a texting failure must
+  // never fail the submission, and an email failure must not lose the consent.
+  if (data.smsConsent && data.phone) {
+    let welcomeSent = false;
+    try {
+      welcomeSent = await sendWelcomeSms(data.phone);
+    } catch (error) {
+      console.error(`[contact] Welcome text failed: ${describeDeliveryError(error)}`);
+    }
+    await storeSmsOptIn({
+      name: data.name,
+      phone: data.phone,
+      consentText: CONSENT_TEXT,
+      welcomeSent,
+      source: "contact-form",
+    }).catch(() => false);
+  }
+
   try {
     const [emailed] = await Promise.all([sendContactEmail(data), storeContactSubmission(data)]);
     // Courtesy auto-reply to the sender. Best-effort: a failure here must not
@@ -69,7 +92,7 @@ export async function POST(request: NextRequest) {
     try {
       await sendContactConfirmation(data);
     } catch (error) {
-      console.error(`[contact] Confirmation auto-reply failed: ${describeEmailError(error)}`);
+      console.error(`[contact] Confirmation auto-reply failed: ${describeDeliveryError(error)}`);
     }
     if (!emailed && process.env.NODE_ENV === "production" && process.env.EMAIL_PROVIDER) {
       // A provider is configured but delivery failed upstream of throwing.
@@ -81,7 +104,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     // Log the failure class only — never form content.
-    console.error(`[contact] Delivery failed: ${describeEmailError(error)}`);
+    console.error(`[contact] Delivery failed: ${describeDeliveryError(error)}`);
     return NextResponse.json(
       { message: "We couldn't send your message right now. Please try again shortly." },
       { status: 502 },

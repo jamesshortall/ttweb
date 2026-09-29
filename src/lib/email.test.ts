@@ -1,19 +1,19 @@
 import { describe, expect, it } from "vitest";
-import { describeEmailError } from "@/lib/email";
+import { describeDeliveryError } from "@/lib/email";
 
 /** Nodemailer/Node attach the useful fields to a plain Error. */
 function smtpError(fields: Record<string, unknown>): Error {
   return Object.assign(new Error("connection closed"), fields);
 }
 
-describe("describeEmailError", () => {
+describe("describeDeliveryError", () => {
   it("surfaces the transport code that a bare error name hides", () => {
-    const described = describeEmailError(smtpError({ code: "EAUTH" }));
+    const described = describeDeliveryError(smtpError({ code: "EAUTH" }));
     expect(described).toContain("EAUTH");
   });
 
   it("includes the SMTP status, failing command, and server reply", () => {
-    const described = describeEmailError(
+    const described = describeDeliveryError(
       smtpError({
         code: "EENVELOPE",
         responseCode: 550,
@@ -27,20 +27,20 @@ describe("describeEmailError", () => {
   });
 
   it("falls back to the message when there is no server reply", () => {
-    expect(describeEmailError(smtpError({ code: "ETIMEDOUT" }))).toContain("connection closed");
+    expect(describeDeliveryError(smtpError({ code: "ETIMEDOUT" }))).toContain("connection closed");
   });
 
   it("truncates a long server reply so logs stay readable", () => {
-    const described = describeEmailError(smtpError({ response: "x".repeat(500) }));
+    const described = describeDeliveryError(smtpError({ response: "x".repeat(500) }));
     expect(described.length).toBeLessThan(300);
   });
 
   it("collapses newlines so one failure stays on one log line", () => {
-    const described = describeEmailError(smtpError({ response: "550 rejected\n  retry later" }));
+    const described = describeDeliveryError(smtpError({ response: "550 rejected\n  retry later" }));
     expect(described).not.toContain("\n");
   });
 
   it("handles a non-Error value without throwing", () => {
-    expect(describeEmailError("boom")).toBe("unknown error");
+    expect(describeDeliveryError("boom")).toBe("unknown error");
   });
 });

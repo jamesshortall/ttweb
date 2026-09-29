@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { contactFormSchema, inquiryCategories, type ContactFormInput } from "@/lib/contact-schema";
+import { CONSENT_TEXT } from "@/content/sms-program";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -299,10 +300,10 @@ export function ContactForm({ defaultCategory }: { defaultCategory?: string }) {
           </span>
         </label>
         <p id="contact-sms-disclosure" className="mt-2 pl-8 text-sm leading-relaxed text-ink/70">
-          By checking this box, you agree to receive text messages from Travel Technician at the
-          mobile number provided, about your inquiry and scheduling. Consent is not a condition of
-          purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt
-          out or HELP for help. See our{" "}
+          {CONSENT_TEXT}
+        </p>
+        <p className="mt-2 pl-8 text-sm leading-relaxed text-ink/70">
+          See our{" "}
           <Link href="/privacy-policy" className="font-medium text-lagoon-700 underline">
             Privacy Policy
           </Link>{" "}

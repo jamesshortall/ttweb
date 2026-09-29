@@ -39,7 +39,7 @@ interface SmtpErrorFields {
 }
 
 /**
- * A one-line, log-safe description of why sending failed.
+ * A one-line, log-safe description of why a delivery failed (email or SMS).
  *
  * Carries the pieces that actually identify the fault — the transport error
  * code, the SMTP status, the failing command, and the server's own reply
@@ -47,7 +47,7 @@ interface SmtpErrorFields {
  * `error.name` yields a bare "Error" for every nodemailer failure, which
  * cannot be diagnosed.
  */
-export function describeEmailError(error: unknown): string {
+export function describeDeliveryError(error: unknown): string {
   if (!(error instanceof Error)) return "unknown error";
   const { code, responseCode, command, response } = error as Error & SmtpErrorFields;
   const parts = [error.name];

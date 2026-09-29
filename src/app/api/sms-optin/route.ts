@@ -3,7 +3,7 @@ import { smsOptInFormSchema, normalizePhone } from "@/lib/sms-optin-schema";
 import { CONSENT_TEXT } from "@/content/sms-program";
 import { sendWelcomeSms } from "@/lib/sms";
 import { storeSmsOptIn } from "@/lib/sms-optin-storage";
-import { describeEmailError, sendSmsOptInNotification } from "@/lib/email";
+import { describeDeliveryError, sendSmsOptInNotification } from "@/lib/email";
 import { createRateLimiter } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -71,14 +71,20 @@ export async function POST(request: NextRequest) {
 
   // Record the consent both ways; neither failure is the subscriber's problem.
   await Promise.all([
-    storeSmsOptIn(data, CONSENT_TEXT, welcomeSent).catch(() => false),
+    storeSmsOptIn({
+      name: data.name || undefined,
+      phone: data.phone,
+      consentText: CONSENT_TEXT,
+      welcomeSent,
+      source: "sms-opt-in-form",
+    }).catch(() => false),
     sendSmsOptInNotification({
       name: data.name || undefined,
       phone: normalizePhone(data.phone),
       consentText: CONSENT_TEXT,
       welcomeSent,
     }).catch((error: Error) => {
-      console.error(`[sms-optin] Notification failed: ${describeEmailError(error)}`);
+      console.error(`[sms-optin] Notification failed: ${describeDeliveryError(error)}`);
       return false;
     }),
   ]);
