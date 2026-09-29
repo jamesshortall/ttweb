@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -10,9 +10,24 @@ import { CONSENT_TEXT } from "@/content/sms-program";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/site-config";
 
+interface TurnstileApi {
+  render: (
+    element: HTMLElement,
+    options: {
+      sitekey: string;
+      theme?: string;
+      callback: (token: string) => void;
+      "expired-callback"?: () => void;
+      "error-callback"?: () => void;
+    },
+  ) => string;
+  reset: (widgetId?: string) => void;
+  remove: (widgetId: string) => void;
+}
+
 declare global {
   interface Window {
-    turnstile?: { reset: (widget?: string) => void };
+    turnstile?: TurnstileApi;
   }
 }
 
@@ -38,8 +53,35 @@ export function SmsOptInForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [serverMessage, setServerMessage] = useState("");
 
-  const formRef = useRef<HTMLFormElement | null>(null);
   const turnstileSiteKey = siteConfig.turnstileSiteKey;
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const widgetRef = useRef<HTMLDivElement | null>(null);
+  const widgetIdRef = useRef<string | undefined>(undefined);
+
+  /**
+   * Render the widget explicitly rather than letting the script auto-scan for
+   * it. Implicit rendering only scans when the script first loads, so it
+   * misses this form on client-side navigation, when the script is already
+   * there and never scans again.
+   */
+  const renderTurnstile = useCallback(() => {
+    if (!turnstileSiteKey || !widgetRef.current) return;
+    if (widgetIdRef.current !== undefined) return;
+    if (!window.turnstile) return;
+    widgetIdRef.current = window.turnstile.render(widgetRef.current, {
+      sitekey: turnstileSiteKey,
+      theme: "light",
+      callback: (token: string) => setTurnstileToken(token),
+      // A token is short-lived and single-use; drop it when it stops counting.
+      "expired-callback": () => setTurnstileToken(""),
+      "error-callback": () => setTurnstileToken(""),
+    });
+  }, [turnstileSiteKey]);
+
+  // Covers the case where the script loaded before this form mounted.
+  useEffect(() => {
+    renderTurnstile();
+  }, [renderTurnstile]);
 
   const startedAtRef = useRef<number | null>(null);
   useEffect(() => {
@@ -65,17 +107,11 @@ export function SmsOptInForm() {
   });
 
   const submitForm = async (data: SmsOptInInput) => {
-    // Turnstile renders a hidden input into the form; empty means the check
-    // has not completed yet, so there is nothing worth sending.
-    const turnstileToken = turnstileSiteKey
-      ? (formRef.current?.querySelector<HTMLInputElement>(
-          'input[name="cf-turnstile-response"]',
-        )?.value ?? "")
-      : undefined;
-
     if (turnstileSiteKey && !turnstileToken) {
       setStatus("error");
-      setServerMessage("Please wait a moment for the verification to finish, then try again.");
+      setServerMessage(
+        "The verification check hasn't finished. Give it a moment and try again — if it never appears, reload the page.",
+      );
       return;
     }
 
@@ -88,15 +124,16 @@ export function SmsOptInForm() {
         body: JSON.stringify({
           ...data,
           startedAt: startedAtRef.current ?? Date.now(),
-          turnstileToken,
+          turnstileToken: turnstileSiteKey ? turnstileToken : undefined,
         }),
       });
       const body = (await response.json()) as { message?: string };
       if (!response.ok) {
         setStatus("error");
         setServerMessage(body.message ?? "Something went wrong. Please try again.");
-        // A Turnstile token is single-use; get a fresh one for the retry.
-        window.turnstile?.reset();
+        // A token is single-use; get a fresh one for the retry.
+        window.turnstile?.reset(widgetIdRef.current);
+        setTurnstileToken("");
         return;
       }
       setStatus("success");
@@ -135,7 +172,6 @@ export function SmsOptInForm() {
 
   return (
     <form
-      ref={formRef}
       onSubmit={(event) => void handleSubmit(submitForm)(event)}
       noValidate
       className="space-y-6"
@@ -219,10 +255,12 @@ export function SmsOptInForm() {
       {turnstileSiteKey ? (
         <div>
           <Script
-            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
             strategy="afterInteractive"
+            onLoad={renderTurnstile}
+            onReady={renderTurnstile}
           />
-          <div className="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" />
+          <div ref={widgetRef} />
         </div>
       ) : null}
 
