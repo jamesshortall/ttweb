@@ -49,6 +49,9 @@ const serverEnvSchema = z
     TWILIO_ACCOUNT_SID: optionalString,
     TWILIO_AUTH_TOKEN: optionalString,
     TWILIO_FROM_NUMBER: optionalString,
+    // Cloudflare Turnstile (bot check on the SMS opt-in form).
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: optionalString,
+    TURNSTILE_SECRET_KEY: optionalString,
     NEXT_PUBLIC_ANALYTICS_PROVIDER: z.preprocess(
       emptyToUndefined,
       z.enum(["plausible", "google"]).optional(),
@@ -97,6 +100,17 @@ const serverEnvSchema = z
         code: z.ZodIssueCode.custom,
         path: ["POSTMARK_SERVER_TOKEN"],
         message: "POSTMARK_SERVER_TOKEN is required when EMAIL_PROVIDER=postmark",
+      });
+    }
+    // Turnstile needs both halves: a site key alone renders a widget nothing
+    // verifies, and a secret alone rejects every submission.
+    if (
+      Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) !== Boolean(env.TURNSTILE_SECRET_KEY)
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["TURNSTILE_SECRET_KEY"],
+        message: "NEXT_PUBLIC_TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY must be set together",
       });
     }
     // Twilio is all-or-nothing: a partial config would fail at send time.

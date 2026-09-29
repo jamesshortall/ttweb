@@ -4,9 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import Script from "next/script";
 import { smsOptInFormSchema, type SmsOptInInput } from "@/lib/sms-optin-schema";
 import { CONSENT_TEXT } from "@/content/sms-program";
 import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/site-config";
+
+declare global {
+  interface Window {
+    turnstile?: { reset: (widget?: string) => void };
+  }
+}
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -29,6 +37,9 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 export function SmsOptInForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [serverMessage, setServerMessage] = useState("");
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const turnstileSiteKey = siteConfig.turnstileSiteKey;
 
   const startedAtRef = useRef<number | null>(null);
   useEffect(() => {
@@ -54,18 +65,38 @@ export function SmsOptInForm() {
   });
 
   const submitForm = async (data: SmsOptInInput) => {
+    // Turnstile renders a hidden input into the form; empty means the check
+    // has not completed yet, so there is nothing worth sending.
+    const turnstileToken = turnstileSiteKey
+      ? (formRef.current?.querySelector<HTMLInputElement>(
+          'input[name="cf-turnstile-response"]',
+        )?.value ?? "")
+      : undefined;
+
+    if (turnstileSiteKey && !turnstileToken) {
+      setStatus("error");
+      setServerMessage("Please wait a moment for the verification to finish, then try again.");
+      return;
+    }
+
     setStatus("submitting");
     setServerMessage("");
     try {
       const response = await fetch("/api/sms-optin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, startedAt: startedAtRef.current ?? Date.now() }),
+        body: JSON.stringify({
+          ...data,
+          startedAt: startedAtRef.current ?? Date.now(),
+          turnstileToken,
+        }),
       });
       const body = (await response.json()) as { message?: string };
       if (!response.ok) {
         setStatus("error");
         setServerMessage(body.message ?? "Something went wrong. Please try again.");
+        // A Turnstile token is single-use; get a fresh one for the retry.
+        window.turnstile?.reset();
         return;
       }
       setStatus("success");
@@ -103,7 +134,12 @@ export function SmsOptInForm() {
   }
 
   return (
-    <form onSubmit={(event) => void handleSubmit(submitForm)(event)} noValidate className="space-y-6">
+    <form
+      ref={formRef}
+      onSubmit={(event) => void handleSubmit(submitForm)(event)}
+      noValidate
+      className="space-y-6"
+    >
       <div aria-live="polite" role="status">
         {status === "error" ? (
           <div className="rounded-xl border border-sunset-300 bg-sunset-50 p-4">
@@ -179,6 +215,16 @@ export function SmsOptInForm() {
           .
         </p>
       </div>
+
+      {turnstileSiteKey ? (
+        <div>
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            strategy="afterInteractive"
+          />
+          <div className="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" />
+        </div>
+      ) : null}
 
       <Button type="submit" size="lg" disabled={status === "submitting"}>
         {status === "submitting" ? "Signing you up…" : "Sign Up for Text Updates"}
