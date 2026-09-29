@@ -55,9 +55,17 @@ preload after confirming every subdomain (including cardmaster and blog) serves 
 
 ## Content Security Policy
 
-`next.config.ts` ships an enforced CSP that allows only self + the configured analytics and
-Calendly hosts. `script-src` includes `'unsafe-inline'` because Next.js hydration requires
-it without a nonce pipeline. To harden further, move the CSP into `middleware.ts` with
+`next.config.ts` ships an enforced CSP that allows only self + the hosts required by
+whichever features are configured (analytics, Calendly, Cloudflare Turnstile, AdSense).
+`script-src` includes `'unsafe-inline'` because Next.js hydration requires it without a
+nonce pipeline.
+
+The policy is assembled **at build time** from the environment, so a feature's variables
+must be present when `npm run build` runs — not only when the server starts. Setting
+`NEXT_PUBLIC_TURNSTILE_SITE_KEY` after a build and merely restarting leaves the previous
+policy in place, and the browser blocks `challenges.cloudflare.com` outright: the widget
+never appears and the form rejects every submission. After changing any of these variables,
+rebuild before restarting. To harden further, move the CSP into `middleware.ts` with
 per-request nonces (see Next.js CSP docs) — the trade-off is that every page becomes
 dynamically rendered, losing full-static output. Revisit after launch if desired.
 
