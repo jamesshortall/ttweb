@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { serverEnv } from "@/lib/env";
-import { normalizePhone, type SmsOptInData } from "@/lib/sms-optin-schema";
+import { normalizePhone } from "@/lib/sms-optin-schema";
 
 /**
  * Durable consent log for SMS opt-ins (see supabase/migrations/0004_sms_optins.sql).
@@ -8,11 +8,17 @@ import { normalizePhone, type SmsOptInData } from "@/lib/sms-optin-schema";
  * Storage failures are logged without content and never block the visitor —
  * the notification email is the backup record.
  */
-export async function storeSmsOptIn(
-  data: SmsOptInData,
-  consentText: string,
-  welcomeSent: boolean,
-): Promise<boolean> {
+export interface SmsOptInRecord {
+  name?: string;
+  phone: string;
+  /** The agreement shown at the moment of consent, stored verbatim. */
+  consentText: string;
+  welcomeSent: boolean;
+  /** Which surface the person opted in from. */
+  source: "sms-opt-in-form" | "contact-form";
+}
+
+export async function storeSmsOptIn(entry: SmsOptInRecord): Promise<boolean> {
   const env = serverEnv();
   if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) {
     return false;
@@ -23,11 +29,12 @@ export async function storeSmsOptIn(
       auth: { persistSession: false },
     });
     const { error } = await supabase.from("sms_optins").insert({
-      name: data.name || null,
-      phone: normalizePhone(data.phone),
+      name: entry.name || null,
+      phone: normalizePhone(entry.phone),
       consent: true,
-      consent_text: consentText,
-      welcome_sent: welcomeSent,
+      consent_text: entry.consentText,
+      welcome_sent: entry.welcomeSent,
+      source: entry.source,
     });
     if (error) {
       console.error(`[sms-optin] Supabase storage failed: ${error.code ?? "unknown error"}`);

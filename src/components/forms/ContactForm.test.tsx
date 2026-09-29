@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { CONSENT_TEXT } from "@/content/sms-program";
 
 function mockFetchOnce(response: { ok: boolean; status?: number; body?: unknown }) {
   const fetchMock = vi.fn().mockResolvedValue({
@@ -90,7 +91,13 @@ describe("ContactForm", () => {
   it("discloses message and data rates next to the SMS opt-in", () => {
     render(<ContactForm />);
     expect(screen.getByText(/Message and data rates may apply/)).toBeInTheDocument();
-    expect(screen.getByText(/Reply STOP to opt/)).toBeInTheDocument();
+    expect(screen.getByText(/Reply STOP to cancel/)).toBeInTheDocument();
+  });
+
+  it("shows the exact agreement that gets stored with the consent", () => {
+    render(<ContactForm />);
+    // The record on file must be the wording the person actually saw.
+    expect(screen.getByText(CONSENT_TEXT)).toBeInTheDocument();
   });
 
   it("rejects SMS consent without a mobile number", async () => {
