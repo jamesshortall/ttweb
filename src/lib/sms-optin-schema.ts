@@ -41,6 +41,8 @@ export const smsOptInFormSchema = z.object({
   website: z.string().max(0, "Invalid submission.").optional().or(z.literal("")),
   /** Millisecond timestamp when the form rendered — used for a minimum fill time. */
   startedAt: z.coerce.number().int().positive().optional(),
+  /** Cloudflare Turnstile token; required only when Turnstile is configured. */
+  turnstileToken: z.string().optional(),
 });
 
 export type SmsOptInInput = z.input<typeof smsOptInFormSchema>;

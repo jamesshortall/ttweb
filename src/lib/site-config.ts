@@ -23,6 +23,8 @@ export const siteConfig = {
   facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL ?? "https://www.facebook.com/TravelTechnician",
   /** Empty until the real Calendly link is configured — see .env.example. */
   calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL ?? "",
+  /** Public Turnstile site key; empty disables the widget entirely. */
+  turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "",
   founder: {
     name: "Jim Shortall",
     shortName: "Jim",

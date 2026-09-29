@@ -5,6 +5,7 @@ import { sendWelcomeSms } from "@/lib/sms";
 import { storeSmsOptIn } from "@/lib/sms-optin-storage";
 import { describeDeliveryError, sendSmsOptInNotification } from "@/lib/email";
 import { createRateLimiter } from "@/lib/rate-limit";
+import { isTurnstileConfigured, verifyTurnstileToken } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 
@@ -58,6 +59,17 @@ export async function POST(request: NextRequest) {
   }
   if (typeof data.startedAt === "number" && Date.now() - data.startedAt < MINIMUM_FILL_MS) {
     console.info("[sms-optin] Opt-in filled unusually fast; recording anyway.");
+  }
+
+  // Verify the bot check before anything that costs money or texts a person.
+  if (isTurnstileConfigured()) {
+    const human = await verifyTurnstileToken(data.turnstileToken, clientKey(request));
+    if (!human) {
+      return NextResponse.json(
+        { message: "We couldn't verify that you're human. Please reload the page and try again." },
+        { status: 400 },
+      );
+    }
   }
 
   // The welcome message is the confirmation the subscriber expects, so send it
