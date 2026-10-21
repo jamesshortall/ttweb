@@ -285,3 +285,66 @@ export async function sendContactConfirmation(data: ContactFormData): Promise<bo
   });
   return true;
 }
+
+/**
+ * Report a transfer bonus sync that needs attention.
+ *
+ * Deliberately not sent on an uneventful run: a daily "nothing happened" email
+ * gets filtered within a fortnight, and the failure emails get filtered with
+ * it. Only failures, refused writes, rejected records and genuinely new
+ * bonuses are worth an interruption.
+ */
+export async function sendTransferBonusAlert(summary: {
+  status: "succeeded" | "aborted" | "failed";
+  rowsSeen: number;
+  rowsWritten: number;
+  rejections: { bonusKey: string; reason: string }[];
+  newBonuses: { fromProgram: string; toProgram: string; bonusPercent: number }[];
+  error?: string;
+}): Promise<boolean> {
+  const env = serverEnv();
+  const driver = resolveDriver();
+
+  if (!driver || !env.CONTACT_TO_EMAIL || !env.EMAIL_FROM_ADDRESS) return false;
+
+  const headline =
+    summary.status === "succeeded"
+      ? `${summary.newBonuses.length} new transfer bonus(es)`
+      : `Transfer bonus sync ${summary.status}`;
+
+  const lines = [
+    `Status: ${summary.status}`,
+    `Records seen: ${summary.rowsSeen}`,
+    `Records written: ${summary.rowsWritten}`,
+  ];
+
+  if (summary.error) {
+    lines.push(``, `Reason: ${summary.error}`);
+    if (summary.status === "aborted") {
+      lines.push(`The previous data is intact — the page has not changed.`);
+    }
+  }
+
+  if (summary.newBonuses.length > 0) {
+    lines.push(``, `New since yesterday:`);
+    for (const bonus of summary.newBonuses) {
+      lines.push(`  ${bonus.fromProgram} -> ${bonus.toProgram}: ${bonus.bonusPercent}%`);
+    }
+  }
+
+  if (summary.rejections.length > 0) {
+    lines.push(``, `Rejected records (${summary.rejections.length}):`);
+    for (const rejection of summary.rejections) {
+      lines.push(`  ${rejection.bonusKey}: ${rejection.reason}`);
+    }
+    lines.push(``, `Rejections are upstream data problems — worth fixing in CardMaster.`);
+  }
+
+  await driver.send({
+    to: env.CONTACT_TO_EMAIL,
+    from: env.EMAIL_FROM_ADDRESS,
+    subject: `[Travel Technician] ${headline}`,
+    text: lines.join("\n"),
+  });
+  return true;
+}
