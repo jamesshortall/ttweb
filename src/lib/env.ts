@@ -52,6 +52,10 @@ const serverEnvSchema = z
     // Cloudflare Turnstile (bot check on the SMS opt-in form).
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: optionalString,
     TURNSTILE_SECRET_KEY: optionalString,
+    // CardMaster (Base44) — the transfer bonus feed.
+    BASE44_APP_ID: optionalString,
+    BASE44_ACCESS_TOKEN: optionalString,
+    TRANSFER_BONUS_CRON_SECRET: optionalString,
     NEXT_PUBLIC_ANALYTICS_PROVIDER: z.preprocess(
       emptyToUndefined,
       z.enum(["plausible", "google"]).optional(),
@@ -111,6 +115,15 @@ const serverEnvSchema = z
         code: z.ZodIssueCode.custom,
         path: ["TURNSTILE_SECRET_KEY"],
         message: "NEXT_PUBLIC_TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY must be set together",
+      });
+    }
+    // The Base44 feed needs both halves: an app id without a token is refused
+    // by the API, and a token without an app id has nothing to address.
+    if (Boolean(env.BASE44_APP_ID) !== Boolean(env.BASE44_ACCESS_TOKEN)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["BASE44_ACCESS_TOKEN"],
+        message: "BASE44_APP_ID and BASE44_ACCESS_TOKEN must be set together",
       });
     }
     // Twilio is all-or-nothing: a partial config would fail at send time.
