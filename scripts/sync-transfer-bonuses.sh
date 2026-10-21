@@ -14,6 +14,7 @@
 set -euo pipefail
 
 ENV_FILE=${TTWEB_ENV_FILE:-/root/ttweb/.env.production.local}
+ENDPOINT=${TTWEB_SYNC_URL:-http://127.0.0.1:3000/api/transfer-bonuses/sync}
 
 if [[ ! -r "$ENV_FILE" ]]; then
   echo "$(date -Is) cannot read $ENV_FILE" >&2
@@ -33,11 +34,33 @@ fi
 
 echo "$(date -Is) starting transfer bonus sync"
 
-# -f makes a refused or failed run a non-zero exit, so the failure is visible
-# in the cron log instead of buried in the body of a 200.
-curl -fsS -m 180 -X POST \
-  -H "Authorization: Bearer ${SECRET}" \
-  "http://127.0.0.1:3000/api/transfer-bonuses/sync"
+BODY=$(mktemp)
+trap 'rm -f "$BODY"' EXIT
 
+# Deliberately NOT `curl -f`: that discards the response body, which is the
+# only place the reason for a failure appears. An earlier version used it, and
+# a failed run reported nothing but "error: 502" — the actual cause had to be
+# dug out of pm2 logs. Capture the body and the status separately instead, so
+# the log holds the diagnosis AND cron still sees a non-zero exit.
+# The fallback sits OUTSIDE the substitution: curl already prints "000" via
+# -w when it cannot connect, so an `|| echo "000"` within would concatenate
+# into "000000" and defeat the check below.
+STATUS=$(curl -sS -m 180 -X POST \
+  -H "Authorization: Bearer ${SECRET}" \
+  -o "$BODY" -w '%{http_code}' \
+  "$ENDPOINT") || STATUS="000"
+
+cat "$BODY"
 echo ""
+
+if [[ "$STATUS" != "200" ]]; then
+  # 000 means curl never got a reply at all — the app is down or unreachable.
+  if [[ "$STATUS" == "000" ]]; then
+    echo "$(date -Is) sync failed: no response from $ENDPOINT" >&2
+  else
+    echo "$(date -Is) sync failed: HTTP $STATUS (see the body above for the reason)" >&2
+  fi
+  exit 1
+fi
+
 echo "$(date -Is) finished"

@@ -38,6 +38,7 @@ export const primaryNav: NavItem[] = [
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "Apps", href: "/apps" },
+  { label: "Transfer Bonuses", href: "/transfer-bonuses" },
   { label: "About Jim", href: "/about" },
   { label: "Blog", href: "/blog", external: false },
 ];
@@ -50,6 +51,7 @@ export const mobileNav: NavItem[] = [
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "Apps", href: "/apps" },
+  { label: "Transfer Bonuses", href: "/transfer-bonuses" },
   { label: "CardMaster", href: "/cardmaster" },
   { label: "Success Stories", href: "/success-stories" },
   { label: "Resources", href: "/resources" },
@@ -59,6 +61,7 @@ export const mobileNav: NavItem[] = [
 ];
 
 export const footerLearnLinks: NavItem[] = [
+  { label: "Transfer Bonuses", href: "/transfer-bonuses" },
   { label: "Points & Miles 101", href: "/points-and-miles-101" },
   { label: "Tips & Strategies", href: "/tips-and-strategies" },
   { label: "Resources", href: "/resources" },
