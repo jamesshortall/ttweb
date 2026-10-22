@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/marketing/PageHero";
+import { ButtonLink } from "@/components/ui/Button";
 import { ConsultationCTA } from "@/components/marketing/ConsultationCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { webPageJsonLd } from "@/lib/structured-data";
@@ -193,16 +194,24 @@ export default async function TransferBonusesPage() {
             </div>
           )}
 
-          <p className="mt-6 text-sm text-ink/75">
-            Wondering whether to take one of these or wait?{" "}
-            <Link
-              href="/transfer-bonuses/history"
-              className="font-medium text-lagoon-700 underline"
-            >
-              See how often each pairing runs
-            </Link>{" "}
-            &mdash; nine years of past bonuses, by program.
-          </p>
+          {/* The history page has no menu entry, so this is the only way most
+              visitors will find it. It earns the prominence: "should I take
+              this or wait" is the question the list above provokes and cannot
+              answer. */}
+          <div className="mt-10 rounded-2xl border border-lagoon-200 bg-white p-6 text-center shadow-sm sm:p-8">
+            <h2 className="font-display text-xl font-bold text-lagoon-950 sm:text-2xl">
+              Is this a good one, or worth waiting for?
+            </h2>
+            <p className="mx-auto mt-2 max-w-xl text-ink/75">
+              Nine years of past bonuses, by program pairing &mdash; how often each one runs, how
+              big it usually is, and the months it tends to appear.
+            </p>
+            <div className="mt-6">
+              <ButtonLink href="/transfer-bonuses/history" variant="secondary" size="lg">
+                See the transfer bonus history
+              </ButtonLink>
+            </div>
+          </div>
 
           {quiet.length > 0 ? (
             <p className="mt-8 text-sm text-ink/70">

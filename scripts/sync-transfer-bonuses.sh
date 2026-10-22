@@ -25,7 +25,13 @@ fi
 # bash: the env file already contains a comment with backticks, which makes
 # `source` fail outright, and a VALUE containing backticks or $(...) would be
 # executed as a command.
-SECRET=$(grep -m1 '^TRANSFER_BONUS_CRON_SECRET=' "$ENV_FILE" | cut -d= -f2- || true)
+#
+# The LAST definition wins, not the first. Next.js parses .env files with
+# dotenv, which assigns each key as it reads, so a duplicated variable takes
+# its final value. An earlier version used `grep -m1` and took the first, so a
+# duplicated secret made the script and the app disagree — and the only
+# symptom was a bare 401.
+SECRET=$(grep '^TRANSFER_BONUS_CRON_SECRET=' "$ENV_FILE" | tail -1 | cut -d= -f2- || true)
 
 if [[ -z "$SECRET" ]]; then
   echo "$(date -Is) TRANSFER_BONUS_CRON_SECRET is not set in $ENV_FILE" >&2
