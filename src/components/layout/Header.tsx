@@ -16,6 +16,10 @@ import { cn } from "@/lib/utils";
  *   navy logo once scrolled — a well-built, legible menu on every page.
  * - Educational pages live in an accessible "Learn" dropdown to keep the
  *   first-level bar short.
+ * - The bar appears at `xl`, not `lg`: at 1024px the items and the booking
+ *   button no longer fit on one line, and the result was either labels
+ *   breaking mid-word or the button clipped off the right edge. Between
+ *   1024 and 1280 the drawer is used instead.
  * - Mobile uses an animated slide-in drawer with a backdrop, Escape-to-close,
  *   and body scroll lock.
  */
@@ -113,7 +117,7 @@ export function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="ml-auto hidden items-center gap-1 lg:flex">
+        <ul className="ml-auto hidden items-center gap-1 xl:flex">
           <li>
             <Link
               href="/"
@@ -177,7 +181,10 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                  // whitespace-nowrap: a two-word label breaking across lines
+                  // ("Transfer / Bonuses") reads as a layout fault rather than
+                  // as a tight fit.
+                  "whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   linkTone,
                   isActive(item.href) && (solid ? "text-teal-700" : "text-white"),
                 )}
@@ -204,7 +211,7 @@ export function Header() {
           aria-expanded={drawerOpen}
           aria-controls="mobile-drawer"
           className={cn(
-            "ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors lg:hidden",
+            "ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors xl:hidden",
             solid ? "text-navy-900 hover:bg-navy-50" : "text-white hover:bg-white/10",
           )}
         >
@@ -221,7 +228,7 @@ export function Header() {
           When closed it is both aria-hidden (removed from the a11y tree) and
           inert (its links are removed from the tab order), so no focusable
           content is ever left hidden behind aria-hidden. */}
-      <div className="lg:hidden" aria-hidden={!drawerOpen} inert={!drawerOpen}>
+      <div className="xl:hidden" aria-hidden={!drawerOpen} inert={!drawerOpen}>
         <div
           className={cn(
             "fixed inset-0 z-40 bg-navy-950/50 backdrop-blur-sm transition-opacity duration-300",
