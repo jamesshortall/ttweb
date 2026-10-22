@@ -146,3 +146,51 @@ export async function findNewRunKeys(runKeys: readonly string[]): Promise<string
   const known = new Set(data.map((row) => (row as { run_key: string }).run_key));
   return runKeys.filter((key) => !known.has(key));
 }
+
+/** Upsert historical runs on upstream's own history_key. */
+export async function upsertBonusHistory(
+  runs: readonly import("./history").HistoricBonus[],
+): Promise<number> {
+  const supabase = client();
+  if (!supabase || runs.length === 0) return 0;
+
+  const now = new Date().toISOString();
+  const { error } = await supabase.from("transfer_bonus_history").upsert(
+    runs.map((run) => ({
+      history_key: run.historyKey,
+      bonus_key: run.bonusKey,
+      from_program: run.fromProgram,
+      to_program: run.toProgram,
+      from_bank: run.fromBank,
+      from_program_type: run.fromProgramType,
+      to_program_type: run.toProgramType,
+      bonus_percent: run.bonusPercent,
+      transfer_ratio: run.transferRatio,
+      start_date: run.startDate,
+      end_date: run.endDate,
+      status: run.status,
+      source_name: run.sourceName,
+      source_url: run.sourceUrl,
+      notes: run.notes,
+      origin: run.origin,
+      first_seen_at: run.firstSeenAt,
+      last_verified_at: run.lastVerifiedAt,
+      base44_id: run.base44Id,
+      synced_at: now,
+    })),
+    { onConflict: "history_key" },
+  );
+
+  if (error) throw new Error(`Supabase history upsert failed: ${error.code ?? "unknown error"}`);
+  return runs.length;
+}
+
+/** How many historical runs are stored. Powers the history shrink guard. */
+export async function storedHistoryCount(): Promise<number | null> {
+  const supabase = client();
+  if (!supabase) return null;
+  const { count, error } = await supabase
+    .from("transfer_bonus_history")
+    .select("*", { count: "exact", head: true });
+  return error ? null : (count ?? null);
+}
