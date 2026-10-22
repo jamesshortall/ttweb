@@ -62,6 +62,7 @@ export const mobileNav: NavItem[] = [
 
 export const footerLearnLinks: NavItem[] = [
   { label: "Transfer Bonuses", href: "/transfer-bonuses" },
+  { label: "Transfer Bonus History", href: "/transfer-bonuses/history" },
   { label: "Points & Miles 101", href: "/points-and-miles-101" },
   { label: "Tips & Strategies", href: "/tips-and-strategies" },
   { label: "Resources", href: "/resources" },

@@ -193,6 +193,17 @@ export default async function TransferBonusesPage() {
             </div>
           )}
 
+          <p className="mt-6 text-sm text-ink/75">
+            Wondering whether to take one of these or wait?{" "}
+            <Link
+              href="/transfer-bonuses/history"
+              className="font-medium text-lagoon-700 underline"
+            >
+              See how often each pairing runs
+            </Link>{" "}
+            &mdash; nine years of past bonuses, by program.
+          </p>
+
           {quiet.length > 0 ? (
             <p className="mt-8 text-sm text-ink/70">
               <span className="font-semibold text-lagoon-950">Also watched, nothing running:</span>{" "}

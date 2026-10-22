@@ -67,3 +67,8 @@ async function fetchEntity(entity: string): Promise<RawTransferBonus[]> {
 export function fetchCurrentBonuses(): Promise<RawTransferBonus[]> {
   return fetchEntity("TransferBonus");
 }
+
+/** The archive, 2017 onward: the 'TransferBonusHistory' entity. */
+export function fetchBonusHistory(): Promise<RawTransferBonus[]> {
+  return fetchEntity("TransferBonusHistory");
+}

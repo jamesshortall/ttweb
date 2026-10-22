@@ -1,9 +1,12 @@
-import { fetchCurrentBonuses } from "./base44";
+import { fetchBonusHistory, fetchCurrentBonuses } from "./base44";
+import { normalizeHistoryFeed } from "./history";
 import { normalizeFeed, type RejectedBonus, type TransferBonus } from "./normalize";
 import {
   findNewRunKeys,
   lastSuccessfulRowCount,
   recordSyncRun,
+  storedHistoryCount,
+  upsertBonusHistory,
   upsertTransferBonuses,
   type SyncStatus,
 } from "./storage";
@@ -24,6 +27,13 @@ import {
  */
 const MIN_FEED_RATIO = 0.5;
 
+export interface HistorySyncResult {
+  rowsSeen: number;
+  rowsWritten: number;
+  rowsRejected: number;
+  error?: string;
+}
+
 export interface SyncResult {
   status: SyncStatus;
   rowsSeen: number;
@@ -33,6 +43,8 @@ export interface SyncResult {
   /** Bonuses that were not in the table before this run. */
   newBonuses: TransferBonus[];
   error?: string;
+  /** The archive, synced alongside. Its failures never fail the main sync. */
+  history?: HistorySyncResult;
 }
 
 /**
@@ -50,6 +62,38 @@ export function abortReason(rowsSeen: number, lastRowCount: number | null): stri
     return `feed shrank from ${lastRowCount} to ${rowsSeen} records`;
   }
   return null;
+}
+
+/**
+ * The archive, synced alongside the live feed.
+ *
+ * Deliberately best-effort and reported separately: the history page can be a
+ * day stale without anyone being misled, while the current-bonus page cannot.
+ * A failure here must never stop today's bonuses from updating.
+ */
+export async function runHistorySync(): Promise<HistorySyncResult> {
+  const empty = { rowsSeen: 0, rowsWritten: 0, rowsRejected: 0 };
+  try {
+    const raw = await fetchBonusHistory();
+    const { accepted, rejected } = normalizeHistoryFeed(raw);
+
+    // Same shape of guard as the live feed: an archive only grows, so a feed
+    // smaller than what is already stored means something upstream broke.
+    const stored = await storedHistoryCount();
+    if (raw.length === 0 || (stored !== null && stored > 0 && raw.length < stored * 0.5)) {
+      return {
+        ...empty,
+        rowsSeen: raw.length,
+        rowsRejected: rejected.length,
+        error: `history feed returned ${raw.length} records against ${stored ?? "?"} stored`,
+      };
+    }
+
+    const rowsWritten = await upsertBonusHistory(accepted);
+    return { rowsSeen: raw.length, rowsWritten, rowsRejected: rejected.length };
+  } catch (error) {
+    return { ...empty, error: error instanceof Error ? error.message : "unknown error" };
+  }
 }
 
 export async function runTransferBonusSync(): Promise<SyncResult> {
@@ -96,6 +140,7 @@ export async function runTransferBonusSync(): Promise<SyncResult> {
       rowsRejected: rejected.length,
       rejections: rejected,
       newBonuses: accepted.filter((bonus) => newKeys.has(bonus.runKey)),
+      history: await runHistorySync(),
     };
     await recordSyncRun(startedAt, result);
     return result;
