@@ -36,7 +36,6 @@ export const learnMenu: NavItem[] = [
 
 export const primaryNav: NavItem[] = [
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Apps", href: "/apps" },
   { label: "Transfer Bonuses", href: "/transfer-bonuses" },
   { label: "About Jim", href: "/about" },
@@ -49,7 +48,6 @@ export const mobileNav: NavItem[] = [
   { label: "Points & Miles 101", href: "/points-and-miles-101" },
   { label: "Tips & Strategies", href: "/tips-and-strategies" },
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Apps", href: "/apps" },
   { label: "Transfer Bonuses", href: "/transfer-bonuses" },
   { label: "CardMaster", href: "/cardmaster" },
@@ -73,7 +71,6 @@ export const footerLearnLinks: NavItem[] = [
 export const footerCompanyLinks: NavItem[] = [
   { label: "About Jim", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Apps", href: "/apps" },
   { label: "CardMaster", href: "/cardmaster" },
   { label: "Contact", href: "/contact" },

@@ -30,6 +30,18 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },
+  async redirects() {
+    return [
+      {
+        // The pricing page was merged into /services. A permanent redirect
+        // keeps inbound links, bookmarks and search results working, and
+        // passes the page's ranking to its replacement.
+        source: "/pricing",
+        destination: "/services",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
